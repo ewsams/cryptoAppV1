@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div *ngIf="loading">
+      <strong class="boldSales pageTitle">Currently Loading...</strong><br />
+      <strong class="boldSales pageTitle"
+        >Querying:
+        https://api.thegraph.com/subgraphs/name/decentraland/marketplace...</strong
+      >
+    </div>
+    <div *ngIf="!loading">
+      <h2 class="boldSales pageTitle">Counts Properties</h2>
+      <ul
+        *ngFor="let response of graphResponse.counts"
+        class="list-group boldSales"
+      >
+        <li class="boldSales pageTitle text-success">
+          OrderEstate: {{ response.orderEstate }}
+        </li>
+        <li class="boldSales pageTitle text-success">
+          OrderParcel: {{ response.orderParcel }}
+        </li>
+      </ul>
+      <h2 class="boldSales pageTitle">Orders Properties</h2>
+      <div
+        *ngFor="let response of graphResponse.orders"
+        class="boldSales card"
+        style="width: 36rem"
+      >
+        <span class="card-header">Type of SALE: {{ response.category }}</span>
+        <span class="card-body">ID: {{ response.id }}</span>
+        <span class="card-body">
+          ADDRESS:
+          <a href="https://etherscan.io/address/{{ response.nftAddress }}">{{
+            response.nftAddress
+          }}</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,26 @@
+<div class="container" *ngIf="loading">
+    <h5>Currently Loading Available Property</h5>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div
+        class="card"
+        style="width: 20rem; padding: 4px"
+        *ngFor="let data of this.landCompontObject.parcels"
+      >
+        <img
+          class="card-img-top"
+          src="{{ data.nft.image }}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            owner address: {{ data.owner.address }} <br />
+            owner id: {{ data.owner.id }} <br />owner's mana:
+            {{ data.owner.mana }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
