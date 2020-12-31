@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="jumbotron">
     <div *ngIf="loading">
       <strong class="boldSales pageTitle">Currently Loading...</strong><br />
       <strong class="boldSales pageTitle"
@@ -6,8 +6,8 @@
         https://api.thegraph.com/subgraphs/name/decentraland/marketplace...</strong
       >
     </div>
-    <div *ngIf="!loading">
-      <h2 class="boldSales pageTitle">Counts Properties</h2>
+    <div *ngIf="!loading" class="display-7">
+      <h2 class="boldSales pageTitle lead">Counts Properties</h2>
       <ul
         *ngFor="let response of graphResponse.counts"
         class="list-group boldSales"
