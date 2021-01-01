@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SubmitFormModel } from "../models/submitform";
 
 @Component({
@@ -7,27 +8,47 @@ import { SubmitFormModel } from "../models/submitform";
   styleUrls: ["./profile.component.scss"],
 })
 export class ProfileComponent implements OnInit {
-  formIsValid: boolean;
   profileFormObject: SubmitFormModel;
+  myForm: FormGroup;
 
-  constructor() {}
+  constructor(private _fb: FormBuilder) {}
 
   onsubmit() {
-    console.log(this.profileFormObject);
+    if (this.myForm.status === "VALID") {
+      this.profileFormObject = {
+        userName: this.myForm.controls.userName.value,
+        password: this.myForm.controls.password.value,
+        firstName: this.myForm.controls.firstName.value,
+        lastName: this.myForm.controls.lastName.value,
+        email: this.myForm.controls.email.value,
+        address: this.myForm.controls.address.value,
+        city: this.myForm.controls.city.value,
+        country: this.myForm.controls.country.value,
+        postalCode: this.myForm.controls.postalCode.value,
+      };
+      console.log(this.profileFormObject);
+    }
   }
 
   ngOnInit() {
-    this.profileFormObject = {
-      userName: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      city: "",
-      country: "",
-      postalCode: null,
-    };
-    this.formIsValid = false;
+    this.myForm = this._fb.group({
+      userName: ["", Validators.required],
+      password: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      address: ["", Validators.required],
+      city: ["", Validators.required],
+      country: ["", Validators.required],
+      postalCode: [null, [Validators.required, Validators.minLength(5)]],
+    });
   }
 }

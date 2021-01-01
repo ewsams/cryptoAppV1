@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body wd-75">
-    <form>
+    <form [formGroup]="myForm">
       <h6 class="heading-small text-muted">User information</h6>
       <div class="pl-lg-4">
         <div class="row">
@@ -10,13 +10,11 @@
                 >Username</label
               >
               <input
-                [(ngModel)]="profileFormObject.userName"
-                name="userName"
+                formControlName="userName"
                 type="text"
                 id="input-username"
                 class="form-control form-control-alternative"
                 placeholder="Username"
-                value="lucky.jesse"
               />
             </div>
           </div>
@@ -26,15 +24,15 @@
                 >Password</label
               >
               <input
-                [(ngModel)]="profileFormObject.password"
-                name="password"
+                formControlName="password"
                 type="password"
                 id="input-password"
                 class="form-control form-control-alternative"
                 placeholder="Password"
               />
               <small id="passwordHelpBlock" class="form-text text-muted">
-                Your password must be 8-20 characters, contain letters and numbers, special characters, or emoji.
+                Your password must be 8-20 characters, contain letters, numbers,
+                one special character, and one capital letter.
               </small>
             </div>
           </div>
@@ -46,13 +44,11 @@
                 >First name</label
               >
               <input
-                [(ngModel)]="profileFormObject.firstName"
-                name="firstName"
+                formControlName="firstName"
                 type="text"
                 id="input-first-name"
                 class="form-control form-control-alternative"
                 placeholder="First name"
-                value="Lucky"
               />
             </div>
           </div>
@@ -62,8 +58,7 @@
                 >Email address</label
               >
               <input
-                [(ngModel)]="profileFormObject.email"
-                name="email"
+                formControlName="email"
                 type="email"
                 id="input-email"
                 class="form-control form-control-alternative"
@@ -77,13 +72,11 @@
                 >Last name</label
               >
               <input
-                [(ngModel)]="profileFormObject.lastName"
-                name="lastName"
+                formControlName="lastName"
                 type="text"
                 id="input-last-name"
                 class="form-control form-control-alternative"
                 placeholder="Last name"
-                value="Jesse"
               />
             </div>
           </div>
@@ -100,12 +93,10 @@
                 >Address</label
               >
               <input
-                [(ngModel)]="profileFormObject.address"
-                name="address"
+                formControlName="address"
                 id="input-address"
                 class="form-control form-control-alternative"
-                placeholder="Home Address"
-                value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                placeholder="Address"
                 type="text"
               />
             </div>
@@ -116,13 +107,11 @@
             <div class="form-group focused">
               <label class="form-control-label" for="input-city">City</label>
               <input
-                [(ngModel)]="profileFormObject.city"
-                name="city"
+                formControlName="city"
                 type="text"
                 id="input-city"
                 class="form-control form-control-alternative"
                 placeholder="City"
-                value="New York"
               />
             </div>
           </div>
@@ -132,13 +121,11 @@
                 >Country</label
               >
               <input
-                [(ngModel)]="profileFormObject.country"
-                name="country"
+                formControlName="country"
                 type="text"
                 id="input-country"
                 class="form-control form-control-alternative"
                 placeholder="Country"
-                value="United States"
               />
             </div>
           </div>
@@ -148,8 +135,7 @@
                 >Postal code</label
               >
               <input
-                [(ngModel)]="profileFormObject.postalCode"
-                name="postalCode"
+                formControlName="postalCode"
                 type="number"
                 id="input-postal-code"
                 class="form-control form-control-alternative"
