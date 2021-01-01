@@ -1,3 +1,4 @@
+<div class="Jumbotron">
 <div class="card">
   <div class="card-body wd-75">
     <form [formGroup]="myForm">
@@ -16,6 +17,13 @@
                 class="form-control form-control-alternative"
                 placeholder="Username"
               />
+              <small
+              *ngIf="userName.invalid && userName.touched"
+              id="userNameHelpBlock"
+              class="form-text text-danger"
+            >
+              Your input is invalid.
+            </small>
             </div>
           </div>
           <div class="col-lg-6">
@@ -34,6 +42,12 @@
                 Your password must be 8-20 characters, contain letters, numbers,
                 one special character, and one capital letter.
               </small>
+              <small
+                *ngIf="password.invalid && password.touched"
+                class="form-text text-danger"
+              >
+                Please enter your password
+              </small>
             </div>
           </div>
         </div>
@@ -50,6 +64,13 @@
                 class="form-control form-control-alternative"
                 placeholder="First name"
               />
+              <small
+              *ngIf="firstName.invalid && firstName.touched"
+              id="firstNameHelpBlock"
+              class="form-text text-danger"
+            >
+              Your input invalid.
+            </small>
             </div>
           </div>
           <div class="col-lg-6">
@@ -64,6 +85,13 @@
                 class="form-control form-control-alternative"
                 placeholder="email@example.com"
               />
+              <small
+              *ngIf="email.invalid && email.touched"
+              id="emailHelpBlock"
+              class="form-text text-danger"
+            >
+              Your email address is invalid.
+            </small>
             </div>
           </div>
           <div class="col-lg-6">
@@ -78,6 +106,13 @@
                 class="form-control form-control-alternative"
                 placeholder="Last name"
               />
+              <small
+              *ngIf="lastName.invalid && lastName.touched"
+              id="lastNameHelpBlock"
+              class="form-text text-danger"
+            >
+              Your input is invalid.
+            </small>
             </div>
           </div>
         </div>
@@ -99,6 +134,13 @@
                 placeholder="Address"
                 type="text"
               />
+              <small
+              *ngIf="address.invalid && address.touched"
+              id="addressHelpBlock"
+              class="form-text text-danger"
+            >
+              Your input is invalid.
+            </small>
             </div>
           </div>
         </div>
@@ -113,6 +155,13 @@
                 class="form-control form-control-alternative"
                 placeholder="City"
               />
+              <small
+              *ngIf="city.invalid && city.touched"
+              id="cityHelpBlock"
+              class="form-text text-danger"
+            >
+              Your input is invalid.
+            </small>
             </div>
           </div>
           <div class="col-lg-4">
@@ -122,9 +171,9 @@
               >
               <input
                 formControlName="country"
-                type="text"
+                type="search"
                 id="input-country"
-                class="form-control form-control-alternative"
+                class="form-control form-control-alternative dropdown-toggle"
                 placeholder="Country"
               />
             </div>
@@ -136,7 +185,7 @@
               >
               <input
                 formControlName="postalCode"
-                type="number"
+                type="text"
                 id="input-postal-code"
                 class="form-control form-control-alternative"
                 placeholder="Postal code"
@@ -165,4 +214,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

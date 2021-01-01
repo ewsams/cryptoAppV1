@@ -8,26 +8,26 @@ import { SubmitFormModel } from "../models/submitform";
   styleUrls: ["./profile.component.scss"],
 })
 export class ProfileComponent implements OnInit {
-  profileFormObject: SubmitFormModel;
+  profileRequestFormObject: SubmitFormModel;
   myForm: FormGroup;
 
   constructor(private _fb: FormBuilder) {}
 
   onsubmit() {
     if (this.myForm.status === "VALID") {
-      this.profileFormObject = {
-        userName: this.myForm.controls.userName.value,
-        password: this.myForm.controls.password.value,
-        firstName: this.myForm.controls.firstName.value,
-        lastName: this.myForm.controls.lastName.value,
-        email: this.myForm.controls.email.value,
-        address: this.myForm.controls.address.value,
-        city: this.myForm.controls.city.value,
-        country: this.myForm.controls.country.value,
-        postalCode: this.myForm.controls.postalCode.value,
+      this.profileRequestFormObject = {
+        userName: this.userName.value,
+        password: this.password.value,
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+        email: this.email.value,
+        address: this.address.value,
+        city: this.city.value,
+        country: this.country.value,
+        postalCode: this.postalCode.value,
       };
       console.log("form:", this.myForm);
-      console.log("profile:", this.profileFormObject);
+      console.log("profile:", this.profileRequestFormObject);
     }
   }
 
@@ -55,7 +55,31 @@ export class ProfileComponent implements OnInit {
       ],
     });
   }
-
+  // Getters for working with our form
+  get userName() {
+    return this.myForm.get("userName");
+  }
+  get password() {
+    return this.myForm.get("password");
+  }
+  get firstName() {
+    return this.myForm.get("firstName");
+  }
+  get lastName() {
+    return this.myForm.get("lastName");
+  }
+  get email() {
+    return this.myForm.get("email");
+  }
+  get address() {
+    return this.myForm.get("address");
+  }
+  get city() {
+    return this.myForm.get("city");
+  }
+  get country() {
+    return this.myForm.get("country");
+  }
   get postalCode() {
     return this.myForm.get("postalCode");
   }

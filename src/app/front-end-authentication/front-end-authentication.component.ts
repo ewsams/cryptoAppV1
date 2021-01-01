@@ -15,6 +15,7 @@ export class FrontEndAuthenticationComponent implements OnInit {
   ngOnInit() {}
 
   onAuthenticatedClick() {
+    //request for validation starts here
     if (this.userName === "admin" && this.password === "admin") {
       this.isAuthenticated.emit("Logged In");
     } else {

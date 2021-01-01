@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   onClick(greet: string) {
+    // Request goes here for validation
     if (this.password.length >= 3 && this.userName.length >= 3) {
       this.greeting = greet;
     }
