@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
         country: this.myForm.controls.country.value,
         postalCode: this.myForm.controls.postalCode.value,
       };
-      console.log(this.profileFormObject);
+      console.log("form:", this.myForm);
+      console.log("profile:", this.profileFormObject);
     }
   }
 
@@ -48,7 +49,14 @@ export class ProfileComponent implements OnInit {
       address: ["", Validators.required],
       city: ["", Validators.required],
       country: ["", Validators.required],
-      postalCode: [null, [Validators.required, Validators.minLength(5)]],
+      postalCode: [
+        null,
+        [Validators.required, Validators.pattern(/^\d{5}(?:[-\s]\d{4})?$/)],
+      ],
     });
+  }
+
+  get postalCode() {
+    return this.myForm.get("postalCode");
   }
 }

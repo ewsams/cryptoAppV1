@@ -141,6 +141,13 @@
                 class="form-control form-control-alternative"
                 placeholder="Postal code"
               />
+              <small
+                *ngIf="postalCode.invalid && postalCode.touched"
+                id="postalCodeHelpBlock"
+                class="form-text text-danger"
+              >
+                Your postal code is invalid.
+              </small>
             </div>
           </div>
         </div>
