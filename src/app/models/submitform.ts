@@ -8,5 +8,5 @@ address:string;
 city:string;
 country:string;
 postalCode:number;
-aboutMe?:string;
+isValid:boolean;
 }

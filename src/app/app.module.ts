@@ -1,22 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { ApolloBoostModule, ApolloBoost } from "apollo-angular-boost";
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AngularFireModule } from "angularfire2";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 //Local imports
-import { AppRoutingModule, routingComponents } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FrontEndAuthenticationComponent } from './front-end-authentication/front-end-authentication.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './profile/profile.component';
+import { AppRoutingModule, routingComponents } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { FrontEndAuthenticationComponent } from "./front-end-authentication/front-end-authentication.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { environment } from "../environments/environment.prod";
 
 @NgModule({
   declarations: [
     routingComponents,
     FrontEndAuthenticationComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,11 +29,14 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase, "ewsdeploy"),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { 
+export class AppModule {
   constructor(boost: ApolloBoost) {
     boost.create({
       uri: "https://api.thegraph.com/subgraphs/name/decentraland/marketplace",

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SubmitFormModel } from "../models/submitform";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: "app-profile",
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
   myForm: FormGroup;
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _userService: UserService) {}
 
   onsubmit() {
     if (this.myForm.status === "VALID") {
@@ -25,9 +26,11 @@ export class ProfileComponent implements OnInit {
         city: this.city.value,
         country: this.country.value,
         postalCode: this.postalCode.value,
+        isValid: true,
       };
-      console.log("form:", this.myForm);
       console.log("profile:", this.profileRequestFormObject);
+      console.log("is valid::", this.profileRequestFormObject.isValid);
+      this._userService.addUser(this.profileRequestFormObject);
     }
   }
 
