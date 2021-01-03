@@ -14,6 +14,7 @@ import { FrontEndAuthenticationComponent } from "./front-end-authentication/fron
 import { NavbarComponent } from "./navbar/navbar.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { environment } from "../environments/environment.prod";
+import { UserService } from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { environment } from "../environments/environment.prod";
     AngularFireAuthModule,
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

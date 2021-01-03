@@ -14,10 +14,10 @@ export class UserService {
   userCollection: AngularFirestoreCollection<SubmitFormModel>;
   userDocument: AngularFirestoreDocument<SubmitFormModel>;
   user: SubmitFormModel;
-  users: SubmitFormModel[];
+  users: any;
 
   constructor(private afs: AngularFirestore) {
-    this.userCollection = this.afs.collection('users')
+    this.userCollection = this.afs.collection("users");
   }
 
   addUser(user: SubmitFormModel) {
