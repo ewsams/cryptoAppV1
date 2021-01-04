@@ -10,6 +10,7 @@ import { UserService } from "../services/user.service";
 })
 export class ProfileComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
+  users: SubmitFormModel[];
   myForm: FormGroup;
 
   constructor(private _fb: FormBuilder, private _userService: UserService) {}
@@ -28,13 +29,17 @@ export class ProfileComponent implements OnInit {
         postalCode: this.postalCode.value,
         isValid: true,
       };
-      console.log("profile:", this.profileRequestFormObject);
-      console.log("is valid::", this.profileRequestFormObject.isValid);
+      console.log(this.profileRequestFormObject);
       this._userService.addUser(this.profileRequestFormObject);
     }
   }
 
   ngOnInit() {
+    this._userService.getUsers().subscribe((users) => {
+      this.users = users;
+      console.log(this.users);
+    });
+    // form for database
     this.myForm = this._fb.group({
       userName: ["", Validators.required],
       password: [
@@ -85,5 +90,13 @@ export class ProfileComponent implements OnInit {
   }
   get postalCode() {
     return this.myForm.get("postalCode");
+  }
+
+  filterUserInFirestore(email: string) {
+    const filtered = this.users.filter((element) => {
+      if (element.email !== email) {
+        console.log(filtered);
+      }
+    });
   }
 }

@@ -6,6 +6,7 @@ import {
   AngularFirestoreDocument,
 } from "angularfire2/firestore";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -22,5 +23,18 @@ export class UserService {
 
   addUser(user: SubmitFormModel) {
     this.userCollection.add(user);
+  }
+
+  getUsers(): Observable<SubmitFormModel[]> {
+    this.users = this.userCollection.snapshotChanges().pipe(
+      map((firestoreDatabase) => {
+        return firestoreDatabase.map((rawUserData) => {
+          const data = rawUserData.payload.doc.data() as SubmitFormModel;
+          data.id = rawUserData.payload.doc.id;
+          return data;
+        });
+      })
+    );
+    return this.users;
   }
 }
