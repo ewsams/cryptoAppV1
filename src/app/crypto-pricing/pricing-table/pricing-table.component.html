@@ -1,0 +1,33 @@
+<div class="container"  *ngIf="!loading">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      style="outline: none; margin-top: 3rem; width: 15rem; height: rem"
+      placeholder="Search Tokens"
+      [(ngModel)]="searchValue"
+    />
+</div>
+<table class="table mt-3 ml-4" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 5rem">#</th>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Total Supply</th>
+      <th scope="col">Traded Volume in $USD</th>
+      <th scope="col">Total Liquidity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let data of pricingTable | tableSearch: searchValue; index as i"
+    >
+      <td>{{ i + 1 }}</td>
+      <td>{{ data.symbol }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.totalSupply | number }}</td>
+      <td>{{ data.tradeVolumeUSD | currency: "USD" }}</td>
+      <td>{{ data.totalLiquidity | number }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -28,7 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/nucleo-icons.css",
+              "src/assets/demo/demo.css",
+              "node_modules/bs-stepper/dist/css/bs-stepper.css",
+              "src/assets/scss/black-dashboard.scss",
+              "node_modules/@swimlane/ngx-datatable/index.css",
+              "node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -122,8 +129,16 @@
               "devServerTarget": "cryptoApp:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "cryptoApp"
+    }
+  },
+  "defaultProject": "cryptoApp",
+  "cli": {
+    "analytics": "c63b73f5-1612-4381-b65f-37cbf308eda4"
+  }
 }

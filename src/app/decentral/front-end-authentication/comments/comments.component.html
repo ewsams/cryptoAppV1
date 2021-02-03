@@ -1,0 +1,36 @@
+<app-comment-form
+  [currentComment]="currentComment"
+  (newPost)="onNewPost($event)"
+  (updatedPost)="onUpdatedPost($event)"
+></app-comment-form>
+<div *ngIf="!loading" class="container">
+  <div
+    class="card mx-auto previous-comments-layout"
+    *ngFor="let comment of comments"
+  >
+    <div class="card-body">
+      <h3>{{ comment.title }}</h3>
+      <p>{{ comment.body }}</p>
+      <hr />
+      <span
+        class="bg-none"
+        id="left"
+        style="color: white"
+        (click)="addLike(comment)"
+        >{{ comment.likeCount }}
+        <img
+          style="height: 40px; width: 40px"
+          src="{{ comment.likeUrl }}"
+          alt=""
+        />
+      </span>
+
+      <button (click)="editPost(comment)" class="btn btn-success ml-2">
+        Edit
+      </button>
+      <button (click)="removePost(comment)" class="btn btn-danger ml-2">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
