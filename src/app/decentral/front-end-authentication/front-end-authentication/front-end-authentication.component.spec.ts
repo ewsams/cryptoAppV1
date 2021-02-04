@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FrontEndAuthenticationComponent } from './front-end-authentication.component';
 
@@ -6,7 +6,7 @@ describe('FrontEndAuthenticationComponent', () => {
   let component: FrontEndAuthenticationComponent;
   let fixture: ComponentFixture<FrontEndAuthenticationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FrontEndAuthenticationComponent ]
     })

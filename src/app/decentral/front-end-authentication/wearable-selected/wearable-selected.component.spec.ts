@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { WearableSelectedComponent } from './wearable-selected.component';
 
@@ -6,7 +6,7 @@ describe('WearableSelectedComponent', () => {
   let component: WearableSelectedComponent;
   let fixture: ComponentFixture<WearableSelectedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ WearableSelectedComponent ]
     })

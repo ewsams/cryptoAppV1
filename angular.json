@@ -32,7 +32,6 @@
               "src/assets/css/nucleo-icons.css",
               "src/assets/demo/demo.css",
               "node_modules/bs-stepper/dist/css/bs-stepper.css",
-              "src/assets/scss/black-dashboard.scss",
               "node_modules/@swimlane/ngx-datatable/index.css",
               "node_modules/@swimlane/ngx-datatable/assets/icons.css",
               "node_modules/ngx-toastr/toastr.css"
