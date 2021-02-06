@@ -15,21 +15,24 @@ import {ProfileDetailsComponent} from './decentral/front-end-authentication/prof
 import { HomeLoggedInComponent } from './decentral/front-end-authentication/home-logged-in/home-logged-in.component';
 import { CommentFormComponent } from './decentral/front-end-authentication/comment-form/comment-form.component';
 import { CommentsComponent } from './decentral/front-end-authentication/comments/comments.component';
+import { UserProfileComponent } from './decentral/front-end-authentication/user-profile/user-profile.component';
+import { AuthGuard } from './decentral/front-end-authentication/services/auth.guard';
+import { BodyToggleComponent } from './decentral/front-end-authentication/body-toggle/body-toggle.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'land', component: LandAvailableComponent },
-  { path: 'wearables', component: WearablesComponent },
-  { path: 'land-selected/:createdAt', component: LandSelectedComponent },
-  { path: 'data-table', component: PricingTableComponent },
-  { path: 'home-logged-in', component: HomeLoggedInComponent},
+  { path: 'land', component: LandAvailableComponent, canActivate: [AuthGuard]  },
+  { path: 'wearables', component: WearablesComponent, canActivate: [AuthGuard]  },
+  { path: 'land-selected/:createdAt', component: LandSelectedComponent, canActivate: [AuthGuard]  },
+  { path: 'data-table', component: PricingTableComponent, canActivate: [AuthGuard] },
+  { path: 'home-logged-in', component: HomeLoggedInComponent, canActivate: [AuthGuard]},
   {
     path: 'wearable-selected/:createdAt',
     component: WearableSelectedComponent,
   },
-  {path: 'profile', component: ProfileComponent},
-  {path: 'comments', component: CommentsComponent},
-  {path: 'profile-details', component: ProfileDetailsComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {path: 'comments', component: CommentsComponent, canActivate: [AuthGuard] },
+  {path: 'profile-details', component: ProfileDetailsComponent, canActivate: [AuthGuard] },
   { path: '**', component: HomeComponent },
 ];
 
@@ -53,5 +56,7 @@ export const routingComponents = [
   ProfileDetailsComponent,
   HomeLoggedInComponent,
   CommentFormComponent,
-  CommentsComponent
+  CommentsComponent,
+  UserProfileComponent,
+  BodyToggleComponent
 ];

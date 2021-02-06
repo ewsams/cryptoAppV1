@@ -13,7 +13,7 @@ export class WearableSelectedComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.$userWearableSelectionObservable.subscribe(
+    this.userService.userWearableSelectionObservable$.subscribe(
       (userSelection) => {
         console.log(userSelection);
         this.userSelection = userSelection;

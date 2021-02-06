@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
+import { AuthService } from '../services/auth.service';
 import { LogginService } from '../services/loggin.service';
 
 @Component({
@@ -13,12 +14,13 @@ export class NavbarComponent implements OnInit {
   showProfile: boolean;
   constructor(
     private modalService: NgbModal,
-    private logginService: LogginService
+    private logginService: LogginService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.sideNav = false;
-    this.logginService.$logginCheckObservable.subscribe((element) => {
+    this.authService.userLoggedIn$.subscribe((element) => {
       if (element === false) {
         this.showProfile = false;
       } else {
@@ -32,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this.logginService.updateLoggedInStatus(false);
+    this.authService.setLoggedInStatus(false);
   }
   openModal() {
     const modalRef = this.modalService.open(NgbdModalContentComponent, {

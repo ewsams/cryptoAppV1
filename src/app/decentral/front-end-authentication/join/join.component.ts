@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
+import { FirestoreService } from '../services/firestore.service';
 import { LogginService } from '../services/loggin.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-join',
@@ -11,14 +12,14 @@ import { UserService } from '../services/user.service';
 })
 export class JoinComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
-  users: SubmitFormModel[];
+  users: Observable<SubmitFormModel[]>;
   myForm: FormGroup;
 
   // tslint:disable-next-line:variable-name
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private logginService: LogginService
+    private logginService: LogginService,
+    private db: FirestoreService
   ) {}
   onSubmit() {
     if (this.myForm.status === 'VALID') {
@@ -32,16 +33,13 @@ export class JoinComponent implements OnInit {
         isValid: true,
       };
       console.log(this.profileRequestFormObject);
-      this.userService.addUser(this.profileRequestFormObject);
+      this.db.add('users', this.profileRequestFormObject);
       this.logginService.updateLoggedInStatus(this.profileRequestFormObject.isValid);
     }
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((users) => {
-      this.users = users;
-      console.log(this.users);
-    });
+    this.users = this.db.colWithIds$('users');
     // form for database
     this.myForm = this.fb.group({
       userName: ['', Validators.required],
@@ -86,13 +84,5 @@ export class JoinComponent implements OnInit {
   }
   get phone() {
     return this.myForm.get('phone');
-  }
-
-  filterUserInFirestore(email: string) {
-    const filtered = this.users.filter((element) => {
-      if (element.email !== email) {
-        console.log(filtered);
-      }
-    });
   }
 }

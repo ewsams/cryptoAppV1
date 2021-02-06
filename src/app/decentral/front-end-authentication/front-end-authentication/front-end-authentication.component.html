@@ -1,7 +1,39 @@
 <button
-  class="btn btn-brand-color my-2 my-sm-0"
+  class="btn btn-brand-color ml-2"
   type="submit"
   (click)="onAuthenticatedClick()"
 >
   {{ logginNotification }}
 </button>
+<div *ngIf="authService.user$ | async; then authenticated; else guest">
+  <!-- template will replace this div -->
+</div>
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+  <div class="mt-4">
+  <button
+    class="btn btn-primary"
+    (click)="authService.googleSignin()"
+    style="width: fit-content;"
+  >
+    <i class="fab fa-google"></i> Connect with Google
+  </button>
+  <button
+    class="btn btn-info ml-2"
+    (click)="authService.googleSignin()"
+    style="width: fit-content;"
+  >
+  <i class="fab fa-facebook-f"></i> Connect with Facebook
+  </button>
+</div>
+</ng-template>
+
+<!-- User logged in -->
+<ng-template #authenticated>
+  <div *ngIf="authService.user$ | async as user">
+    <button class="btn mt-3" (click)="authService.signOut()" style="display: block;">
+      Logout
+    </button>
+  </div>
+</ng-template>

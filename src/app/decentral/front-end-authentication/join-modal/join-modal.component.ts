@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-modal-joining',
   template: `
     <div
       class="container"
-      style="background-color:rgb(39,41,61);display: flex;
-    align-items: flex-start; border:solid white 3px; position:fixed;top:0;"
+      style="display: flex; align-items: flex-start; border:solid white 3px; position:fixed;top:0;"
+      [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}"
     >
-      <div class="modal-header" style="background-color:rgb(39,41,61)">
+      <div class="modal-header" style="background-color: transparent;">
         <h4 class="modal-title" style="color:white;">
           <span class="w-100" style="border-bottom:solid white 1px;">
             Welcome Let's Get Started</span
@@ -22,14 +23,11 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
           </div>
 
           <div class="mb-2">
-          <strong
-            >"The world of crypto currency is just at your
-            fingertips"...</strong
-          >
-        </div>
-
-
-
+            <strong
+              >"The world of crypto currency is just at your
+              fingertips"...</strong
+            >
+          </div>
 
           <div>
             <span>
@@ -42,14 +40,24 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
           </div>
         </h4>
       </div>
-      <div class="modal-body" style="background-color:rgb(39,41,61);">
+      <div class="modal-body">
         <app-join></app-join>
       </div>
     </div>
   `,
 })
-export class NgbdModalContentComponent {
-  constructor(public activeModal: NgbActiveModal) {}
+export class NgbdModalContentComponent implements OnInit {
+  color: boolean;
+  constructor(
+    public activeModal: NgbActiveModal,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
+   this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+     this.color = color;
+   });
+  }
 }
 
 @Component({
@@ -64,7 +72,10 @@ export class NgbdModalContentComponent {
   ],
 })
 export class JoinModalComponent implements OnInit {
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private userService: UserService
+  ) {}
 
   public open() {
     const modalRef = this.modalService.open(NgbdModalContentComponent, {

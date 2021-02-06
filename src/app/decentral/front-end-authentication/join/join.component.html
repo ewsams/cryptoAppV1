@@ -2,8 +2,7 @@
   <div class="row">
     <div
       class="card col-md-12 col-sm-8"
-      style="border: solid rgb(166, 79, 245) 1px"
-    >
+      style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
       <div class="card-body wd-75">
         <form [formGroup]="myForm">
           <h6 class="heading-small text-muted">Profile information</h6>
@@ -18,7 +17,7 @@
                     formControlName="userName"
                     type="text"
                     id="input-username"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="Username"
                   />
                   <small
@@ -39,7 +38,7 @@
                     formControlName="password"
                     type="password"
                     id="input-password"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="Password"
                   />
                   <small
@@ -61,7 +60,7 @@
                     formControlName="firstName"
                     type="text"
                     id="input-first-name"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="First name"
                   />
                   <small
@@ -83,7 +82,7 @@
                     formControlName="phone"
                     type="phone"
                     id="input-phone"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="(xxx) xxx-xxxx"
                   />
                   <small
@@ -105,7 +104,7 @@
                     formControlName="lastName"
                     type="text"
                     id="input-last-name"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="Last name"
                   />
                   <small
@@ -127,7 +126,7 @@
                     formControlName="email"
                     type="email"
                     id="input-email"
-                    class="form-control form-control-alternative"
+                    class="form-control form-control-alternative white-placeholder"
                     placeholder="email@example.com"
                   />
                   <small
@@ -145,7 +144,7 @@
           <div class="row">
             <div class="col text-center mb-6">
               <button
-                class="btn btn-brand-color btn-lg"
+                class="btn btn-primary btn-lg"
                 (click)="onSubmit()"
                 [disabled]="this.myForm.status !== 'VALID'"
               >

@@ -22,6 +22,8 @@ import {
   NgbdModalContentComponent,
 } from './decentral/front-end-authentication/join-modal/join-modal.component';
 import { CommentsService } from './decentral/front-end-authentication/services/comments.service';
+import {FirestoreService} from './decentral/front-end-authentication/services/firestore.service';
+import { AuthService } from './decentral/front-end-authentication/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { CommentsService } from './decentral/front-end-authentication/services/c
     NgbModule,
   ],
   entryComponents: [NgbdModalContentComponent],
-  providers: [UserService, CommentsService],
+  providers: [UserService, CommentsService, FirestoreService, AuthService],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })

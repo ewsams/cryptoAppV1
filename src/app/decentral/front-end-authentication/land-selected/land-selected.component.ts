@@ -13,7 +13,7 @@ export class LandSelectedComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.$userLandSelectionObservable.subscribe((userSelection) => {
+    this.userService.userLandSelectionObservable$.subscribe((userSelection) => {
       console.log(userSelection);
       this.userSelection = userSelection;
       this.loading = false;

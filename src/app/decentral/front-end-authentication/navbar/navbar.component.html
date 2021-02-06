@@ -1,25 +1,7 @@
 <nav *ngIf="!sideNav" class="navbar navbar-expand-sm bg-none">
-  <!-- <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarTogglerDemo03"
-    aria-controls="navbarTogglerDemo03"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand"
-    ><i
-      class="fa fa-bars menu-icon fa-2x"
-      aria-hidden="true"
-      (click)="showSideNav()"
-    ></i
-  ></a> -->
-
+  <span><app-body-toggle></app-body-toggle></span>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto ml-auto mt-2">
+    <ul class="navbar-nav mr-auto ml-auto mt-2">      
       <li class="nav-item active" *ngIf="showProfile">
         <a
           class="nav-link"
@@ -118,4 +100,5 @@
     </ul>
   </div>
 </nav>
+
 <app-sidenav *ngIf="sideNav" (click)="showSideNav()"></app-sidenav>

@@ -1,6 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from 'angularfire2/firestore';
 import {Comment} from '../models/comment';
 
 const httpOptions = {
@@ -14,7 +20,7 @@ export class CommentsService {
   commentLatestLikes = new BehaviorSubject<Comment>(
     null
   );
-  $commentLikeObservable = this.commentLatestLikes.asObservable();
+  commentLikeObservable$ = this.commentLatestLikes.asObservable();
   commentsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
   constructor(private http: HttpClient) {}
@@ -44,3 +50,5 @@ export class CommentsService {
     return this.commentLatestLikes.next(comment);
   }
 }
+
+

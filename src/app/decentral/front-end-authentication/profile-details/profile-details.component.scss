@@ -44,5 +44,11 @@ body {
 }
 
 .bg {
-  background-color: rgb(39, 41, 61);
+  background-color: transparent;
+}
+
+
+.white-placeholder::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: white;
 }
