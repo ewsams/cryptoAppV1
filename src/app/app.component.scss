@@ -7,13 +7,25 @@
   width:20rem;
 }
 
+.count-down-text {
+  margin: 1rem;
+}
+
 @media only screen and (max-width: 600px) {
   .brand-display-mobile {
     height: 16.5rem;
     width: 16.5rem;
   }
   .brand-display-logo-mobile {
-    height: 4rem;
-    width: 4rem;
+    position: absolute;
+    align-self: center;
+    top:17em;
+    height: 8rem;
+    width: 8rem;
+  }
+  .count-down-mobile-text {
+    font-size: smaller;
+    margin: 1rem;
+    break-after: left;
   }
 }

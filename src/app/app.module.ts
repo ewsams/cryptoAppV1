@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
+
 // Local imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { CommentsService } from './decentral/front-end-authentication/services/c
 import {FirestoreService} from './decentral/front-end-authentication/services/firestore.service';
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
 import { ResponsiveService } from './decentral/front-end-authentication/services/responsive.service';
+import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { ResponsiveService } from './decentral/front-end-authentication/services
     NavbarComponent,
     NgbdModalContentComponent,
     JoinModalComponent,
+    CountDownComponent,
   ],
   imports: [
     HttpClientModule,
