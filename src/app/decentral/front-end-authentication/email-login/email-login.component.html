@@ -1,25 +1,23 @@
-<div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-      <input
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <input
         style="color: white"
-        class="form-inline my-2 my-lg-0 form-control mr-sm-2 white-placeholder"
+        class="form-inline form-control white-placeholder col-3"
         formControlName="email"
         type="email"
         placeholder="Email"
         autocomplete="off"
       />
-
       <input
         formControlName="password"
         style="color: white"
-        class="form-inline my-2 my-lg-0 form-control mr-sm-2 white-placeholder"
+        class="form-inline form-control white-placeholder ml-2 col-3"
         type="password"
         placeholder="Password"
         autocomplete="off"
       />
       <button
-        class="btn btn-primary"
+        class="btn-sm btn-primary ml-2 col-2"
         *ngIf="!isPasswordReset"
         type="submit"
         [disabled]="form.invalid || loading"
@@ -27,7 +25,8 @@
         Log in
       </button>
     </div>
-    <div *ngIf="isPasswordReset" class="mt-2">
+    
+    <div *ngIf="isPasswordReset">
       <button class="btn btn-info" type="submit" [disabled]="loading">
         Send Reset Email
       </button>
@@ -43,24 +42,23 @@
 
   <!-- User NOT logged in -->
   <ng-template #guest>
-    <div>
+    <div class="row mt-2">
       <button
-        class="btn btn-danger"
+        class="btn btn-danger col-3"
         (click)="authService.googleSignin()"
         style="width: fit-content"
       >
         <i class="fab fa-google"></i> Connect with Google
       </button>
       <button
-        class="btn btn-info ml-2"
+        class="btn btn-info ml-2 col-3"
         (click)="authService.googleSignin()"
         style="width: fit-content"
       >
         <i class="fab fa-facebook-f"></i> Connect with Facebook
       </button>
       <button
-        class="btn btn-success d-block"
-        style="margin-left: 9rem"
+        class="btn btn-success ml-2 col-2"
         *ngIf="isLogin && !isPasswordReset"
         (click)="changeType('reset')"
       >
@@ -75,7 +73,6 @@
       <button
         class="btn"
         (click)="authService.signOut()"
-        style="display: block"
       >
         Logout
       </button>
@@ -86,4 +83,3 @@
       {{ serverMessage }}
     </strong></span
   >
-</div>
