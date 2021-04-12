@@ -2,3 +2,18 @@
   /* WebKit, Blink, Edge */
   color: white;
 }
+.brand-display {
+  height:20rem;
+  width:20rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .brand-display-mobile {
+    height: 16.5rem;
+    width: 16.5rem;
+  }
+  .brand-display-logo-mobile {
+    height: 4rem;
+    width: 4rem;
+  }
+}

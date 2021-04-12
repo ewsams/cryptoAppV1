@@ -1,8 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="row">
+  <div *ngIf="isPasswordReset" class="mt-2" style="font-size: large;"><p>Please enter your email address</p></div>
+  <span>
+    <strong class="form-text text-danger" style="font-size: large">
+      {{ serverMessage }}
+    </strong></span
+  >  
+  <div class="row">
         <input
         style="color: white"
-        class="form-inline form-control white-placeholder col-3"
+        class="form-inline form-control white-placeholder col-md-3 col-sm-10"
         formControlName="email"
         type="email"
         placeholder="Email"
@@ -11,13 +17,13 @@
       <input
         formControlName="password"
         style="color: white"
-        class="form-inline form-control white-placeholder ml-2 col-3"
+        class="form-inline form-control loggin-btn-margin-top white-placeholder ml-2 col-md-3 col-sm-10"
         type="password"
         placeholder="Password"
         autocomplete="off"
       />
       <button
-        class="btn-sm btn-primary ml-2 col-2"
+        class="btn-sm btn-primary ml-2 col-md-2 col-sm-10 loggin-btn-margin-top"
         *ngIf="!isPasswordReset"
         type="submit"
         [disabled]="form.invalid || loading"
@@ -25,15 +31,14 @@
         Log in
       </button>
     </div>
-    
-    <div *ngIf="isPasswordReset">
-      <button class="btn btn-info" type="submit" [disabled]="loading">
+    <div *ngIf="isPasswordReset" class="mt-2">
+      <button class="btn btn-success col-md-3 col-sm-10" type="submit" [disabled]="loading">
         Send Reset Email
       </button>
-      <button class="btn btn-primary ml-2" (click)="changeType('login')">
+      <button class="btn btn-primary col-md-3 col-sm-10 ml-1" (click)="changeType('login')">
         Back
       </button>
-    </div>
+  </div>
   </form>
 
   <div *ngIf="authService.user$ | async; then authenticated; else guest">
@@ -42,23 +47,21 @@
 
   <!-- User NOT logged in -->
   <ng-template #guest>
-    <div class="row mt-2">
+    <div class="row mt-1">
       <button
-        class="btn btn-danger col-3"
+        class="btn btn-danger col-md-3 col-sm-10"
         (click)="authService.googleSignin()"
-        style="width: fit-content"
       >
         <i class="fab fa-google"></i> Connect with Google
       </button>
       <button
-        class="btn btn-info ml-2 col-3"
+        class="btn btn-info ml-2 col-md-3 col-sm-10"
         (click)="authService.googleSignin()"
-        style="width: fit-content"
       >
         <i class="fab fa-facebook-f"></i> Connect with Facebook
       </button>
       <button
-        class="btn btn-success ml-2 col-2"
+        class="btn btn-success ml-2 col-md-2 col-sm-10"
         *ngIf="isLogin && !isPasswordReset"
         (click)="changeType('reset')"
       >
@@ -78,8 +81,4 @@
       </button>
     </div>
   </ng-template>
-  <span>
-    <strong class="form-text text-danger" style="font-size: large">
-      {{ serverMessage }}
-    </strong></span
-  >
+  

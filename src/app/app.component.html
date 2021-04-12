@@ -1,15 +1,18 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div *ngIf="!loggedIn">
+    <div class="row justify-content-center">
       <img
+        class="brand-display-mobile brand-display"
         src="../assets/img/appoll-text-logo.png"
       />
       <img
+      class="brand-display-logo-mobile brand-display"
         src="../assets/img/appollo-logo.png"  
+       
       />
-  </div>
-  <div *ngIf="!loggedIn">
-    <app-email-login></app-email-login>
+    </div>
+      <app-email-login></app-email-login>
+      </div>
   </div>
   <router-outlet></router-outlet>
-</div>

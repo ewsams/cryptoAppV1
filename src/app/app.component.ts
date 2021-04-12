@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit,Renderer2  } from '@angular/core';
+import { Component, Inject, OnInit, Renderer2  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { LogginService } from './decentral/front-end-authentication/services/loggin.service';
@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
   username: string;
   password: string;
   dark: boolean;
-  constructor(private router: Router,private authService: AuthService, private logginService: LogginService,
-    private render: Renderer2, @Inject(DOCUMENT) private document: Document , private db: FirestoreService) {}
+  constructor(private router: Router, private authService: AuthService, private logginService: LogginService,
+              private render: Renderer2, @Inject(DOCUMENT) private document: Document , private db: FirestoreService) {}
 
   ngOnInit() {
 

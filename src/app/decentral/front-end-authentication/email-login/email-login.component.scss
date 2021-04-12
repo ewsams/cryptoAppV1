@@ -5,3 +5,10 @@
   .noHover{
     pointer-events: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .loggin-btn-margin-top {
+    margin-top: 1rem;
+    margin-left: auto;
+  }
+}
