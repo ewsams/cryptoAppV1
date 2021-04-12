@@ -1,0 +1,159 @@
+<div class="Jumbotron">
+  <div class="row">
+    <div
+      class="card col-md-12 col-sm-8"
+      style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
+      <div class="card-body wd-75">
+        <form [formGroup]="myForm">
+          <h6 class="heading-small text-muted">Profile information</h6>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-username"
+                    >Username</label
+                  >
+                  <input
+                    formControlName="userName"
+                    type="text"
+                    id="input-username"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="Username"
+                  />
+                  <small
+                    *ngIf="userName.invalid && userName.touched"
+                    id="userNameHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-password"
+                    >Password</label
+                  >
+                  <input
+                    formControlName="password"
+                    type="password"
+                    id="input-password"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="Password"
+                  />
+                  <small
+                    *ngIf="password.invalid && password.touched"
+                    class="form-text text-danger"
+                  >
+                    Please enter your password
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-first-name"
+                    >First name</label
+                  >
+                  <input
+                    formControlName="firstName"
+                    type="text"
+                    id="input-first-name"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="First name"
+                  />
+                  <small
+                    *ngIf="firstName.invalid && firstName.touched"
+                    id="firstNameHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your input invalid.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email"
+                    >Phone Number</label
+                  >
+                  <input
+                    formControlName="phone"
+                    type="phone"
+                    id="input-phone"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="(xxx) xxx-xxxx"
+                  />
+                  <small
+                    *ngIf="phone.invalid && phone.touched"
+                    id="phoneHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-last-name"
+                    >Last name</label
+                  >
+                  <input
+                    formControlName="lastName"
+                    type="text"
+                    id="input-last-name"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="Last name"
+                  />
+                  <small
+                    *ngIf="lastName.invalid && lastName.touched"
+                    id="lastNameHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email"
+                    >Email address</label
+                  >
+                  <input
+                    formControlName="email"
+                    type="email"
+                    id="input-email"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="email@example.com"
+                  />
+                  <small
+                    *ngIf="email.invalid && email.touched"
+                    id="emailHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your email address is invalid.
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col text-center mb-6">
+              <button
+                class="btn btn-info btn-lg"
+                (click)="onSubmit()"
+                [disabled]="this.myForm.status !== 'VALID'"
+              >
+                Join Us
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container" *ngIf="loading">
+  <h4>Currently Loading Available Property</h4>
+</div>
+
+<div class="container" style="margin-top: 1.5rem">
+  <div class="row">
+    <div
+      class="card card-animation-on-hover col-md-3 col-sm-2"
+      style="width: 20rem; margin: 1rem; border: solid rgb(166, 79, 245) 1px"
+      *ngFor="
+        let data of this.landCompontObject.parcels
+          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+      "
+    >
+      <img
+        class="card-img-top"
+        data-src="{{ data.nft.image }}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h4 class="card-title">owner address: {{ data.owner.address }}</h4>
+        <p class="card-text">owner id: {{ data.owner.id }}</p>
+        <a
+          (click)="onSelect(data)"
+          class="btn btn-primary btn-sm"
+          style="color: white"
+          >Go to buy</a
+        >
+      </div>
+    </div>
+  </div>
+  <nav *ngIf="!loading" aria-label="Page navigation example">
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="totalPageElements"
+      [(page)]="page"
+    >
+      <ng-template ngbPaginationPrevious>Previous</ng-template>
+      <ng-template ngbPaginationNext>Next</ng-template>
+    </ngb-pagination>
+  </nav>
+</div>

@@ -1,0 +1,24 @@
+<div class="container" *ngIf="loading">
+  <h5>Currently Loading</h5>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div
+      class="card"
+      style="width: 20rem; margin: 1rem; border: solid rgb(166, 79, 245) 3px"
+    >
+      <img
+        class="card-img-top"
+        data-src="{{ userSelection.nft.image }}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h4 class="card-title">
+          owner address: {{ userSelection.owner.address }}
+        </h4>
+        <p class="card-text">owner id: {{ userSelection.owner.id }}</p>
+      </div>
+    </div>
+  </div>
+</div>

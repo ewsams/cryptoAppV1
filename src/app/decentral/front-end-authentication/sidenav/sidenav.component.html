@@ -1,0 +1,51 @@
+<div class="sidebar">
+  <ul class="sidebar-nav">
+    <li>
+      <a id="navbar-toggle"
+        ><i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i
+      ></a>
+    </li>
+    <li>
+      <a routerLink=""
+        >Home <i class="fa fa-home menu-icon fa-2x" aria-hidden="true"></i
+      ></a>
+    </li>
+    <li>
+      <a routerLink="/land"
+        >Land Available<i
+          class="far fa-building menu-icon fa-2x"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </li>
+    <li>
+      <a routerLink="/wearables"
+        >Wearables<i
+          class="fab fa-shirtsinbulk menu-icon fa-2x"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </li>
+    <li>
+      <a routerLink="/join"
+        >Join Us<i class="far fa-smile menu-icon fa-2x" aria-hidden="true"></i
+      ></a>
+    </li>
+    <li>
+      <a *ngIf="!loggedIn"
+        >Log In<i
+          class="fa fa-sign-in-alt menu-icon fa-2x"
+          aria-hidden="true"
+        ></i>
+      </a>
+    </li>
+    <li>
+      <a *ngIf="loggedIn"
+        >Log Out<i
+          class="fa fa-sign-out-alt menu-icon fa-2x"
+          aria-hidden="true"
+        ></i>
+      </a>
+    </li>
+  </ul>
+</div>

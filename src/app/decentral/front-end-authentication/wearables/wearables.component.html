@@ -1,0 +1,49 @@
+<div class="container" *ngIf="loading">
+  <h4>Currently Loading Available Wearables</h4>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div
+      class="card card-animation-on-hover col-sm-2 col-md-2"
+      style="
+        width: 22rem;
+        height: 26rem;
+        margin: 1rem;
+        border: solid rgb(166, 79, 245) 1px;
+        margin-top: 2rem;
+      "
+      *ngFor="
+        let data of wearableCompontObject.wearables
+          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+      "
+    >
+      <img
+        class="card-img-top"
+        data-src="{{ data.nft.image }}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h4 class="card-title">title: {{ data.name }}</h4>
+        <p class="card-text">rarity: {{ data.rarity }}</p>
+        <p class="card-text">collection: {{ data.collection }}</p>
+        <a
+          (click)="onSelect(data)"
+          class="btn btn-primary btn-sm mt-1"
+          style="color: white"
+          >Go to buy</a
+        >
+      </div>
+    </div>
+  </div>
+  <nav *ngIf="!loading" aria-label="Page navigation example">
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="totalPageElements"
+      [(page)]="page"
+    >
+      <ng-template ngbPaginationPrevious>Previous</ng-template>
+      <ng-template ngbPaginationNext>Next</ng-template>
+    </ngb-pagination>
+  </nav>
+</div>

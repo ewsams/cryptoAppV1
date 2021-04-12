@@ -1,0 +1,95 @@
+<div
+  *ngFor="let iter of test; index as i"
+  class="col d-flex justify-content-center"
+>
+  <!-- <div style="width: 60px; height: 60px">
+    <img src="../../../../assets/img/blank-avatar-brand.png" alt="" />
+  </div> -->
+  <div
+    *ngIf="!loading"
+    class="card logged-in-card bg-none"
+    style="position: relative;"
+  >
+    <div>
+      <img class="ellipse" src="../../../../assets/img/ellipse1.png" alt="" />
+      <img
+        class="friend-card-photo"
+        src="http://www.skinndeepbeauty.com/wp-content/uploads/2018/02/pretty-girl-brown-hair-100x100.jpg"
+        alt=""
+      />
+      <strong>Username {{ i }}</strong>
+    </div>
+    <img
+      *ngIf="!viewComments"
+      class="card-img-top mx-auto d-block p-1"
+      style="border: none"
+      src="{{ (user$)?.profilePhoto | async }}"
+      alt=""
+    />
+    <app-comments *ngIf="viewComments"></app-comments>
+    <div class="card-footer text-center">
+      <span
+        class=" bg-none float-left"
+        id="left"
+        style="color: white"
+        (click)="addLike()"
+      >
+        <img style="height: 40px; width: 40px" src="{{ likeUrl }}" alt="" />
+    </span>
+
+      <span
+        class=" bg-none float-left ml-3"
+        id="center"
+        style="color: white"
+        (click)="viewCommentsToggle()"
+      >
+        <img
+          style="height: 40px; width: 40px"
+          class="ellipse"
+          src="../../../../assets/img/chat-bubble.png"
+          alt=""
+        />
+        <strong>{{ like }}</strong>
+  </span>
+
+      <span
+        class="bg-none float-left ml-3"
+        id="right"
+        style="color: white"
+      >
+        <img
+          style="height: 40px; width: 40px"
+          class="ellipse"
+          src="../../../../assets/img/message-arrow.png"
+          alt=""
+        />
+</span>
+
+      <strong
+        *ngIf="like !== 0"
+        style="font-size: 16px; margin-right: 3px; color: white"
+      >
+        {{ like }}</strong
+      >
+      <img
+        *ngIf="like !== 0"
+        style="height: 60px; width: 70px"
+        src="../../../../assets/img/likes-image.png"
+        alt=""
+      />
+
+      <button
+        class="btn bg-info btn-sm float-right"
+        id="right"
+        style="color: white; font-size: small"
+      >
+        <img
+          style="height: 40px; width: 40px"
+          class="ellipse"
+          src="../../../../assets/img/appollo-coin-icon.png"
+          alt=""
+        />
+      </button>
+    </div>
+  </div>
+</div>

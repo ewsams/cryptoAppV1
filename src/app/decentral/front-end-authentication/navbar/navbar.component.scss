@@ -1,0 +1,15 @@
+.navbar ul li a {
+  color: rgb(255, 255, 255);
+}
+.navbar-brand {
+  cursor: pointer;
+}
+.navbar-nav li a:hover {
+  background: rgb(166, 79, 245);
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+
+.bg-none{
+  background-color: transparent;
+}

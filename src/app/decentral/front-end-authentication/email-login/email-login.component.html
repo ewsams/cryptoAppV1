@@ -1,0 +1,89 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <input
+        style="color: white"
+        class="form-inline my-2 my-lg-0 form-control mr-sm-2 white-placeholder"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        autocomplete="off"
+      />
+
+      <input
+        formControlName="password"
+        style="color: white"
+        class="form-inline my-2 my-lg-0 form-control mr-sm-2 white-placeholder"
+        type="password"
+        placeholder="Password"
+        autocomplete="off"
+      />
+      <button
+        class="btn btn-primary"
+        *ngIf="!isPasswordReset"
+        type="submit"
+        [disabled]="form.invalid || loading"
+      >
+        Log in
+      </button>
+    </div>
+    <div *ngIf="isPasswordReset" class="mt-2">
+      <button class="btn btn-info" type="submit" [disabled]="loading">
+        Send Reset Email
+      </button>
+      <button class="btn btn-primary ml-2" (click)="changeType('login')">
+        Back
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="authService.user$ | async; then authenticated; else guest">
+    <!-- template will replace this div -->
+  </div>
+
+  <!-- User NOT logged in -->
+  <ng-template #guest>
+    <div>
+      <button
+        class="btn btn-danger"
+        (click)="authService.googleSignin()"
+        style="width: fit-content"
+      >
+        <i class="fab fa-google"></i> Connect with Google
+      </button>
+      <button
+        class="btn btn-info ml-2"
+        (click)="authService.googleSignin()"
+        style="width: fit-content"
+      >
+        <i class="fab fa-facebook-f"></i> Connect with Facebook
+      </button>
+      <button
+        class="btn btn-success d-block"
+        style="margin-left: 9rem"
+        *ngIf="isLogin && !isPasswordReset"
+        (click)="changeType('reset')"
+      >
+        Forgot password?
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- User logged in -->
+  <ng-template #authenticated>
+    <div *ngIf="authService.user$ | async as user">
+      <button
+        class="btn"
+        (click)="authService.signOut()"
+        style="display: block"
+      >
+        Logout
+      </button>
+    </div>
+  </ng-template>
+  <span>
+    <strong class="form-text text-danger" style="font-size: large">
+      {{ serverMessage }}
+    </strong></span
+  >
+</div>

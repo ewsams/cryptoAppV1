@@ -1,0 +1,41 @@
+<div class="mx-auto previous-comments-layout mb-3">
+  <form>
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="currentComment.title"
+        name="title"
+        #title
+      />
+    </div>
+    <div class="form-group">
+      <label>Comment</label>
+      <textarea
+        type="text"
+        class="form-control"
+        [(ngModel)]="currentComment.body"
+        name="body"
+        #body
+      ></textarea>
+    </div>
+    <input type="hidden" [(ngModel)]="currentComment.id" name="id" />
+
+    <button
+      *ngIf="!currentComment.isEdit"
+      (click)="addPost(title.value, body.value)"
+      class="btn btn-dark btn-block"
+    >
+      Add Comment
+    </button>
+
+    <button
+      *ngIf="currentComment.isEdit"
+      (click)="updatePost()"
+      class="btn btn-warning btn-block"
+    >
+      Update Comment
+    </button>
+  </form>
+</div>
