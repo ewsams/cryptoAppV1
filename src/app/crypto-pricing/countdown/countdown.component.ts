@@ -33,16 +33,24 @@ export class CountDownComponent implements OnInit, OnDestroy {
   public daysToDday;
 
 
-  private getTimeDifference () {
+  private getTimeDifference() {
       this.timeDifference = this.dDay.getTime() - new  Date().getTime();
       this.allocateTimeUnits(this.timeDifference);
   }
 
-private allocateTimeUnits (timeDifference) {
-      this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
-      this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
-      this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
-      this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+private allocateTimeUnits(timeDifference) {
+      this.secondsToDday =
+      Math.floor((timeDifference) /
+      (this.milliSecondsInASecond) % this.SecondsInAMinute);
+      this.minutesToDday =
+      Math.floor((timeDifference) /
+      (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+      this.hoursToDday =
+      Math.floor((timeDifference) /
+      (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+      this.daysToDday =
+      Math.floor((timeDifference) /
+      (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
 }
 
   ngOnInit() {
