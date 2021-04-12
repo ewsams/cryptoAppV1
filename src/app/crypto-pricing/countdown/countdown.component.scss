@@ -1,0 +1,15 @@
+span {
+    font-size: 20px;
+    color:white;
+    width: fit-content;
+    border-bottom: solid white 2px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    span {
+        font-size: 14px;
+        color:white;
+        width: fit-content;
+        border-bottom: solid white 1px;
+      }
+  }

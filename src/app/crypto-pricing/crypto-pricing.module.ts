@@ -12,7 +12,7 @@ import { TableSearchPipe } from './services/table-search.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [routingComponents, TableSearchPipe],
+  declarations: [routingComponents, TableSearchPipe,],
   imports: [
     CommonModule,
     BrowserModule,
