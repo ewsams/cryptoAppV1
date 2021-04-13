@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../services/user.service';
 
@@ -58,6 +58,9 @@ export class NgbdModalContentComponent implements OnInit {
      this.color = color;
    });
   }
+
+  ngOnDestroy() {
+ }
 }
 
 @Component({

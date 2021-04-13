@@ -27,6 +27,7 @@ import {FirestoreService} from './decentral/front-end-authentication/services/fi
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
 import { ResponsiveService } from './decentral/front-end-authentication/services/responsive.service';
 import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
+import { MobileModalComponent } from './decentral/mobile-modal/mobile-modal.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.co
     NgbdModalContentComponent,
     JoinModalComponent,
     CountDownComponent,
+    MobileModalComponent,
   ],
   imports: [
     HttpClientModule,
@@ -52,7 +54,7 @@ import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.co
     AngularFirestoreModule,
     NgbModule,
   ],
-  entryComponents: [NgbdModalContentComponent],
+  entryComponents: [NgbdModalContentComponent, MobileModalComponent],
   providers: [UserService, CommentsService, FirestoreService, AuthService, ResponsiveService],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],

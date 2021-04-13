@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
+import { MobileModalComponent } from '../../mobile-modal/mobile-modal.component';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -51,8 +51,11 @@ export class BodyToggleComponent implements OnInit {
     }
   }
   open() {
-    this.modal.open(NgbdModalContentComponent, {
+    this.modal.open(MobileModalComponent, {
       size: 'sm',
     });
+  }
+  close() {
+    this.modal;
   }
 }
