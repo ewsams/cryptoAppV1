@@ -1,7 +1,7 @@
 <div class="Jumbotron">
   <div class="row">
     <div
-      class="card col-md-12 col-sm-8"
+      class="card col-md-12 col-sm-12"
       style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
       <div class="card-body wd-75">
         <form [formGroup]="myForm">
@@ -23,7 +23,7 @@
                   <small
                     *ngIf="userName.invalid && userName.touched"
                     id="userNameHelpBlock"
-                    class="form-text text-danger"
+                    class="form-text text-warning font-weight-bold"
                   >
                     Your input is invalid.
                   </small>
@@ -43,39 +43,18 @@
                   />
                   <small
                     *ngIf="password.invalid && password.touched"
-                    class="form-text text-danger"
+                    class="form-text text-warning font-weight-bold"
                   >
-                    Please enter your password
+                    Your Password must contain numbers,letters,
+                   1 uppercase and 1 special charactor.
                   </small>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group focused">
-                  <label class="form-control-label" for="input-first-name"
-                    >First name</label
-                  >
-                  <input
-                    formControlName="firstName"
-                    type="text"
-                    id="input-first-name"
-                    class="form-control form-control-alternative white-placeholder"
-                    placeholder="First name"
-                  />
-                  <small
-                    *ngIf="firstName.invalid && firstName.touched"
-                    id="firstNameHelpBlock"
-                    class="form-text text-danger"
-                  >
-                    Your input invalid.
-                  </small>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-email"
+                  <label class="form-control-label" for="input-phone"
                     >Phone Number</label
                   >
                   <input
@@ -88,39 +67,16 @@
                   <small
                     *ngIf="phone.invalid && phone.touched"
                     id="phoneHelpBlock"
-                    class="form-text text-danger"
+                    class="form-text text-warning font-weight-bold"
                   >
                     Your input is invalid.
                   </small>
                 </div>
               </div>
-
-              <div class="col-lg-6">
-                <div class="form-group focused">
-                  <label class="form-control-label" for="input-last-name"
-                    >Last name</label
-                  >
-                  <input
-                    formControlName="lastName"
-                    type="text"
-                    id="input-last-name"
-                    class="form-control form-control-alternative white-placeholder"
-                    placeholder="Last name"
-                  />
-                  <small
-                    *ngIf="lastName.invalid && lastName.touched"
-                    id="lastNameHelpBlock"
-                    class="form-text text-danger"
-                  >
-                    Your input is invalid.
-                  </small>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-control-label" for="input-email"
-                    >Email address</label
+                    >Email Address</label
                   >
                   <input
                     formControlName="email"
@@ -132,14 +88,35 @@
                   <small
                     *ngIf="email.invalid && email.touched"
                     id="emailHelpBlock"
-                    class="form-text text-danger"
+                    class="form-text text-warning font-weight-bold"
                   >
                     Your email address is invalid.
                   </small>
                 </div>
               </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email"
+                    >Web3 Address</label
+                  >
+                  <input
+                    formControlName="web3Address"
+                    type="text"
+                    id="input-web3Address"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
+                  />
+                  <small
+                    *ngIf="web3Address.invalid && web3Address.touched"
+                    id="Web3HelpBlock"
+                    class="form-text text-warning font-weight-bold"
+                  >
+                    Your Web3 Address is invalid.
+                  </small>
+                </div>
+              </div>
             </div>
-          </div>
+        </div>
 
           <div class="row">
             <div class="col text-center mb-6">

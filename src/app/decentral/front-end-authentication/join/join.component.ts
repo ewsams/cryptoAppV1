@@ -28,10 +28,9 @@ export class JoinComponent implements OnInit {
       this.profileRequestFormObject = {
         userName: this.userName.value,
         password: this.password.value,
-        firstName: this.firstName.value,
-        lastName: this.lastName.value,
         email: this.email.value,
         phone: this.phone.value,
+        web3Address: this.web3Address.value,
         isValid: true,
       };
       console.log(this.profileRequestFormObject);
@@ -55,8 +54,6 @@ export class JoinComponent implements OnInit {
           ),
         ],
       ],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: [
         null,
@@ -67,6 +64,9 @@ export class JoinComponent implements OnInit {
           ),
         ],
       ],
+      web3Address: ['', [Validators.required, Validators.pattern(
+        /^(0x)?[0-9a-f]{40}$/
+      ), ]]
     });
   }
   // Getters for working with our form
@@ -76,16 +76,13 @@ export class JoinComponent implements OnInit {
   get password() {
     return this.myForm.get('password');
   }
-  get firstName() {
-    return this.myForm.get('firstName');
-  }
-  get lastName() {
-    return this.myForm.get('lastName');
-  }
   get email() {
     return this.myForm.get('email');
   }
   get phone() {
     return this.myForm.get('phone');
+  }
+  get web3Address() {
+    return this.myForm.get('web3Address');
   }
 }

@@ -1,103 +1,109 @@
-<div class="container"  [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}" style="position: absolute;top: 12px;">
-    <div class="row justify-content-center" style="border:solid white 3px;"
-    [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
+<div class="container" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}" style="position: absolute;top: 12px;">
+  <div class="row justify-content-center" style="border:solid white 3px;" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
     <img src="../assets/img/appollo-logo.png" style="height: 106px;width: 106px;float: right;">
     <img src="../assets/img/appoll-text-logo.png" style="height: 160px;width: 160px; float: left;">
-    <p style="font-size: 20px;font-family: Arial;margin-top: 4px;" (click)="closeModal()">X</p>
-        <div class="row" style="position: relative; bottom: 30px;">
-            <div class="card col-12" style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
-                <div class="card-body">
-                    <form>
-                        <h6 class="heading-small text-muted">Profile information</h6>
-                        <div class="form-group focused">
-                            <label class="form-control-label" for="input-username"
-                              >Username</label
-                            >
-                            <input
-                              
-                              type="text"
-                              id="input-username"
-                              class="form-control form-control-alternative col-sm-6 white-placeholder"
-                              placeholder="Username"
-                            />
-                            <label class="form-control-label" for="input-firstname"
-                            >Firstname</label
-                          >
-                          <input
-                            
-                            type="text"
-                            id="input-firstname"
-                            class="form-control form-control-alternative col-sm-6 white-placeholder"
-                            placeholder="Firstname"
-                          />
-                          <label class="form-control-label" for="input-lastname"
-                          >Lastname</label
-                        >
-                        <input
-                          
-                          type="text"
-                          id="input-lastname"
-                          class="form-control form-control-alternative col-sm-6 white-placeholder"
-                          placeholder="Lastname"
-                        />
-                        <label class="form-control-label" for="input-email"
-                        >Email Address</label
-                      >
-                      <input
-                        
-                        type="email"
-                        id="input-email"
-                        class="form-control form-control-alternative col-sm-6 white-placeholder"
-                        placeholder="email@example.com"
-                      />
-                      <label class="form-control-label" for="input-phone"
-                      >Phone Number</label
-                    >
-                    <input
-                      
-                      type="text"
-                      id="input-phone"
-                      class="form-control form-control-alternative col-sm-6 white-placeholder"
-                      placeholder="(xxx)xxx-xxxx"
-                    />
-
-                    <label class="form-control-label" for="input-password"
-                    >Password</label
-                  >
-                  <input
-                    
+    <p style="font-size: 20px;font-family: Arial;margin-top: 4px;margin-left: 16px;" (click)="closeModal()">X</p>
+    <div class="row" style="position: relative; bottom: 30px;">
+      <div class="card col-12" style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
+        <div class="card-body">
+          <form [formGroup]="myForm">
+            <h6 class="heading-small text-muted">Profile information</h6>
+            <div class="form-group focused">
+              <label class="form-control-label" for="input-username">Username</label>
+              <small
+              *ngIf="userName.invalid && userName.touched"
+              id="userNameHelpBlock"
+              class="form-text text-warning font-weight-bold"
+            >
+              Your input is invalid.
+            </small>
+              <input
+                    formControlName="userName"
                     type="text"
-                    id="input-password"
-                    class="form-control form-control-alternative col-sm-6 white-placeholder"
-                    placeholder="Password"
+                    id="input-username"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="Username"
                   />
-
-                  <label class="form-control-label" for="input-wallet-address"
-                  >Web3 Address</label
-                >
-                <input
+                 
+              <label class="form-control-label" for="input-email">Email Address</label>
+              <small
+              *ngIf="email.invalid && email.touched"
+              id="emailHelpBlock"
+              class="form-text text-warning font-weight-bold"
+            >
+              Your email address is invalid.
+            </small>
+              <input
+                    formControlName="email"
+                    type="email"
+                    id="input-email"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="email@example.com"
+                  />
+                 
+              <label class="form-control-label" for="input-phone">Phone Number</label>
+              <small
+                    *ngIf="phone.invalid && phone.touched"
+                    id="phoneHelpBlock"
+                    class="form-text text-warning font-weight-bold"
+                  >
+                    Your input is invalid.
+                  </small>
+              <input
+                    formControlName="phone"
+                    type="phone"
+                    id="input-phone"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="(xxx) xxx-xxxx"
+                  />
                   
-                  type="text"
-                  id="input-wallet"
-                  class="form-control form-control-alternative col-sm-6 white-placeholder"
-                  placeholder="Web3 Wallet Address"
-                />
-                          
-                          </div>
-                    </form>
+
+              <label class="form-control-label" for="input-password">Password</label>
+              <small
+              *ngIf="password.invalid && password.touched"
+              style="font-size: smaller;"
+              class="form-text text-warning font-weight-bold"
+            >
+             Numbers,Letters,
+             1 uppercase <br> and 1 special charactor.
+            </small>
+              <input
+              formControlName="password"
+              type="password"
+              id="input-password"
+              class="form-control form-control-alternative white-placeholder"
+              placeholder=" Password"
+            />
+            
+
+              <label class="form-control-label" for="input-wallet-address">Web3 Address</label>
+              <small
+              *ngIf="web3Address.invalid && web3Address.touched"
+              id="Web3HelpBlock"
+              class="form-text text-warning font-weight-bold"
+            >
+              Your Web3 Address is invalid.
+            </small>
+              <input
+                    formControlName="web3Address"
+                    type="text"
+                    id="input-web3Address"
+                    class="form-control form-control-alternative white-placeholder"
+                    placeholder="0xde0B295669a9F....."
+                  />
+                 
+              <div class="row">
+                <div class="col text-center mb-6">
+                  <button class="btn btn-info btn-lg" (click)="onSubmit()"
+                  [disabled]="this.myForm.status !== 'VALID'">
+                    Join Us
+                  </button>
                 </div>
-
+              </div>
             </div>
-
+          </form>
         </div>
-  
 
-
-
-
-
-
+      </div>
 
     </div>
-</div>
-
