@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../front-end-authentication/services/user.service';
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-mobile-modal',
   templateUrl: './mobile-modal.component.html',

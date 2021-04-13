@@ -17,13 +17,13 @@
       <input
         formControlName="password"
         style="color: white"
-        class="form-inline form-control loggin-btn-margin-top white-placeholder ml-2 col-md-3 col-sm-10"
+        class="form-inline form-control loggin-btn-margin-top white-placeholder input-pass-margin col-md-3 col-sm-10"
         type="password"
         placeholder="Password"
         autocomplete="off"
       />
       <button
-        class="btn-sm btn-primary ml-2 col-md-2 col-sm-10 loggin-btn-margin-top"
+        class="btn-sm btn-primary col-md-2 col-sm-10 loggin-btn-margin-top"
         *ngIf="!isPasswordReset"
         type="submit"
         [disabled]="form.invalid || loading"
@@ -47,8 +47,8 @@
 
   <!-- User NOT logged in -->
   <ng-template #guest>
-    <div class="row mt-1">
-      <button
+    <div class="row mt-2">
+      <!-- <button
         class="btn btn-danger col-md-3 col-sm-10"
         (click)="authService.googleSignin()"
       >
@@ -59,9 +59,9 @@
         (click)="authService.googleSignin()"
       >
         <i class="fab fa-facebook-f"></i> Connect with Facebook
-      </button>
+      </button> -->
       <button
-        class="btn btn-success ml-2 col-md-2 col-sm-10"
+        class="btn btn-success col-md-3 col-sm-10 btn-fgt-center-md"
         *ngIf="isLogin && !isPasswordReset"
         (click)="changeType('reset')"
       >

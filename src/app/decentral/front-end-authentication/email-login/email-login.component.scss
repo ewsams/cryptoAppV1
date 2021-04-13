@@ -9,6 +9,16 @@
 @media only screen and (max-width: 600px) {
   .loggin-btn-margin-top {
     margin-top: 1rem;
-    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .btn-fgt-center-md {
+    position: relative;
+    left:9rem;
+  }
+  .input-pass-margin {
+    margin-left: .5rem;
+    margin-right: .5rem;
   }
 }

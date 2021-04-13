@@ -27,7 +27,7 @@ import {FirestoreService} from './decentral/front-end-authentication/services/fi
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
 import { ResponsiveService } from './decentral/front-end-authentication/services/responsive.service';
 import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
-import { MobileModalComponent } from './decentral/mobile-modal/mobile-modal.component';
+import { MobileModalComponent } from './decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 
 
 @NgModule({

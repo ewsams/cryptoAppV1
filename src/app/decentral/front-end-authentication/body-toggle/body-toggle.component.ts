@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MobileModalComponent } from '../../mobile-modal/mobile-modal.component';
+import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,12 +11,12 @@ import { UserService } from '../services/user.service';
   <div class="row">
     <img
         class="justify-content-left"
-        style="height:3rem;width:3rem;cursor:pointer;"
+        style="height:2rem;width:2rem;cursor:pointer;"
         (click)="toggleBodyBackground()"
         src={{icon}}/>
     <img
         class="join-us-mobile-cta"
-        style="height:4rem;width:4rem;cursor:pointer;"
+        style="height:6rem;width:6rem;cursor:pointer;"
         (click)="open()"
         src="../../../../assets/img/join-us-cta.png"/>
   </div>
