@@ -26,12 +26,12 @@ import { UserService } from '../services/user.service';
 })
 export class BodyToggleComponent implements OnInit {
   dark: any;
-  constructor(private render: Renderer2, 
-    @Inject(DOCUMENT) private document: Document, 
-    private userService: UserService, 
-    private modal: NgbModal) {}
+  constructor(private render: Renderer2,
+              @Inject(DOCUMENT) private document: Document,
+              private userService: UserService,
+              private modal: NgbModal) {}
   icon = '../../../../assets/img/pngjoy.com_sun-icon-white-sun-blue-background-transparent-png_2479146.png';
- 
+
   ngOnInit() {
   }
 
