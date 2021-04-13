@@ -13,6 +13,13 @@
                   <label class="form-control-label" for="input-username"
                     >Username</label
                   >
+                  <small
+                  *ngIf="userName.invalid && userName.touched"
+                  id="userNameHelpBlock"
+                  class="form-text text-danger font-weight-bold"
+                >
+                  Your input is invalid.
+                </small>
                   <input
                     formControlName="userName"
                     type="text"
@@ -20,13 +27,7 @@
                     class="form-control form-control-alternative white-placeholder"
                     placeholder="Username"
                   />
-                  <small
-                    *ngIf="userName.invalid && userName.touched"
-                    id="userNameHelpBlock"
-                    class="form-text text-warning font-weight-bold"
-                  >
-                    Your input is invalid.
-                  </small>
+                 
                 </div>
               </div>
               <div class="col-lg-6">
@@ -34,6 +35,14 @@
                   <label class="form-control-label" for="input-password"
                     >Password</label
                   >
+                  <small
+                    *ngIf="password.invalid && password.touched"
+                    class="form-text text-danger font-weight-bold"
+                    style="font-size: .75rem;"
+                  >
+                    Numbers,Letters,
+                   1 uppercase and 1 special charactor.
+                  </small>
                   <input
                     formControlName="password"
                     type="password"
@@ -41,13 +50,7 @@
                     class="form-control form-control-alternative white-placeholder"
                     placeholder="Password"
                   />
-                  <small
-                    *ngIf="password.invalid && password.touched"
-                    class="form-text text-warning font-weight-bold"
-                  >
-                    Your Password must contain numbers,letters,
-                   1 uppercase and 1 special charactor.
-                  </small>
+                  
                 </div>
               </div>
             </div>
@@ -57,6 +60,13 @@
                   <label class="form-control-label" for="input-phone"
                     >Phone Number</label
                   >
+                  <small
+                  *ngIf="phone.invalid && phone.touched"
+                  id="phoneHelpBlock"
+                  class="form-text text-danger font-weight-bold"
+                >
+                  Your input is invalid.
+                </small>
                   <input
                     formControlName="phone"
                     type="phone"
@@ -64,13 +74,7 @@
                     class="form-control form-control-alternative white-placeholder"
                     placeholder="(xxx) xxx-xxxx"
                   />
-                  <small
-                    *ngIf="phone.invalid && phone.touched"
-                    id="phoneHelpBlock"
-                    class="form-text text-warning font-weight-bold"
-                  >
-                    Your input is invalid.
-                  </small>
+                 
                 </div>
               </div>
               <div class="col-md-12">
@@ -78,6 +82,13 @@
                   <label class="form-control-label" for="input-email"
                     >Email Address</label
                   >
+                  <small
+                  *ngIf="email.invalid && email.touched"
+                  id="emailHelpBlock"
+                  class="form-text text-danger font-weight-bold"
+                >
+                  Your email address is invalid.
+                </small>
                   <input
                     formControlName="email"
                     type="email"
@@ -85,13 +96,7 @@
                     class="form-control form-control-alternative white-placeholder"
                     placeholder="email@example.com"
                   />
-                  <small
-                    *ngIf="email.invalid && email.touched"
-                    id="emailHelpBlock"
-                    class="form-text text-warning font-weight-bold"
-                  >
-                    Your email address is invalid.
-                  </small>
+                 
                 </div>
               </div>
               <div class="col-md-12">
@@ -99,6 +104,13 @@
                   <label class="form-control-label" for="input-email"
                     >Web3 Address</label
                   >
+                  <small
+                    *ngIf="web3Address.invalid && web3Address.touched"
+                    id="Web3HelpBlock"
+                    class="form-text text-danger font-weight-bold"
+                  >
+                    Your Web3 Address is invalid.
+                  </small>
                   <input
                     formControlName="web3Address"
                     type="text"
@@ -106,13 +118,7 @@
                     class="form-control form-control-alternative white-placeholder"
                     placeholder="0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
                   />
-                  <small
-                    *ngIf="web3Address.invalid && web3Address.touched"
-                    id="Web3HelpBlock"
-                    class="form-text text-warning font-weight-bold"
-                  >
-                    Your Web3 Address is invalid.
-                  </small>
+                  
                 </div>
               </div>
             </div>

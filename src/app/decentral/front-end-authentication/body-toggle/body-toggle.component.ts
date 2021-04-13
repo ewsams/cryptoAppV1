@@ -1,6 +1,5 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { UserService } from '../services/user.service';
 
@@ -8,17 +7,12 @@ import { UserService } from '../services/user.service';
   selector: 'app-body-toggle',
   template: `
 <div class="container">
-  <div class="row">
+    <div class="row">
     <img
         class="justify-content-left"
         style="height:2rem;width:2rem;cursor:pointer;"
         (click)="toggleBodyBackground()"
         src={{icon}}/>
-    <img
-        class="join-us-mobile-cta"
-        style="height:6rem;width:6rem;cursor:pointer;"
-        (click)="open()"
-        src="../../../../assets/img/join-us-cta.png"/>
   </div>
 </div>
   `,
@@ -28,8 +22,7 @@ export class BodyToggleComponent implements OnInit {
   dark: any;
   constructor(private render: Renderer2,
               @Inject(DOCUMENT) private document: Document,
-              private userService: UserService,
-              private modal: NgbModal) {}
+              private userService: UserService) {}
   icon = '../../../../assets/img/pngjoy.com_sun-icon-white-sun-blue-background-transparent-png_2479146.png';
 
   ngOnInit() {
@@ -49,13 +42,5 @@ export class BodyToggleComponent implements OnInit {
       this.userService.getBackgroundColor(false);
       this.icon = '../../../../assets/img/pngjoy.com_sun-icon-white-sun-blue-background-transparent-png_2479146.png';
     }
-  }
-  open() {
-    this.modal.open(MobileModalComponent, {
-      size: 'sm',
-    });
-  }
-  close() {
-    this.modal;
   }
 }

@@ -1,9 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MobileModalComponent } from 'src/app/decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 
 @Component({
   selector: 'app-countdown',
   template: `
+  <div class="row">
+  <div class="text-white mx-auto join-us-mobile-cta" (click)="open()">Join Us</div></div>
   <div class="row">
   <div class="text-white mx-auto">ICO begins in:
       <span id="days"> {{daysToDday}} Days</span>
@@ -18,6 +22,8 @@ import { Subscription, interval } from 'rxjs';
 export class CountDownComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
+
+  constructor( private modal: NgbModal) {}
 
   public dateNow = new Date();
   public dDay = new Date('May 05 2021 00:00:00');
@@ -62,4 +68,9 @@ private allocateTimeUnits(timeDifference) {
     this.subscription.unsubscribe();
  }
 
+ open() {
+  this.modal.open(MobileModalComponent, {
+    size: 'sm',
+  });
+}
 }
