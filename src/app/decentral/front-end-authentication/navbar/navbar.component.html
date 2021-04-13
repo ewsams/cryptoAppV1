@@ -5,7 +5,6 @@
       <li class="nav-item active" *ngIf="showProfile">
         <a
           class="nav-link"
-          style="font-size: smaller"
           routerLink="home-logged-in"
           >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/home-icon.png" alt="" />
           <span class="sr-only"></span
@@ -26,7 +25,6 @@
       <li class="nav-item active" *ngIf="showProfile">
         <a
           class="nav-link"
-          style="font-size: smaller"
           routerLink="/wearables"
           >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/wearable-icon.png" alt="" />
           <span class="sr-only"></span
@@ -36,45 +34,28 @@
       <li class="nav-item active" *ngIf="showProfile">
         <a
           class="nav-link"
-          style="font-size: smaller"
           routerLink="/land"
           >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/land-icon.png" alt="" />
           <span class="sr-only"></span
         ></a>
       </li>
 
-
-
-
-
-
-      <!-- <li class="nav-item">
-        <a class="nav-link" style="font-size: smaller" routerLink="/land"
-          >Land Available</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" style="font-size: smaller" routerLink="/wearables"
-          >Wearables</a
-        >
-      </li> -->
       <li class="nav-item" *ngIf="!showProfile">
-        <a class="nav-link" style="font-size: smaller" (click)="openModal()"
-        > <img   src="../../../../assets/img/join-us-cta.png" alt="" /> <span class="sr-only"></span
+        <a class="nav-link" (click)="openModal()"
+        > <img  src="../../../../assets/img/join-us-cta.png" alt="" /> <span class="sr-only"></span
           ></a
       >
       </li>
 
       <li *ngIf="showProfile" class="nav-item">
-        <a class="nav-link" style="font-size: smaller" routerLink="/profile"
+        <a class="nav-link"  routerLink="/profile"
           > <img style="height: 30px;width: 30px;"  src="../../../../assets/img/coin-icon.png" alt="" /> <span class="sr-only"></span
             ></a
         >
       </li>
       <li *ngIf="showProfile" class="nav-item">
         <a
-          class="nav-link"
-          style="font-size: smaller;"
+          class="nav-link"       
           (click)="logOut()"
           routerLink="/data-table"
           ><img style="height: 30px;width: 30px;"  src="../../../../assets/img/pricing-chart-icon.png" alt="" /> <span class="sr-only"></span
@@ -90,7 +71,6 @@
       <li *ngIf="showProfile" class="nav-item">
         <a
           class="nav-link"
-          style="font-size: smaller;"
           (click)="logOut()"
           routerLink=""
           ><img style="height: 30px;width: 30px;"  src="../../../../assets/img/exit-door.png" alt="" /> <span class="sr-only"></span

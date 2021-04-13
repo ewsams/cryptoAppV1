@@ -15,13 +15,15 @@
   .brand-display-mobile {
     height: 16.5rem;
     width: 16.5rem;
+    position: relative;
+    bottom: 4em;
   }
   .brand-display-logo-mobile {
     position: absolute;
     align-self: center;
-    top:17em;
-    height: 8rem;
-    width: 8rem;
+    top:16.5em;
+    height: 10rem;
+    width: 10rem;
   }
   .count-down-mobile-text {
     font-size: smaller;
