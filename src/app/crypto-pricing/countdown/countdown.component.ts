@@ -66,7 +66,7 @@ private allocateTimeUnits(timeDifference) {
 
   ngOnInit() {
      this.subscription = interval(1000)
-         .subscribe(x => { this.getTimeDifference();this.formatSingleValues();});
+         .subscribe(x => { this.getTimeDifference(); this.formatSingleValues(); });
   }
 
  ngOnDestroy() {
@@ -84,22 +84,22 @@ openAbout() {
   });
 }
 formatSingleValues() {
-  if(this.daysToDday === 1) {
-    this.Days = 'Day'
-  }else {
-    this.Days = 'Days'
-  }  if(this.hoursToDday === 1) {
-    this.Hours = 'Hour'
-  }else {
-    this.Hours = 'Hours'
-  } if(this.secondsToDday === 1) {
-    this.Minutes = 'Minute'
-  }else {
-    this.Minutes = 'Minutes'
-  } if(this.secondsToDday === 1) {
-    this.Seconds = 'Second'
-  }else {
-    this.Seconds = 'Seconds'
+  if (this.daysToDday === 1) {
+    this.Days = 'Day';
+  } else {
+    this.Days = 'Days';
+  }  if (this.hoursToDday === 1) {
+    this.Hours = 'Hour';
+  } else {
+    this.Hours = 'Hours';
+  } if (this.secondsToDday === 1) {
+    this.Minutes = 'Minute';
+  } else {
+    this.Minutes = 'Minutes';
+  } if (this.secondsToDday === 1) {
+    this.Seconds = 'Second';
+  } else {
+    this.Seconds = 'Seconds';
   }
 }
 }
