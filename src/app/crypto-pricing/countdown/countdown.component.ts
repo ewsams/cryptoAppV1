@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MobileModalComponent } from 'src/app/decentral/front-end-authentication/mobile-modal/mobile-modal.component';
+import { AboutUsModalComponent } from 'src/app/decentral/front-end-authentication/about-us-modal/about-us-modal.component';
 
 @Component({
   selector: 'app-countdown',
@@ -79,7 +80,7 @@ private allocateTimeUnits(timeDifference) {
   });
 }
 openAbout() {
-  this.modal.open(MobileModalComponent, {
+  this.modal.open(AboutUsModalComponent, {
     size: 'sm',
   });
 }

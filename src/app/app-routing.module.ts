@@ -19,6 +19,7 @@ import { AuthGuard } from './decentral/front-end-authentication/services/auth.gu
 import { BodyToggleComponent } from './decentral/front-end-authentication/body-toggle/body-toggle.component';
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'land', component: LandAvailableComponent, canActivate: [AuthGuard]  },
@@ -58,5 +59,5 @@ export const routingComponents = [
   CommentsComponent,
   UserProfileComponent,
   BodyToggleComponent,
-  EmailLoginComponent
+  EmailLoginComponent,
 ];

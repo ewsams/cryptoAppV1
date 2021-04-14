@@ -28,6 +28,7 @@ import { AuthService } from './decentral/front-end-authentication/services/auth.
 import { ResponsiveService } from './decentral/front-end-authentication/services/responsive.service';
 import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
 import { MobileModalComponent } from './decentral/front-end-authentication/mobile-modal/mobile-modal.component';
+import { AboutUsModalComponent } from './decentral/front-end-authentication/about-us-modal/about-us-modal.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MobileModalComponent } from './decentral/front-end-authentication/mobil
     JoinModalComponent,
     CountDownComponent,
     MobileModalComponent,
+    AboutUsModalComponent,
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +56,7 @@ import { MobileModalComponent } from './decentral/front-end-authentication/mobil
     AngularFirestoreModule,
     NgbModule,
   ],
-  entryComponents: [NgbdModalContentComponent, MobileModalComponent],
+  entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent],
   providers: [UserService, CommentsService, FirestoreService, AuthService, ResponsiveService],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
