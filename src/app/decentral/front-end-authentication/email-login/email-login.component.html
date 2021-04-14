@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div *ngIf="isPasswordReset" class="mt-2 text-danger" style="font-size: large;"><p>Please enter your email address</p></div>
+  <div *ngIf="isPasswordReset" class="mt-2"><strong class="form-text text-warning" style="font-size: large;">Please enter your email address</strong></div>
   <span>
-    <strong class="form-text text-danger" style="font-size: large">
+    <strong class="form-text text-warning" style="font-size: large">
       {{ serverMessage }}
     </strong></span
   >  

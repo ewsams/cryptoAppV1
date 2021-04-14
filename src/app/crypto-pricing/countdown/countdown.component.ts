@@ -11,10 +11,10 @@ import { MobileModalComponent } from 'src/app/decentral/front-end-authentication
   <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div></div>
   <div class="row">
   <div class="text-white mx-auto">ICO begins in:
-      <span id="days"> {{daysToDday}} Days</span>
-        <span id="hours"> {{hoursToDday}} Hours</span>
-      <span id="minutes"> {{minutesToDday}} Minutes</span>
-    <span id="seconds"> {{secondsToDday}} Seconds </span>
+      <span id="days"> {{daysToDday}} {{Days}}</span>
+        <span id="hours"> {{hoursToDday}} {{Hours}}</span>
+      <span id="minutes"> {{minutesToDday}} {{Minutes}}</span>
+    <span id="seconds"> {{secondsToDday}} {{Seconds}} </span>
     </div>
   </div>
   `,
@@ -39,6 +39,10 @@ export class CountDownComponent implements OnInit, OnDestroy {
   public hoursToDday;
   public daysToDday;
 
+  public Days = 'Days';
+  public Hours = 'Hours';
+  public Minutes = 'Minutes';
+  public Seconds = 'Seconds';
 
   private getTimeDifference() {
       this.timeDifference = this.dDay.getTime() - new  Date().getTime();
@@ -58,11 +62,11 @@ private allocateTimeUnits(timeDifference) {
       this.daysToDday =
       Math.floor((timeDifference) /
       (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
-}
+    }
 
   ngOnInit() {
      this.subscription = interval(1000)
-         .subscribe(x => { this.getTimeDifference(); });
+         .subscribe(x => { this.getTimeDifference();this.formatSingleValues();});
   }
 
  ngOnDestroy() {
@@ -78,5 +82,24 @@ openAbout() {
   this.modal.open(MobileModalComponent, {
     size: 'sm',
   });
+}
+formatSingleValues() {
+  if(this.daysToDday === 1) {
+    this.Days = 'Day'
+  }else {
+    this.Days = 'Days'
+  }  if(this.hoursToDday === 1) {
+    this.Hours = 'Hour'
+  }else {
+    this.Hours = 'Hours'
+  } if(this.secondsToDday === 1) {
+    this.Minutes = 'Minute'
+  }else {
+    this.Minutes = 'Minutes'
+  } if(this.secondsToDday === 1) {
+    this.Seconds = 'Second'
+  }else {
+    this.Seconds = 'Seconds'
+  }
 }
 }
