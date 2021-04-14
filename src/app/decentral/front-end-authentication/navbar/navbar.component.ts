@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AboutUsModalComponent } from '../about-us-modal/about-us-modal.component';
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
 import { AuthService } from '../services/auth.service';
 import { LogginService } from '../services/loggin.service';
@@ -36,8 +37,13 @@ export class NavbarComponent implements OnInit {
   logOut() {
     this.authService.signOut();
   }
-  openModal() {
+  openJoinModal() {
     const modalRef = this.modalService.open(NgbdModalContentComponent, {
+      size: 'lg',
+    });
+  }
+  openAboutModal() {
+    const modalRef = this.modalService.open(AboutUsModalComponent, {
       size: 'lg',
     });
   }

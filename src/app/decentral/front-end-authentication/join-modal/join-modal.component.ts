@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription} from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -48,18 +49,20 @@ import { UserService } from '../services/user.service';
 })
 export class NgbdModalContentComponent implements OnInit {
   color: boolean;
+  colorSubscription: Subscription;
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserService
   ) {}
 
   ngOnInit() {
-   this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+   this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
      this.color = color;
    });
   }
 
   ngOnDestroy() {
+    this.colorSubscription.unsubscribe();
  }
 }
 
@@ -79,12 +82,6 @@ export class JoinModalComponent implements OnInit {
     private modalService: NgbModal,
     private userService: UserService
   ) {}
-
-  public open() {
-    const modalRef = this.modalService.open(NgbdModalContentComponent, {
-      size: 'lg',
-    });
-  }
 
   ngOnInit() {}
 }
