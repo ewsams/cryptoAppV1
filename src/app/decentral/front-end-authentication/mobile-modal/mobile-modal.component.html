@@ -2,7 +2,7 @@
   <div class="row justify-content-center" style="border:solid white 3px;" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
     <img src="../assets/img/appollo-logo.png" style="height: 106px;width: 106px;float: right;">
     <img src="../assets/img/appoll-text-logo.png" style="height: 160px;width: 160px; float: left;">
-    <p style="font-size: 20px;font-family: Arial;margin-top: 4px;margin-left: 16px;" (click)="closeModal()">X</p>
+    <p style="font-size: 20px;font-family: Arial;margin-top: 1rem;margin-left: 4rem;" (click)="closeModal()">X</p>
     <div class="row" style="position: relative; bottom: 30px;">
       <div class="card col-12" style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
         <div class="card-body">
@@ -76,7 +76,7 @@
             />
             
 
-              <label class="form-control-label" for="input-wallet-address">Web3 Address</label>
+              <label class="form-control-label" for="input-wallet-address">Public Web3 Address</label>
               <small
               *ngIf="web3Address.invalid && web3Address.touched"
               id="Web3HelpBlock"
@@ -93,7 +93,7 @@
                   />
                  
               <div class="row">
-                <div class="col text-center mb-6">
+                <div class="col text-center mb-4">
                   <button class="btn btn-info btn-lg" (click)="onSubmit()"
                   [disabled]="this.myForm.status !== 'VALID'">
                     Join Us

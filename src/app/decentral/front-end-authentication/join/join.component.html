@@ -16,7 +16,7 @@
                   <small
                   *ngIf="userName.invalid && userName.touched"
                   id="userNameHelpBlock"
-                  class="form-text text-danger font-weight-bold"
+                  class="form-text text-warning font-weight-bold"
                 >
                   Your input is invalid.
                 </small>
@@ -37,11 +37,11 @@
                   >
                   <small
                     *ngIf="password.invalid && password.touched"
-                    class="form-text text-danger font-weight-bold"
+                    class="form-text text-warning font-weight-bold"
                     style="font-size: .75rem;"
                   >
                     Numbers,Letters,
-                   1 uppercase and 1 special charactor.
+                   <br>1 uppercase and <br> 1 special charactor.
                   </small>
                   <input
                     formControlName="password"
@@ -63,7 +63,7 @@
                   <small
                   *ngIf="phone.invalid && phone.touched"
                   id="phoneHelpBlock"
-                  class="form-text text-danger font-weight-bold"
+                  class="form-text text-warning font-weight-bold"
                 >
                   Your input is invalid.
                 </small>
@@ -85,7 +85,7 @@
                   <small
                   *ngIf="email.invalid && email.touched"
                   id="emailHelpBlock"
-                  class="form-text text-danger font-weight-bold"
+                  class="form-text text-warning font-weight-bold"
                 >
                   Your email address is invalid.
                 </small>
@@ -102,12 +102,12 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-control-label" for="input-email"
-                    >Web3 Address</label
+                    >Public Web3 Address</label
                   >
                   <small
                     *ngIf="web3Address.invalid && web3Address.touched"
                     id="Web3HelpBlock"
-                    class="form-text text-danger font-weight-bold"
+                    class="form-text text-warning font-weight-bold"
                   >
                     Your Web3 Address is invalid.
                   </small>

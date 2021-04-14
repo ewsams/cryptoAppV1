@@ -7,7 +7,8 @@ import { MobileModalComponent } from 'src/app/decentral/front-end-authentication
   selector: 'app-countdown',
   template: `
   <div class="row">
-  <div class="text-white mx-auto join-us-mobile-cta" (click)="open()">Join Us</div></div>
+  <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
+  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div></div>
   <div class="row">
   <div class="text-white mx-auto">ICO begins in:
       <span id="days"> {{daysToDday}} Days</span>
@@ -68,7 +69,12 @@ private allocateTimeUnits(timeDifference) {
     this.subscription.unsubscribe();
  }
 
- open() {
+ openJoin() {
+  this.modal.open(MobileModalComponent, {
+    size: 'sm',
+  });
+}
+openAbout() {
   this.modal.open(MobileModalComponent, {
     size: 'sm',
   });
