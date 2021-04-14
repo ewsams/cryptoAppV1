@@ -92,7 +92,7 @@ formatSingleValues() {
     this.Hours = 'Hour';
   } else {
     this.Hours = 'Hours';
-  } if (this.secondsToDday === 1) {
+  } if (this.minutesToDday === 1) {
     this.Minutes = 'Minute';
   } else {
     this.Minutes = 'Minutes';
