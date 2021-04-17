@@ -10,6 +10,16 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
 
 // Local imports
+import {MetaModule} from './meta/meta.module';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatToolbarModule
+} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
@@ -55,6 +65,17 @@ import { AboutUsModalComponent } from './decentral/front-end-authentication/abou
     AngularFireAuthModule,
     AngularFirestoreModule,
     NgbModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MetaModule
   ],
   entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent],
   providers: [UserService, CommentsService, FirestoreService, AuthService, ResponsiveService],
@@ -81,3 +102,4 @@ export class AppModule {
     });
   }
 }
+

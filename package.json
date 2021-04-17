@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
+    "@truffle/contract": "^4.0.33",
+    "@openzepplin/contracts": "4.0.00",
     "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "@swimlane/ngx-datatable": "^19.0.0",
     "angular-cli-ghpages": "^0.6.2",
@@ -31,7 +33,10 @@
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "web3": "1.2.1",
+    "zone.js": "~0.9.1",
+    "core-js": "2.5.7",
+    "ethers": "^4.0.37"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.6",
