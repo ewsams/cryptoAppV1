@@ -21,9 +21,17 @@ span {
 
   @media only screen and (max-width: 600px) {
     span {
-        font-size: 14px;
+        font-size: 16px;
         color:white;
         width: fit-content;
         border-bottom: solid white 1px;
+      }
+
+      .connect-Cta {
+        font-size: 14px;
+      }
+      
+      .btn {
+        width: fit-content;
       }
   }

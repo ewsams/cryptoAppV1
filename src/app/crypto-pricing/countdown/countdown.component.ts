@@ -3,13 +3,16 @@ import { Subscription, interval } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MobileModalComponent } from 'src/app/decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 import { AboutUsModalComponent } from 'src/app/decentral/front-end-authentication/about-us-modal/about-us-modal.component';
+import { Web3Service } from 'src/app/util/web3.service';
 
 @Component({
   selector: 'app-countdown',
   template: `
   <div class="row">
   <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
-  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div></div>
+  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div>
+  <span class="connect-Cta text-white mx-auto mobile-cta btn btn-primary" (click)="connectWallet()">Connect Your Web3 Wallet</span>
+  </div>
   <div class="row">
   <div class="text-white mx-auto">ICO begins in:
       <span id="days"> {{daysToDday}} {{Days}}</span>
@@ -25,7 +28,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor( private modal: NgbModal) {}
+  constructor( private modal: NgbModal, private web3Service: Web3Service) {}
 
   public dateNow = new Date();
   public dDay = new Date('May 05 2021 00:00:00');
@@ -102,5 +105,9 @@ formatSingleValues() {
   } else {
     this.Seconds = 'Seconds';
   }
+}
+
+connectWallet() {
+  this.web3Service.getOrganization('00000000');
 }
 }
