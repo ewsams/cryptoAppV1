@@ -13,13 +13,6 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import {MetaModule} from './meta/meta.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatToolbarModule
-} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
@@ -39,6 +32,7 @@ import { ResponsiveService } from './decentral/front-end-authentication/services
 import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
 import { MobileModalComponent } from './decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 import { AboutUsModalComponent } from './decentral/front-end-authentication/about-us-modal/about-us-modal.component';
+import { Web3Service } from './util/web3.service';
 
 
 @NgModule({
@@ -67,18 +61,14 @@ import { AboutUsModalComponent } from './decentral/front-end-authentication/abou
     NgbModule,
     BrowserAnimationsModule,
     CommonModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     MetaModule
   ],
   entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent],
-  providers: [UserService, CommentsService, FirestoreService, AuthService, ResponsiveService],
+  providers: [UserService, CommentsService, 
+    FirestoreService, AuthService, ResponsiveService,Web3Service],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })

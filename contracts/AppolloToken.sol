@@ -5,6 +5,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
  * @title AppolloToken
+ ********************************
+ * @dev Remeber the naming conventions like in Java the "contract" ie class...
+  and file name must be the same.
+  ********************************
  * @dev Very Appollo ERC20 Token example, where all tokens are pre-assigned to the creator.
  * Note they can later distribute these tokens as they wish using `transfer` and other
  * `ERC20` functions.

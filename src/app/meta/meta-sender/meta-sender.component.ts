@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Web3Service} from '../../util/web3.service';
-import { MatSnackBar } from '@angular/material';
 
 declare let require: any;
 const metacoin_artifacts = require('../../../../build/contracts/MetaCoin.json');
@@ -23,7 +22,7 @@ export class MetaSenderComponent implements OnInit {
 
   status = '';
 
-  constructor(private web3Service: Web3Service, private matSnackBar: MatSnackBar) {
+  constructor(private web3Service: Web3Service) {
     console.log('Constructor: ' + web3Service);
   }
 
@@ -54,7 +53,7 @@ export class MetaSenderComponent implements OnInit {
   }
 
   setStatus(status) {
-    this.matSnackBar.open(status, null, {duration: 3000});
+    alert(status);
   }
 
   async sendCoin() {
