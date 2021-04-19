@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,firebase: {
+  production: true, firebase: {
     apiKey: 'AIzaSyAIQmkWCd4HKcAVF_SzVQus7jHjLj-x400',
     authDomain: 'ewsdeploy.firebaseapp.com',
     databaseURL: 'https://ewsdeploy-default-rtdb.firebaseio.com',

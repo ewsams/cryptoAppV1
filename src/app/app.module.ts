@@ -67,8 +67,8 @@ import { Web3Service } from './util/web3.service';
     MetaModule
   ],
   entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent],
-  providers: [UserService, CommentsService, 
-    FirestoreService, AuthService, ResponsiveService,Web3Service],
+  providers: [UserService, CommentsService,
+    FirestoreService, AuthService, ResponsiveService, Web3Service],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })

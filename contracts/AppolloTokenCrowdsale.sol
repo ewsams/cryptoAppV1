@@ -5,7 +5,7 @@ import "./Crowdsale.sol";
 
 contract AppolloTokenCrowdsale is Crowdsale {
 
-    KycContract kyc;
+    // KycContract kyc;
     constructor(
         uint256 rate,    // rate in TKNbits
         address payable wallet,
