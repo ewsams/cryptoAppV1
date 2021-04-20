@@ -1,5 +1,6 @@
 var AppolloTokenSale = artifacts.require("./AppolloTokenCrowdsale.sol");
 var AppolloToken = artifacts.require("./AppolloToken.sol");
+const KycContract = artifacts.require("KycContract");
 
 const chai = require("./chaisetup.js");
 const BN = web3.utils.BN;
@@ -29,6 +30,12 @@ contract('AppolloTokenSale Test', async (accounts) => {
                 let tokenInstance = await AppolloToken.deployed();
                 let tokenSaleInstance = await AppolloTokenSale.deployed();
                 let balanceBeforeAccount = await tokenInstance.balanceOf.call(recipient);
+                
+                expect(tokenSaleInstance.sendTransaction({from: recipient, value: web3.utils.toWei("1", "wei")})).to.be.rejected;
+                expect(balanceBeforeAccount).to.be.bignumber.equal(await tokenInstance.balanceOf.call(recipient));
+
+                let kycInstance = await KycContract.deployed();
+                await kycInstance.setKycCompleted(recipient);
             
                 expect(tokenSaleInstance.sendTransaction({from: recipient, value: web3.utils.toWei("1", "wei")})).to.be.fulfilled;
                 return expect(balanceBeforeAccount + 1).to.be.bignumber.equal(await tokenInstance.balanceOf.call(recipient));
