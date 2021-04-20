@@ -13,7 +13,7 @@ export class Web3Service {
   provider: any;
   accounts: any;
   uDonate: any;
-  web3Modal
+  web3Modal:any;
 
   private accountStatusSource = new Subject<any>();
   accountStatus$ = this.accountStatusSource.asObservable();

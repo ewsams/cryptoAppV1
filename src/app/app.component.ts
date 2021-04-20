@@ -37,4 +37,8 @@ export class AppComponent implements OnInit {
   ngOnDestroy() {
     this.backgroundColor.unsubscribe();
   }
+
+  connectWallet() {
+    this.web3Service.connectAccount();
+  }
 }

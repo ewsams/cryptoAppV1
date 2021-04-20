@@ -1,7 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container">
   <app-countdown></app-countdown>
-  <div class="row"> <div class="text-white mx-auto h-100">Please Join Us in order to get whitelisted</div></div>
+  <span class="connect-Cta text-white mx-auto cta btn btn-primary" (click)="connectWallet()">
+    Connect Your Web3 Wallet</span>
+  <div class="row"> 
+    <div class="text-white mx-auto h-100">
+      Please Join Us in order to get whitelisted</div>
+    </div>
   <div *ngIf="!loggedIn">
     <div class="row justify-content-center">
       <img

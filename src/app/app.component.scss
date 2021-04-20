@@ -11,6 +11,13 @@
   margin: 1rem;
 }
 
+
+.cta { 
+  display: block;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
 @media only screen and (max-width: 600px) {
   .brand-display-mobile {
     height: 16.5rem;
@@ -30,5 +37,8 @@
     font-size: smaller;
     margin: 1rem;
     break-after: left;
+  }
+  .cta { 
+    display: none;
   }
 }
