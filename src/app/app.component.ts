@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { LogginService } from './decentral/front-end-authentication/services/loggin.service';
 import { UserService } from './decentral/front-end-authentication/services/user.service';
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
-import { Observable } from 'apollo-angular-boost';
-import { User } from './decentral/front-end-authentication/models/user';
 import { FirestoreService } from './decentral/front-end-authentication/services/firestore.service';
+import {Web3Service} from './util/web3.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +18,23 @@ export class AppComponent implements OnInit {
   username: string;
   password: string;
   dark: boolean;
-  constructor(private router: Router, private authService: AuthService, private logginService: LogginService,
-              private render: Renderer2, @Inject(DOCUMENT) private document: Document , private db: FirestoreService) {}
+  backgroundColor: Subscription;
+
+  constructor(private router: Router, private authService: AuthService,
+              private logginService: LogginService, private render: Renderer2,
+              @Inject(DOCUMENT) private document: Document , private db: FirestoreService,
+              private web3Service: Web3Service) {}
 
   ngOnInit() {
-
-    this.authService.userLoggedInCheck$.subscribe((element) => {
+    this.backgroundColor = this.authService.userLoggedInCheck$.subscribe((element) => {
       if (element === false) {
         this.loggedIn = false;
       } else {
         this.loggedIn = true;
       }
     });
+  }
+  ngOnDestroy() {
+    this.backgroundColor.unsubscribe();
   }
 }

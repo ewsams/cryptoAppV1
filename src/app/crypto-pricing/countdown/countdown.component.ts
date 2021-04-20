@@ -108,6 +108,6 @@ formatSingleValues() {
 }
 
 connectWallet() {
-  this.web3Service.getOrganization('00000000');
+  this.web3Service.connectAccount();
 }
 }

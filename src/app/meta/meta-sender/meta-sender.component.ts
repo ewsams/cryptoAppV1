@@ -44,13 +44,13 @@ export class MetaSenderComponent implements OnInit {
     //   });
   }
 
-  watchAccount() {
-    this.web3Service.accountsObservable.subscribe((accounts) => {
-      this.accounts = accounts;
-      this.model.account = accounts[0];
-      this.refreshBalance();
-    });
-  }
+//   watchAccount() {
+//     this.web3Service.accountsObservable.subscribe((accounts) => {
+//       this.accounts = accounts;
+//       this.model.account = accounts[0];
+//       this.refreshBalance();
+//     });
+//   }
 
   setStatus(status) {
     alert(status);
