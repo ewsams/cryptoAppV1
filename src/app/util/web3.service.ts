@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { Subject, } from 'rxjs';
+import { Subject } from 'rxjs';
 import { uDonate_address, uDonate_abi } from '../../abis.js'
 
 @Injectable({
@@ -15,7 +15,7 @@ export class Web3Service {
   uDonate: any;
   web3Modal:any;
 
-  private accountStatusSource = new Subject<any>();
+  private accountStatusSource = new Subject<string>();
   accountStatus$ = this.accountStatusSource.asObservable();
 
   constructor() {

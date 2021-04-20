@@ -11,6 +11,14 @@
   margin: 1rem;
 }
 
+.larger-display {
+  font-size: xx-large;
+  font-family: Impact;
+}
+
+.larger-display-wallet {
+  font-size: large;
+}
 
 .cta { 
   display: block;
@@ -29,7 +37,7 @@
   .brand-display-logo-mobile {
     position: absolute;
     align-self: center;
-    top:21em;
+    top:24em;
     height: 10rem;
     width: 10rem;
   }
@@ -41,4 +49,13 @@
   .cta { 
     display: none;
   }
+
+  .larger-display {
+    font-size: medium;
+    font-family: Impact;
+  }
+  .larger-display-wallet {
+    font-size: small;
+  }
+
 }
