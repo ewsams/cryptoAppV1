@@ -30,7 +30,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   <h3 style="text-align:left; font-family:Times">I) Complete our ICO.</h3>
   <h3 style="text-align:left; font-family:Times">II) Begin bi-weekly lottos.</h3>
   <h3 style="text-align:left; font-family:Times">III) Initialize our NFT market.</h3>
-  <h3 style="text-align:left; font-family:Times">IV) Use the master wallet to remove gas fees.</h3>
+  <h3 style="text-align:left; font-family:Times">IV) Use the master wallet to reduce gas fees.</h3>
   <h3 style="text-align:left; font-family:Times">V) Build a bridge in order to utilize other block chains.</h3>
   <h3 style="text-align:left; font-family:Times">VI) Continue to build our presence and brand.</h3>
     <h4 style="text-align:center">"The world of crypto currency is at your

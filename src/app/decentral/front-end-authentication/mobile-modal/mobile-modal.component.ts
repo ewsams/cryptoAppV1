@@ -3,10 +3,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
 import { FirestoreService } from '../services/firestore.service';
 import { UserService } from '../services/user.service';
+import {Web3Service} from '../../../util/web3.service';
+
 @Component({
   selector: 'app-mobile-modal',
   templateUrl: './mobile-modal.component.html',
@@ -17,6 +19,10 @@ export class MobileModalComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
   users: Observable<SubmitFormModel[]>;
   myForm: FormGroup;
+  whiteListed: boolean;
+  whiteListedAccount: string;
+  whiteListedAccountSubscription: Subscription;
+  whiteListedSubscription: Subscription;
 
   // tslint:disable-next-line:variable-name
   constructor(
@@ -24,7 +30,8 @@ export class MobileModalComponent implements OnInit {
     private db: FirestoreService,
     private afAuth: AngularFireAuth,
     private router: Router,
-    private modal: NgbModal, private userService: UserService
+    private modal: NgbModal, private userService: UserService,
+    private web3Service: Web3Service
   ) {}
   onSubmit() {
     if (this.myForm.status === 'VALID') {
@@ -40,6 +47,13 @@ export class MobileModalComponent implements OnInit {
       this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
       this.db.add('users', this.profileRequestFormObject);
       this.router.navigate(['home-logged-in']);
+      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
+      this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
+        this.whiteListed = isListed;
+      });
+      this.whiteListedAccountSubscription = this.web3Service.accountStatus$.subscribe(account => {
+        this.whiteListedAccount = account;
+      });
     }
   }
 
@@ -71,7 +85,7 @@ export class MobileModalComponent implements OnInit {
         ],
       ],
       web3Address: ['', [Validators.required, Validators.pattern(
-        /^(0x)?[0-9a-f]{40}$/
+        /^0x[a-fA-F0-9]{40}$/
       ), ]]
     });
   }
@@ -94,5 +108,10 @@ export class MobileModalComponent implements OnInit {
 
   closeModal() {
     this.modal.dismissAll();
+  }
+
+  ngOnDestroy() {
+    this.whiteListedAccountSubscription.unsubscribe();
+    this.whiteListedSubscription.unsubscribe();
   }
 }

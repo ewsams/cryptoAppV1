@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import Web3 from "web3";
-import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3 from 'web3';
+import Web3Modal from 'web3modal';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 import { Subject } from 'rxjs';
-import { uDonate_address, uDonate_abi } from '../../abis.js'
+import AppolloToken from 'build/contracts/AppolloToken.json';
+import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
+import KycContract from 'build/contracts/KycContract.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +16,37 @@ export class Web3Service {
   provider: any;
   accounts: any;
   uDonate: any;
-  web3Modal:any;
+  web3Modal: any;
 
-  private accountStatusSource = new Subject<string>();
-  accountStatus$ = this.accountStatusSource.asObservable();
+  private whiteListedAccount = new Subject<string>();
+  accountStatus$ = this.whiteListedAccount.asObservable();
+  private whiteListedBoolean = new Subject<boolean>();
+  isWhiteListed$ = this.whiteListedBoolean.asObservable();
+  networkId: any;
+  appolloTokenInstance: any;
+  appolloTokenCrowdsaleInstance: any;
+  kycInstance: any;
 
-  constructor() {
+constructor() {
     const providerOptions = {
       walletconnect: {
         package: WalletConnectProvider, // required
         options: {
-          infuraId: "INFURA_ID" // required
+          infuraId: 'INFURA_ID' // required
         }
       }
     };
 
     this.web3Modal = new Web3Modal({
-      network: "mainnet", // optional
+      network: 'mainnet', // optional
       cacheProvider: true, // optional
       providerOptions, // required
       theme: {
-        background: "rgb(39, 49, 56)",
-        main: "rgb(199, 199, 199)",
-        secondary: "rgb(136, 136, 136)",
-        border: "rgba(195, 195, 195, 0.14)",
-        hover: "rgb(16, 26, 32)"
+        background: 'rgb(39, 49, 56)',
+        main: 'rgb(199, 199, 199)',
+        secondary: 'rgb(136, 136, 136)',
+        border: 'rgba(195, 195, 195, 0.14)',
+        hover: 'rgb(16, 26, 32)'
       }
     });
   }
@@ -45,61 +54,30 @@ export class Web3Service {
   async connectAccount() {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
-    this.accounts = await this.web3js.eth.getAccounts(); 
-    return this.accounts;
+    this.accounts = await this.web3js.eth.getAccounts();
+    this.gatherContracts();
+
   }
 
-  async createOrganization(orgID, payableWallet, orgName, tokenAddress) {
-    // --- temporarily re-initializating these for the effect file 
-    this.provider = await this.web3Modal.connect(); // set provider
-    this.web3js = new Web3(this.provider); // create web3 instance
-    this.accounts = await this.web3js.eth.getAccounts(); 
+  async gatherContracts() {
+    this.appolloTokenInstance =
+    new this.web3js.eth.Contract(AppolloToken.abi,
+      AppolloToken.networks.address);
 
-    this.uDonate = new this.web3js.eth.Contract(uDonate_abi, uDonate_address);
-
-    const create = await this.uDonate
-      .methods.createOrganization(orgID, payableWallet, orgName, tokenAddress)
-      .send({ from: this.accounts[0] });
-    return create;
+    this.appolloTokenCrowdsaleInstance =
+      new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
+        AppolloTokenCrowdsale.networks.address);
   }
 
-  async getOrganization(orgID) {
-    // --- temporarily re-initializating these for the effect file 
+  async handleKycSubmit(kycAddress: any) {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
-    this.accounts = await this.web3js.eth.getAccounts(); 
-    
-    this.uDonate = new this.web3js.eth.Contract(uDonate_abi, uDonate_address);
-    
-    const org = await this.uDonate.methods.getOrganization(orgID).call({ from: this.accounts[0] });
-    
-    const organization = org;
-    const walletAddress = organization[1];
-    const balence = await this.web3js.eth.getBalance(walletAddress);
-
-    const orgWithBalence = {
-      id: organization[0],
-      payableWallet: organization[1],
-      paused: organization[2],
-      ended: organization[3],
-      causesIDs: organization[4],
-      balence: balence,
+    this.accounts = await this.web3js.eth.getAccounts();
+    this.kycInstance =
+      new this.web3js.eth.Contract(KycContract.abi, KycContract.networks[5777].address);
+    this.kycInstance.methods.setKycCompleted(kycAddress).send({from: this.accounts[0]});
+    this.whiteListedAccount.next(kycAddress);
+    this.whiteListedBoolean.next(true);
     }
-
-    return orgWithBalence;
-  }
-
-  async donate(id, amount, tip) {
-    this.provider = await this.web3Modal.connect(); // set provider
-    this.web3js = new Web3(this.provider); // create web3 instance
-    this.accounts = await this.web3js.eth.getAccounts(); 
-    this.uDonate = new this.web3js.eth.Contract(uDonate_abi, uDonate_address);
-
-    const updatedAmt = amount * 1e18;
-
-    const donate = await this.uDonate.methods.donateETH(id, tip).send({ from: this.accounts[0], value: updatedAmt })
-
-    return donate;
-  }
 
 }

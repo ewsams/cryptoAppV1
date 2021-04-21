@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
 import { FirestoreService } from '../services/firestore.service';
+import { Web3Service } from 'src/app/util/web3.service';
 
 @Component({
   selector: 'app-join',
@@ -15,13 +16,16 @@ export class JoinComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
   users: Observable<SubmitFormModel[]>;
   myForm: FormGroup;
+  whiteListedAccount: string;
+  whiteListedAccountSubscription: Subscription;
 
   // tslint:disable-next-line:variable-name
   constructor(
     private fb: FormBuilder,
     private db: FirestoreService,
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private web3Service: Web3Service
   ) {}
   onSubmit() {
     if (this.myForm.status === 'VALID') {
@@ -36,7 +40,8 @@ export class JoinComponent implements OnInit {
       console.log(this.profileRequestFormObject);
       this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
       this.db.add('users', this.profileRequestFormObject);
-      this.router.navigate(['home-logged-in']);
+      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
+      // this.router.navigate(['home-logged-in']);
     }
   }
 
@@ -65,7 +70,7 @@ export class JoinComponent implements OnInit {
         ],
       ],
       web3Address: ['', [Validators.required, Validators.pattern(
-        /^(0x)?[0-9a-f]{40}$/
+        /^0x[a-fA-F0-9]{40}$/
       ), ]]
     });
   }

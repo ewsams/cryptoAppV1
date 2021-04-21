@@ -1,4 +1,4 @@
-export interface KycContract {
+export interface KycContractModel {
     contractName: string;
     abi: ABI[];
     metadata: string;
@@ -14,9 +14,10 @@ export interface KycContract {
     ast: LegacyASTClass;
     legacyAST: LegacyASTClass;
     compiler: Compiler;
-    networks: ImmutableReferences;
+    networks: Networks;
     schemaVersion: string;
     updatedAt: Date;
+    networkType: string;
     devdoc: Devdoc;
     userdoc: Userdoc;
 }
@@ -28,6 +29,7 @@ export interface ABI {
     type: string;
     outputs?: Put[];
     stateMutability?: string;
+    constant?: boolean;
 }
 
 export interface Put {
@@ -450,6 +452,17 @@ export interface Owner {
 }
 
 export interface ImmutableReferences {
+}
+
+export interface Networks {
+    '5777': The5777;
+}
+
+export interface The5777 {
+    events: ImmutableReferences;
+    links: ImmutableReferences;
+    address: string;
+    transactionHash: string;
 }
 
 export interface Userdoc {
