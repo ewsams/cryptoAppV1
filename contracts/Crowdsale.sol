@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: All Rights Reserved"
-pragma solidity ^0.8.3;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";

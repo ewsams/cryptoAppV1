@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: All Rights Reserved"
-pragma solidity ^0.8.3;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -14,7 +14,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
  * `ERC20` functions.
  */
 contract AppolloToken is ERC20 {
-
     /**
      * @dev Constructor that gives msg.sender all of existing tokens.
      */

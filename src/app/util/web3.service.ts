@@ -12,22 +12,27 @@ import KycContract from 'build/contracts/KycContract.json';
   providedIn: 'root'
 })
 export class Web3Service {
-  web3js: any;
-  provider: any;
-  accounts: any;
-  uDonate: any;
-  web3Modal: any;
+
 
   private whiteListedAccount = new Subject<string>();
   accountStatus$ = this.whiteListedAccount.asObservable();
   private whiteListedBoolean = new Subject<boolean>();
   isWhiteListed$ = this.whiteListedBoolean.asObservable();
-  networkId: any;
-  appolloTokenInstance: any;
-  appolloTokenCrowdsaleInstance: any;
-  kycInstance: any;
+  private userTokens = new Subject<string>();
+  userAvailiableTokens$ = this.userTokens.asObservable();
 
-constructor() {
+  // Contract related variables
+  appolloTokenInstance;
+  appolloTokenCrowdsaleInstance;
+  kycInstance;
+  web3Modal;
+
+  provider; // set provider
+  web3js; // create web3 instance
+  accounts;// gather accounts
+
+  constructor() {
+
     const providerOptions = {
       walletconnect: {
         package: WalletConnectProvider, // required
@@ -38,7 +43,6 @@ constructor() {
     };
 
     this.web3Modal = new Web3Modal({
-      network: 'mainnet', // optional
       cacheProvider: true, // optional
       providerOptions, // required
       theme: {
@@ -55,29 +59,37 @@ constructor() {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
-    this.gatherContracts();
-
   }
 
-  async gatherContracts() {
+  private gatherContracts = () => {
+
     this.appolloTokenInstance =
-    new this.web3js.eth.Contract(AppolloToken.abi,
-      AppolloToken.networks.address);
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[5777].address);
 
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks.address);
+        AppolloTokenCrowdsale.networks[5777].address);
   }
 
-  async handleKycSubmit(kycAddress: any) {
+  async handleKycSubmit(kycAddress: string) {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
+    
     this.kycInstance =
-      new this.web3js.eth.Contract(KycContract.abi, KycContract.networks[5777].address);
-    this.kycInstance.methods.setKycCompleted(kycAddress).send({from: this.accounts[0]});
+    new this.web3js.eth.Contract(KycContract.abi,
+      KycContract.networks[5777].address);
+
+    this.kycInstance.methods.setKycCompleted(kycAddress).send({ from: this.accounts[0] });
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
-    }
+  }
+
+  userCurrentTokens = async () => {
+    let userTokens = await 
+    this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
+    this.userTokens.next(userTokens);
+  }
 
 }
