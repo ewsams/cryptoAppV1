@@ -21,13 +21,13 @@ module.exports = {
     },
     ropsten_infura: {
       provider: function () {
-        return new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/8db2d61eab884182a8ec68cf25fbd343", MetaMaskAccountIndex)
+        return new HDWalletProvider(process.env.MNEMONIC, `https://ropsten.infura.io/v3/${process.env.INFURA_ID}`, MetaMaskAccountIndex)
       },
       network_id: 3
     },
     goerli_infura: {
       provider: function () {
-        return new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/8db2d61eab884182a8ec68cf25fbd343", MetaMaskAccountIndex)
+        return new HDWalletProvider(process.env.MNEMONIC, `https://goerli.infura.io/v3/${process.env.INFURA_ID}`, MetaMaskAccountIndex)
       },
       network_id: 5
     }
