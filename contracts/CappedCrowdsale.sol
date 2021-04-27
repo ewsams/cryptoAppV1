@@ -11,6 +11,12 @@ import "./Crowdsale.sol";
 abstract contract CappedCrowdsale is Crowdsale  {
     using SafeMath for uint256;
 
+    // Track investor contributions
+    uint256 public investorMinCap = 2000000000000000; // 0.002 ether
+    uint256 public investorHardCap = 50000000000000000000; // 50 ether
+    mapping(address => uint256) public contributions;
+
+
     uint256 private _cap;
 
     /**
@@ -37,6 +43,12 @@ abstract contract CappedCrowdsale is Crowdsale  {
         return weiRaised() >= _cap;
     }
 
+    function investorContributions(address beneficiary, uint256 weiAmount) internal view virtual {
+        uint256 _existingContribution = contributions[beneficiary];
+        uint256 _newContribution = _existingContribution.add(weiAmount);
+        require(_newContribution >= investorMinCap && _newContribution 
+        <= investorHardCap, "Ivestor must meet capital requirements");
+    }
     /**
      * @dev Extend parent behavior requiring purchase to respect the funding cap.
      * @param beneficiary Token purchaser
@@ -44,6 +56,7 @@ abstract contract CappedCrowdsale is Crowdsale  {
      */
     function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view virtual override {
         super._preValidatePurchase(beneficiary, weiAmount);
+        investorContributions(beneficiary, weiAmount);
         require(weiRaised().add(weiAmount) <= _cap, "CappedCrowdsale: cap exceeded");
     }
 }
