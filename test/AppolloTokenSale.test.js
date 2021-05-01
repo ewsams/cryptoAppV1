@@ -12,6 +12,10 @@ contract('AppolloTokenSale Test', async (accounts) => {
     
     const [deployerAccount,recipient,anotherAccount] = accounts;
        
+    before(async function() {
+        // Transfer extra ether to investor1's account for testing
+        await web3.eth.sendTransaction({ from: deployerAccount, to: recipient, value: ether(25) })
+      });
 
         it("there shouldnt be any coins in my account", async () => {
             let instance = await AppolloToken.deployed();
@@ -37,7 +41,7 @@ contract('AppolloTokenSale Test', async (accounts) => {
                 let kycInstance = await KycContract.deployed();
                 await kycInstance.setKycCompleted(recipient);
             
-                expect(tokenSaleInstance.sendTransaction({from: recipient, value: web3.utils.toWei("1", "wei")})).to.be.fulfilled;
+                expect(tokenSaleInstance.sendTransaction({from: recipient, value: web3.utils.toWei("1", "ether")})).to.be.fulfilled;
                 return expect(balanceBeforeAccount + 1).to.be.bignumber.equal(await tokenInstance.balanceOf.call(recipient));
             
             });

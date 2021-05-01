@@ -1,4 +1,4 @@
-import latestTime from './latestTime';
+import latestTime from './latestTime.js';
 
 // Increases ganache time by the passed duration in seconds
 export default function increaseTime (duration) {

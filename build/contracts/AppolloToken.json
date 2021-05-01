@@ -84,7 +84,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -127,7 +128,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -140,7 +142,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -201,7 +204,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -214,7 +218,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -227,7 +232,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -8641,12 +8647,13 @@
         }
       },
       "links": {},
-      "address": "0xFA36637442A279E626189F0E118F507243f5fE8E",
-      "transactionHash": "0xfe794d21ea86603a8381d7bba63a8cd0dfd085d1d2aae60ea49e3ad6ef9d550e"
+      "address": "0x9c9dbD01cfce7a322faeFB73abE6dC3c2294D71c",
+      "transactionHash": "0x27b283520a7e18f509039344d5cfe884ce06bb8718d0b8efba6f0054bd4f5f5c"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-27T00:14:27.932Z",
+  "updatedAt": "2021-04-29T00:12:35.948Z",
+  "networkType": "ethereum",
   "devdoc": {
     "details": "Remeber the naming conventions like in Java the \"contract\" ie class... and file name must be the same.********************************Very Appollo ERC20 Token example, where all tokens are pre-assigned to the creator. Note they can later distribute these tokens as they wish using `transfer` and other `ERC20` functions.",
     "kind": "dev",
