@@ -12,7 +12,7 @@ abstract contract CappedCrowdsale is Crowdsale  {
     using SafeMath for uint256;
 
     // Track investor contributions
-    uint256 public investorMinCap = 2000000000000000; // 0.002 ether
+    uint256 public investorMinCap = 20000000000000000; // 0.02 ether
     uint256 public investorHardCap = 50000000000000000000; // 50 ether
     mapping(address => uint256) public contributions;
 

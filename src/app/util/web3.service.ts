@@ -65,11 +65,11 @@ export class Web3Service {
 
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[5777].address);
+        AppolloToken.networks[5].address);
 
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks[5777].address);
+        AppolloTokenCrowdsale.networks[5].address);
   }
 
   async handleKycSubmit(kycAddress: string) {
@@ -77,11 +77,13 @@ export class Web3Service {
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
     
+    this.appolloTokenCrowdsaleInstance =
+      new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
+        AppolloTokenCrowdsale.networks[5].address); 
+
     this.kycInstance =
     new this.web3js.eth.Contract(KycContract.abi,
-      KycContract.networks[5777].address);
-
-    this.kycInstance.methods.setKycCompleted(kycAddress).send({ from: this.accounts[0] });
+      KycContract.networks[5].address);
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
   }
