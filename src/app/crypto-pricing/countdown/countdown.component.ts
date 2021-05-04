@@ -31,7 +31,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
   constructor( private modal: NgbModal, private web3Service: Web3Service) {}
 
   public dateNow = new Date();
-  public dDay = new Date('May 05 2021 00:00:00');
+  public dDay = new Date('May 11 2021 00:00:00');
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;
