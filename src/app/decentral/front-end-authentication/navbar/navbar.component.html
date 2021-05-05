@@ -2,44 +2,6 @@
   <span><app-body-toggle></app-body-toggle></span>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto ml-auto mt-2">      
-      <li class="nav-item active" *ngIf="showProfile">
-        <a
-          class="nav-link"
-          routerLink="home-logged-in"
-          >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/home-icon.png" alt="" />
-          <span class="sr-only"></span
-        ></a>
-      </li>
-
-
-      <li class="nav-item active" *ngIf="showProfile">
-        <a
-          class="nav-link"
-          style="font-size: smaller"
-          routerLink="home-logged-in"
-          >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/search-icon.png" alt="" />
-          <span class="sr-only"></span
-        ></a>
-      </li>
-
-      <li class="nav-item active" *ngIf="showProfile">
-        <a
-          class="nav-link"
-          routerLink="/wearables"
-          >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/wearable-icon.png" alt="" />
-          <span class="sr-only"></span
-        ></a>
-      </li>
-
-      <li class="nav-item active" *ngIf="showProfile">
-        <a
-          class="nav-link"
-          routerLink="/land"
-          >      <img style="height: 26px;width: 30px;"  src="../../../../assets/img/land-icon.png" alt="" />
-          <span class="sr-only"></span
-        ></a>
-      </li>
-
       <li class="nav-item" *ngIf="!showProfile">
         <a class="nav-link" (click)="openJoinModal()"
         > <h3 style="font-family: Impact;">Join Us</h3> <span class="sr-only"></span
@@ -53,38 +15,13 @@
       >
       </li>
 
-      <li *ngIf="showProfile" class="nav-item">
-        <a class="nav-link"  routerLink="/profile"
-          > <img style="height: 30px;width: 30px;"  src="../../../../assets/img/coin-icon.png" alt="" /> <span class="sr-only"></span
-            ></a
-        >
-      </li>
-      <li *ngIf="showProfile" class="nav-item">
-        <a
-          class="nav-link"       
-          (click)="logOut()"
-          routerLink="/data-table"
-          ><img style="height: 30px;width: 30px;"  src="../../../../assets/img/pricing-chart-icon.png" alt="" /> <span class="sr-only"></span
-            ></a
-        >
+      <li class="nav-item" *ngIf="!showProfile">
+        <a class="nav-link" (click)="setUpModal()"
+        > <h3 style="font-family: Impact;">Set Up</h3> <span class="sr-only"></span
+          ></a
+      >
       </li>
 
-
-
-
-
-
-      <li *ngIf="showProfile" class="nav-item">
-        <a
-          class="nav-link"
-          (click)="logOut()"
-          routerLink=""
-          ><img style="height: 30px;width: 30px;"  src="../../../../assets/img/exit-door.png" alt="" /> <span class="sr-only"></span
-            ></a
-        >
-      </li>
     </ul>
   </div>
 </nav>
-
-<app-sidenav *ngIf="sideNav" (click)="showSideNav()"></app-sidenav>

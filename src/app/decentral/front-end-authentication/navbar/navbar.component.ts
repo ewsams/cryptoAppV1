@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AboutUsModalComponent } from '../about-us-modal/about-us-modal.component';
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
+import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
 import { LogginService } from '../services/loggin.service';
 
@@ -47,4 +48,10 @@ export class NavbarComponent implements OnInit {
       size: 'lg',
     });
   }
+  setUpModal() {
+    const modalRef = this.modalService.open(SetUpComponent, {
+      size: 'lg',
+    });
+  }
+
 }

@@ -18,22 +18,10 @@ import { UserProfileComponent } from './decentral/front-end-authentication/user-
 import { AuthGuard } from './decentral/front-end-authentication/services/auth.guard';
 import { BodyToggleComponent } from './decentral/front-end-authentication/body-toggle/body-toggle.component';
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
-
+import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'land', component: LandAvailableComponent, canActivate: [AuthGuard]  },
-  { path: 'wearables', component: WearablesComponent, canActivate: [AuthGuard]  },
-  { path: 'land-selected/:createdAt', component: LandSelectedComponent, canActivate: [AuthGuard]  },
-  { path: 'data-table', component: PricingTableComponent, canActivate: [AuthGuard] },
-  { path: 'home-logged-in', component: HomeLoggedInComponent, canActivate: [AuthGuard]},
-  {
-    path: 'wearable-selected/:createdAt',
-    component: WearableSelectedComponent,
-  },
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  {path: 'comments', component: CommentsComponent, canActivate: [AuthGuard] },
-  {path: 'profile-details', component: ProfileDetailsComponent, canActivate: [AuthGuard] },
   { path: '**', component: HomeComponent },
 ];
 
@@ -60,4 +48,5 @@ export const routingComponents = [
   UserProfileComponent,
   BodyToggleComponent,
   EmailLoginComponent,
+  SetUpComponent,
 ];

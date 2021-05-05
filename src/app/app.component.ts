@@ -7,6 +7,7 @@ import { FirestoreService } from './decentral/front-end-authentication/services/
 import {Web3Service} from './util/web3.service';
 import { Subscription } from 'rxjs';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
+import AppolloToken from 'build/contracts/AppolloToken.json';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   dark: boolean;
   backgroundColor: Subscription;
   crowdSaleAddress:string;
+  appolloTokenAddress:string;
 
   constructor(private router: Router, private authService: AuthService,
               private logginService: LogginService, private render: Renderer2,
@@ -34,7 +36,8 @@ export class AppComponent implements OnInit {
         this.loggedIn = true;
       }
     });
-    this.crowdSaleAddress = AppolloTokenCrowdsale.networks[5777].address;
+    this.crowdSaleAddress = AppolloTokenCrowdsale.networks[5].address;
+    this.appolloTokenAddress = AppolloToken.networks[5].address;
   }
   ngOnDestroy() {
     this.backgroundColor.unsubscribe();

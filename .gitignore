@@ -44,6 +44,15 @@ yarn-error.log
 testem.log
 /typings
 
+#solidity
+/build
+/contracts
+/migrations
+/test
+
+#deployment
+/dist
+
 # System Files
 .DS_Store
 Thumbs.db

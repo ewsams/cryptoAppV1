@@ -3,6 +3,8 @@ import { Subscription, interval } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MobileModalComponent } from 'src/app/decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 import { AboutUsModalComponent } from 'src/app/decentral/front-end-authentication/about-us-modal/about-us-modal.component';
+import { SetUpComponent } from 'src/app/decentral/front-end-authentication/set-up/set-up.component';
+
 import { Web3Service } from 'src/app/util/web3.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { Web3Service } from 'src/app/util/web3.service';
   <div class="row">
   <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
   <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div>
+  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">Set Up</div>
   <span class="connect-Cta text-white mx-auto mobile-cta btn btn-primary" (click)="connectWallet()">Connect Your Web3 Wallet</span>
   </div>
   <div class="row">
@@ -84,6 +87,11 @@ private allocateTimeUnits(timeDifference) {
 }
 openAbout() {
   this.modal.open(AboutUsModalComponent, {
+    size: 'sm',
+  });
+}
+setUp() {
+  this.modal.open(SetUpComponent, {
     size: 'sm',
   });
 }

@@ -1,0 +1,68 @@
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.step1-header {
+    color:white;
+    font-size:larger;
+    text-align:  left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    bottom: 60%;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.step2-header {
+    color:white;
+    font-size:larger;
+    text-align: left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 16rem;
+    border-radius: 15px;
+}
+
+.step3-header {
+    color:white;
+    font-size:larger;
+    text-align: left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 8rem;
+    border-radius: 15px;
+}
+
+.step4-header {
+    color:white;
+    font-size:larger;
+    text-align: left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    text-align: center;
+    bottom: 4rem;
+    left: 15rem;
+    border-radius: 15px;
+}
+
+.token-address {
+    color:rgb(213,80,216);
+    font-size:smaller;
+    text-align: left;
+    font-weight: 200;
+    background-color:white;
+    position: absolute;
+    text-align: center;
+    bottom: 8rem;
+    left: -6rem;
+}
