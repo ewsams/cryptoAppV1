@@ -55,6 +55,34 @@ img {
     border-radius: 15px;
 }
 
+.step5-header {
+    width: 80%;
+    color:white;
+    font-size:large;
+    text-align: left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    text-align: center;
+    bottom: 4rem;
+    left: 13rem;
+    border-radius: 8px;
+}
+
+.step6-header {
+    width: 60%;
+    color:white;
+    font-size:large;
+    text-align: left;
+    font-weight: 700;
+    background-color:rgb(213,80,216);
+    position: absolute;
+    text-align: center;
+    bottom: 16rem;
+    left: -5rem;
+    border-radius: 8px;
+}
+
 .token-address {
     color:rgb(213,80,216);
     font-size:smaller;
@@ -65,4 +93,16 @@ img {
     text-align: center;
     bottom: 8rem;
     left: -6rem;
+}
+
+.token-sale-address {
+    color:rgb(213,80,216);
+    font-size:smaller;
+    text-align: left;
+    font-weight: 200;
+    background-color:white;
+    position: absolute;
+    text-align: center;
+    bottom: 14.5rem;
+    left: -7rem;
 }
