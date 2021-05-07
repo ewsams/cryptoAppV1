@@ -13,7 +13,7 @@ import { Web3Service } from 'src/app/util/web3.service';
   <div class="row">
   <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
   <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div>
-  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">Set Up</div>
+  <div class="text-white mx-auto mobile-cta" (click)="setUp()">Wallet Set Up</div>
   <span class="connect-Cta text-white mx-auto mobile-cta btn btn-primary" (click)="connectWallet()">Connect Your Web3 Wallet</span>
   </div>
   <div class="row">

@@ -1,62 +1,12 @@
-<ngb-carousel *ngIf="images">
+<ngb-carousel>
     <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step1-header">
-                Step #1 First Add Meta Mask to your
-                Chrome Extensions</h3>
-        </div>
         <div class="picsum-img-wrapper">
-            <img class="step-one-img" src="../../../../assets/img/MetaMaskStep1.png" alt="1st slide">
+            <img class="logo-animate" src="../../../../assets/img/BrandLargePhoto.png" alt="2nd slide">
         </div>
     </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step2-header">Step #2 Create Or Import A Wallet. <br>
-                Please make sure to Save Your Seed Phrase...</h3>
-        </div>
+    <ng-template ngbSlide *ngFor="let image of images">
         <div class="picsum-img-wrapper">
-            <img src="../../../../assets/img/MetaMaskStart.png" alt="2nd slide">
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step3-header">Step #3 Deposit Ethereum. <br> Click Buy to Purchase Ethereum or Purchase from an
-                Exchange...</h3>
-        </div>
-        <div class="picsum-img-wrapper">
-            <img src="../../../../assets/img/MetaMaskDepositEth.png" alt="3rd slide">
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step4-header">Step #4 Click Add Token. <br> Click Custom Token and add the Appollo Token Address</h3>
-        </div>
-        <div class="carousel-caption">
-            <p class="token-address">0xBbd6050809E60e185DE290209a............</p>
-        </div>
-        <div class="picsum-img-wrapper">
-            <img style="height: 20%;width: 36%;"src="../../../../assets/img/AppolloCustomToken.png" alt="4th slide">
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step5-header">Step #5 Click Send and add the Appollo Token Sale Address. 
-            Make sure to set the gas fee to at least 210000. <br>
-        The minimum deposit is .1 ethereum and the max purchase is 2 ethereum for the Sale.</h3>
-        </div>
-        <div class="carousel-caption">
-            <p class="token-sale-address">0xBbd6050809E60e185DE290209a............</p>
-        </div>
-        <div class="picsum-img-wrapper">
-            <img style="height: 20%;width: 36%;"src="../../../../assets/img/SendEthPhoto.png" alt="5th slide">
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel-caption">
-            <h3 class="step6-header">Step #6 Success You have completed your purchase and now own a part of the Appollo Project...</h3>
-        </div>
-        <div class="picsum-img-wrapper">
-            <img src="../../../../assets/img/SuccessAddedTokens.png" alt="5th slide">
+            <img [src]="image" alt="slide">
         </div>
     </ng-template>
 </ngb-carousel>

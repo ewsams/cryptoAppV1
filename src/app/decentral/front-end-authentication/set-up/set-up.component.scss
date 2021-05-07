@@ -1,108 +1,54 @@
-img {
-    height: 100%;
-    width: 100%;
+.logo-animate {
+    -webkit-animation: breathing 6s ease-out infinite normal;
+    animation: breathing 6s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
 }
 
-.step1-header {
-    color:white;
-    font-size:larger;
-    text-align:  left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    bottom: 60%;
-    width: 100%;
-    text-align: center;
-    border-radius: 15px;
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 }
 
-.step2-header {
-    color:white;
-    font-size:larger;
-    text-align: left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    bottom: 16rem;
-    border-radius: 15px;
-}
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-.step3-header {
-    color:white;
-    font-size:larger;
-    text-align: left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    bottom: 8rem;
-    border-radius: 15px;
-}
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
 
-.step4-header {
-    color:white;
-    font-size:larger;
-    text-align: left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    text-align: center;
-    bottom: 4rem;
-    left: 15rem;
-    border-radius: 15px;
-}
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
-.step5-header {
-    width: 80%;
-    color:white;
-    font-size:large;
-    text-align: left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    text-align: center;
-    bottom: 4rem;
-    left: 13rem;
-    border-radius: 8px;
-}
-
-.step6-header {
-    width: 60%;
-    color:white;
-    font-size:large;
-    text-align: left;
-    font-weight: 700;
-    background-color:rgb(213,80,216);
-    position: absolute;
-    text-align: center;
-    bottom: 16rem;
-    left: -5rem;
-    border-radius: 8px;
-}
-
-.token-address {
-    color:rgb(213,80,216);
-    font-size:smaller;
-    text-align: left;
-    font-weight: 200;
-    background-color:white;
-    position: absolute;
-    text-align: center;
-    bottom: 8rem;
-    left: -6rem;
-}
-
-.token-sale-address {
-    color:rgb(213,80,216);
-    font-size:smaller;
-    text-align: left;
-    font-weight: 200;
-    background-color:white;
-    position: absolute;
-    text-align: center;
-    bottom: 14.5rem;
-    left: -7rem;
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 }

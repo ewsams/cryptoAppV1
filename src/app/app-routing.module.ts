@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 import { HomeComponent } from './decentral/front-end-authentication/home/home.component';
 import { LandAvailableComponent } from './decentral/front-end-authentication/land-available/land-available.component';
 import { JoinComponent } from './decentral/front-end-authentication/join/join.component';

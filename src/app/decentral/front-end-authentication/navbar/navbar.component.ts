@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AboutUsModalComponent } from '../about-us-modal/about-us-modal.component';
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
 import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
-import { LogginService } from '../services/loggin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,27 +11,14 @@ import { LogginService } from '../services/loggin.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  sideNav: boolean;
-  showProfile: boolean;
+
+
   constructor(
     private modalService: NgbModal,
-    private logginService: LogginService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
-    this.sideNav = false;
-    this.authService.userLoggedInCheck$.subscribe((element) => {
-      if (element === false) {
-        this.showProfile = false;
-      } else {
-        this.showProfile = true;
-      }
-    });
-  }
-
-  showSideNav() {
-    this.sideNav = !this.sideNav;
   }
 
   logOut() {
@@ -50,8 +36,7 @@ export class NavbarComponent implements OnInit {
   }
   setUpModal() {
     const modalRef = this.modalService.open(SetUpComponent, {
-      size: 'lg',
+      size: 'md'
     });
   }
-
 }

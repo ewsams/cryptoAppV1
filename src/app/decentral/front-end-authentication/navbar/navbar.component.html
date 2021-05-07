@@ -1,27 +1,24 @@
-<nav *ngIf="!sideNav" class="navbar navbar-expand-sm bg-none">
-  <span><app-body-toggle></app-body-toggle></span>
+<nav class="navbar navbar-expand-sm bg-none">
+  <span>
+    <app-body-toggle></app-body-toggle>
+  </span>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto ml-auto mt-2">      
+    <ul class="navbar-nav mr-auto ml-auto mt-2">
       <li class="nav-item" *ngIf="!showProfile">
-        <a class="nav-link" (click)="openJoinModal()"
-        > <h3 style="font-family: Impact;">Join Us</h3> <span class="sr-only"></span
-          ></a
-      >
+        <a class="nav-link" (click)="openJoinModal()">
+          <h3 style="font-family: Impact;">Join Us</h3> <span class="sr-only"></span>
+        </a>
       </li>
       <li class="nav-item" *ngIf="!showProfile">
-        <a class="nav-link" (click)="openAboutModal()"
-        > <h3 style="font-family: Impact;">About Us</h3> <span class="sr-only"></span
-          ></a
-      >
+        <a class="nav-link" (click)="openAboutModal()">
+          <h3 style="font-family: Impact;">About Us</h3> <span class="sr-only"></span>
+        </a>
       </li>
-
       <li class="nav-item" *ngIf="!showProfile">
-        <a class="nav-link" (click)="setUpModal()"
-        > <h3 style="font-family: Impact;">Wallet Set Up</h3> <span class="sr-only"></span
-          ></a
-      >
+        <a class="nav-link" (click)="setUpModal()">
+          <h3 style="font-family: Impact;">Wallet Set Up</h3><span class="sr-only"></span>
+        </a>
       </li>
-
     </ul>
   </div>
 </nav>
