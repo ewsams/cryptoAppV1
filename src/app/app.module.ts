@@ -14,16 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 // Local imports
 import {MetaModule} from './meta/meta.module';
-
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
 import { CryptoPricingModule } from './crypto-pricing/crypto-pricing.module';
-import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 import {
   JoinModalComponent,
   NgbdModalContentComponent,
 } from './decentral/front-end-authentication/join-modal/join-modal.component';
-import { CountDownComponent } from '../app/crypto-pricing/countdown/countdown.component';
 import { MobileModalComponent } from './decentral/front-end-authentication/mobile-modal/mobile-modal.component';
 import { AboutUsModalComponent } from './decentral/front-end-authentication/about-us-modal/about-us-modal.component';
 
@@ -31,7 +28,6 @@ import { AboutUsModalComponent } from './decentral/front-end-authentication/abou
 import { Web3Service } from './util/web3.service';
 import {FirestoreService} from './decentral/front-end-authentication/services/firestore.service';
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
-import { ResponsiveService } from './decentral/front-end-authentication/services/responsive.service';
 import { CommentsService } from './decentral/front-end-authentication/services/comments.service';
 import { UserService } from './decentral/front-end-authentication/services/user.service';
 import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-up.component';
@@ -39,10 +35,8 @@ import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     NgbdModalContentComponent,
     JoinModalComponent,
-    CountDownComponent,
     MobileModalComponent,
     AboutUsModalComponent,
   ],
@@ -69,7 +63,7 @@ import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-
   ],
   entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent, SetUpComponent],
   providers: [UserService, CommentsService,
-    FirestoreService, AuthService, ResponsiveService, Web3Service],
+    FirestoreService, AuthService,Web3Service],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })

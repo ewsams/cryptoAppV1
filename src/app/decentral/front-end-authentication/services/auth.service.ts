@@ -65,6 +65,11 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
+  // Send email verification when new user sign up
+  async SendVerificationMail() {
+   return (await this.afAuth.currentUser).sendEmailVerification();
+  }
+
   async signOut() {
     this.setLoggedInStatus(false);
     await this.afAuth.signOut();

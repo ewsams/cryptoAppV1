@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Component, Inject, OnInit, Renderer2  } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
+import { LogginService } from '../services/loggin.service';
+import { AuthService } from '../services/auth.service';
+import { FirestoreService } from '../services/firestore.service';
+import {Web3Service} from '../../../util/web3.service';
+import { Subscription } from 'rxjs';
+import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
+import AppolloToken from 'build/contracts/AppolloToken.json';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +15,35 @@ import { Apollo } from 'apollo-angular';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private apollo: Apollo) {}
+  loggedIn: boolean;
+  username: string;
+  password: string;
+  dark: boolean;
+  backgroundColor: Subscription;
+  crowdSaleAddress:string;
+  appolloTokenAddress:string;
 
-  ngOnInit() {}
+  constructor(private router: Router, private authService: AuthService,
+              private logginService: LogginService, private render: Renderer2,
+              @Inject(DOCUMENT) private document: Document , private db: FirestoreService,
+              private web3Service: Web3Service) {}
+
+  ngOnInit() {
+    this.backgroundColor = this.authService.userLoggedInCheck$.subscribe((element) => {
+      if (element === false) {
+        this.loggedIn = false;
+      } else {
+        this.loggedIn = true;
+      }
+    });
+    this.crowdSaleAddress = AppolloTokenCrowdsale.networks[5].address;
+    this.appolloTokenAddress = AppolloToken.networks[5].address;
+  }
+  ngOnDestroy() {
+    this.backgroundColor.unsubscribe();
+  }
+
+  connectWallet() {
+    this.web3Service.connectAccount();
+  }
 }

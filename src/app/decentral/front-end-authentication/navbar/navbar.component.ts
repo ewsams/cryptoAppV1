@@ -12,7 +12,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,

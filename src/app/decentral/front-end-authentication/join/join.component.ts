@@ -27,6 +27,7 @@ export class JoinComponent implements OnInit {
     private router: Router,
     private web3Service: Web3Service
   ) {}
+  
   onSubmit() {
     if (this.myForm.status === 'VALID') {
       this.profileRequestFormObject = {
@@ -40,7 +41,6 @@ export class JoinComponent implements OnInit {
       console.log(this.profileRequestFormObject);
       this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
       this.db.add('users', this.profileRequestFormObject);
-      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
       // this.router.navigate(['home-logged-in']);
     }
   }

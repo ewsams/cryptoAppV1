@@ -19,10 +19,12 @@ import { AuthGuard } from './decentral/front-end-authentication/services/auth.gu
 import { BodyToggleComponent } from './decentral/front-end-authentication/body-toggle/body-toggle.component';
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
+import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
+import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '**', component: HomeComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -49,4 +51,6 @@ export const routingComponents = [
   BodyToggleComponent,
   EmailLoginComponent,
   SetUpComponent,
+  NavbarComponent,
+  CountDownComponent
 ];

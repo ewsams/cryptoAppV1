@@ -1,0 +1,65 @@
+.white-placeholder::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: white;
+  }
+  .brand-display {
+    height:20rem;
+    width:20rem;
+  }
+  
+  .center-address {
+  text-align: center;
+  }
+  
+  .count-down-text {
+    margin: 1rem;
+  }
+  
+  .larger-display {
+    font-size: xx-large;
+    font-family: Impact;
+  }
+  
+  .larger-display-wallet {
+    font-size: large;
+  }
+  
+  .cta { 
+    display: block;
+    width: fit-content;
+    margin-top: 1rem;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .brand-display-mobile {
+      height: 16.5rem;
+      width: 16.5rem;
+      position: relative;
+      bottom: 6em;
+    }
+  
+    .brand-display-logo-mobile {
+      position: absolute;
+      align-self: center;
+      margin-top: 10%;
+      height: 10rem;
+      width: 10rem;
+    }
+    .count-down-mobile-text {
+      font-size: smaller;
+      margin: 1rem;
+      break-after: left;
+    }
+    .cta { 
+      display: none;
+    }
+  
+    .larger-display {
+      font-size: medium;
+      font-family: Impact;
+    }
+    .larger-display-wallet {
+      font-size: small;
+    }
+  
+  }
