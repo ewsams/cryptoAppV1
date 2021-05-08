@@ -8,13 +8,15 @@ strong {
   }
 
   .close-icon {
-    position: absolute;
+    position:absolute;
     font-size: 12px;
     font-family: Arial;
-    top: 1rem;
-    right: 2rem;
+    top: 2%;
+    left: 90%;
   }
 
   .whitelisted-notification {
-    position:relative;
+    position:absolute;
+    left: 60%;
+    top: 60%;
   }

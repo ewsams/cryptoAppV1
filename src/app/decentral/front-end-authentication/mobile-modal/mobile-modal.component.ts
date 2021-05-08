@@ -33,6 +33,7 @@ export class MobileModalComponent implements OnInit {
     private modal: NgbModal, private userService: UserService,
     private web3Service: Web3Service
   ) {}
+  
   onSubmit() {
     if (this.myForm.status === 'VALID') {
       this.profileRequestFormObject = {
@@ -46,7 +47,6 @@ export class MobileModalComponent implements OnInit {
       console.log(this.profileRequestFormObject);
       this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
       this.db.add('users', this.profileRequestFormObject);
-      this.router.navigate(['home-logged-in']);
       this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
       this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
         this.whiteListed = isListed;

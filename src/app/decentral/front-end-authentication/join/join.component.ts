@@ -16,8 +16,10 @@ export class JoinComponent implements OnInit {
   profileRequestFormObject: SubmitFormModel;
   users: Observable<SubmitFormModel[]>;
   myForm: FormGroup;
+  whiteListed: boolean;
   whiteListedAccount: string;
   whiteListedAccountSubscription: Subscription;
+  whiteListedSubscription: Subscription;
 
   // tslint:disable-next-line:variable-name
   constructor(
@@ -27,7 +29,7 @@ export class JoinComponent implements OnInit {
     private router: Router,
     private web3Service: Web3Service
   ) {}
-  
+
   onSubmit() {
     if (this.myForm.status === 'VALID') {
       this.profileRequestFormObject = {
@@ -41,7 +43,7 @@ export class JoinComponent implements OnInit {
       console.log(this.profileRequestFormObject);
       this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
       this.db.add('users', this.profileRequestFormObject);
-      // this.router.navigate(['home-logged-in']);
+      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
     }
   }
 
