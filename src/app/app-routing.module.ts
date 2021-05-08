@@ -21,9 +21,11 @@ import { EmailLoginComponent } from './decentral/front-end-authentication/email-
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
+import { LoggedInNavComponent } from './decentral/front-end-authentication/logged-in-nav/logged-in-nav.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'home-logged-in', component: HomeLoggedInComponent },
   { path: '**', component: HomeComponent }
 ];
 
@@ -52,5 +54,6 @@ export const routingComponents = [
   EmailLoginComponent,
   SetUpComponent,
   NavbarComponent,
-  CountDownComponent
+  CountDownComponent,
+  LoggedInNavComponent
 ];
