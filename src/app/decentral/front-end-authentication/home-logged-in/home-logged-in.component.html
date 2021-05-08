@@ -1,29 +1,25 @@
 <app-logged-in-nav></app-logged-in-nav>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-4">
   <img class="logo" src="../../../../assets/img/appollo-logo.png" alt="">
   <img class="logo-text" src="../../../../assets/img/appollo-text-logo.png" alt="">
 </div>
-<div class="container" *ngIf="!loading">
-  <input class="form-control mr-sm-2" type="search" style="outline: none; margin-top: 3rem; width: 15rem; height: rem"
-    placeholder="Search Tokens" [(ngModel)]="searchValue" />
+<div class="d-flex justify-content-center">
+  <strong class="hodlers">Our Hodlers</strong>
+  <h4 class="brand-statement">The World of Crypto Currency is at Your Fingertips...</h4>
 </div>
-<table class="table ml-4" *ngIf="!loading">
+<table>
   <thead>
     <tr>
-      <th scope="col">Symbol</th>
-      <th scope="col">Name</th>
-      <th scope="col">Total Supply</th>
-      <th scope="col">Traded Volume in $USD</th>
-      <th scope="col">Total Liquidity</th>
+      <th>Username</th>
+      <th>Joined Appollo</th>
+      <th>Address</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of pricingTable | tableSearch: searchValue; index as i">
-      <td>{{ data.symbol }}</td>
-      <td>{{ data.name }}</td>
-      <td>{{ data.totalSupply | number }}</td>
-      <td>{{ data.tradeVolumeUSD | currency: "USD" }}</td>
-      <td>{{ data.totalLiquidity | number }}</td>
+    <tr *ngFor="let user of users$">
+      <td>{{ user.userName }}</td>
+      <td>{{ user.createdAt.seconds * 1000 | date }}</td>
+      <td id="address">{{ user.web3Address}}</td>
     </tr>
   </tbody>
 </table>
