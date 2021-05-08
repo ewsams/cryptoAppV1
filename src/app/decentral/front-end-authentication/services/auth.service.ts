@@ -32,11 +32,9 @@ export class AuthService {
       switchMap((user) => {
         // Logged in
         if (user) {
-          this.setLoggedInStatus(true);
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
-          // Logged out
-          this.setLoggedInStatus(false);
+          // Logged out        
           return of(null);
         }
       })
@@ -44,7 +42,6 @@ export class AuthService {
   }
   async googleSignin() {
     const credential = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.setLoggedInStatus(true);
     this.router.navigate(['home-logged-in']);
     this.updateUserData(credential.user);
   }
@@ -66,17 +63,13 @@ export class AuthService {
   }
 
   // Send email verification when new user sign up
-  async SendVerificationMail() {
-   return (await this.afAuth.currentUser).sendEmailVerification();
+  async sendVerificationMail() {
+    return (await this.afAuth.currentUser).sendEmailVerification();
   }
 
   async signOut() {
-    this.setLoggedInStatus(false);
     await this.afAuth.signOut();
     this.router.navigate(['/']);
   }
 
-  setLoggedInStatus(bool: boolean) {
-    this.userLoggedInSubject.next(bool);
-  }
 }

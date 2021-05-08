@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
 import { FirestoreService } from '../services/firestore.service';
 import { Web3Service } from 'src/app/util/web3.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-join',
@@ -27,8 +28,8 @@ export class JoinComponent implements OnInit {
     private db: FirestoreService,
     private afAuth: AngularFireAuth,
     private router: Router,
-    private web3Service: Web3Service
-  ) {}
+    private web3Service: Web3Service,
+  ) { }
 
   onSubmit() {
     if (this.myForm.status === 'VALID') {
@@ -41,9 +42,12 @@ export class JoinComponent implements OnInit {
         isValid: true,
       };
       console.log(this.profileRequestFormObject);
-      this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
+      this.afAuth.createUserWithEmailAndPassword(
+      this.profileRequestFormObject.email, 
+      this.profileRequestFormObject.password);
       this.db.add('users', this.profileRequestFormObject);
       this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
+      this.sendWelcomeEmail(this.profileRequestFormObject.email);
     }
   }
 
@@ -73,7 +77,7 @@ export class JoinComponent implements OnInit {
       ],
       web3Address: ['', [Validators.required, Validators.pattern(
         /^0x[a-fA-F0-9]{40}$/
-      ), ]]
+      ),]]
     });
   }
   // Getters for working with our form
@@ -91,5 +95,21 @@ export class JoinComponent implements OnInit {
   }
   get web3Address() {
     return this.myForm.get('web3Address');
+  }
+
+  sendWelcomeEmail(email: string) {
+    const welcomeEmail = {
+      to: [email],
+      message: {
+        subject: 'Welcome from the Appollo Team.',
+        text: 'The World of Crypto Currency is at your fingertips...',
+        html: `
+        <h1>Thanks for joing we ave alot of great things coming very soon...</h1>
+        <img src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df"
+        style="width: 30px; height: 30px;"">
+        `,
+      }
+    }
+    this.db.add('welcomeEmails', welcomeEmail);
   }
 }

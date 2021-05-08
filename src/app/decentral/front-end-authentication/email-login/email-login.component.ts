@@ -57,14 +57,12 @@ export class EmailLoginComponent implements OnInit {
 
   async onSubmit() {
     this.loading = true;
-
     const email = this.email.value;
     const password = this.password.value;
 
     try {
       if (this.isLogin) {
         await this.afAuth.signInWithEmailAndPassword(email, password);
-        this.authService.setLoggedInStatus(true);
         this.router.navigate(['home-logged-in']);
       }
       if (this.isPasswordReset) {

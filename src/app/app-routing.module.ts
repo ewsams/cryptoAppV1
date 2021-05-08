@@ -25,7 +25,7 @@ import { LoggedInNavComponent } from './decentral/front-end-authentication/logge
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'home-logged-in', component: HomeLoggedInComponent },
+  { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
   { path: '**', component: HomeComponent }
 ];
 
