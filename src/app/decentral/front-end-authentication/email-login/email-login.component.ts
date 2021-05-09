@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'app-email-login',
@@ -22,7 +21,6 @@ export class EmailLoginComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
     private fb: FormBuilder,
-    private db: FirestoreService,
     private router: Router,
     public authService: AuthService,
 

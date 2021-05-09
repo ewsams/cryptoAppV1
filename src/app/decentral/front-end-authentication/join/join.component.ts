@@ -6,7 +6,6 @@ import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
 import { FirestoreService } from '../services/firestore.service';
 import { Web3Service } from 'src/app/util/web3.service';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-join',
@@ -21,13 +20,13 @@ export class JoinComponent implements OnInit {
   whiteListedAccount: string;
   whiteListedAccountSubscription: Subscription;
   whiteListedSubscription: Subscription;
+  invalidEmailAddress = 'Your email address is invalid.';
 
   // tslint:disable-next-line:variable-name
   constructor(
     private fb: FormBuilder,
     private db: FirestoreService,
     private afAuth: AngularFireAuth,
-    private router: Router,
     private web3Service: Web3Service,
   ) { }
 
@@ -42,17 +41,11 @@ export class JoinComponent implements OnInit {
         isValid: true,
       };
       console.log(this.profileRequestFormObject);
-      this.afAuth.createUserWithEmailAndPassword(
-      this.profileRequestFormObject.email, 
-      this.profileRequestFormObject.password);
-      this.db.add('users', this.profileRequestFormObject);
-      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
-      this.sendWelcomeEmail(this.profileRequestFormObject.email);
+      this.addUser(this.profileRequestFormObject);
     }
   }
 
   ngOnInit() {
-
     // form for database
     this.myForm = this.fb.group({
       userName: ['', Validators.required],
@@ -97,16 +90,43 @@ export class JoinComponent implements OnInit {
     return this.myForm.get('web3Address');
   }
 
-  sendWelcomeEmail(email: string) {
+  async addUser(userObject: SubmitFormModel) {
+    await (this.afAuth.createUserWithEmailAndPassword(
+      userObject.email,
+      userObject.password)).catch(error => {
+        if (error.message ===
+          'The email address is already in use by another account.') {
+          this.invalidEmailAddress = "That email is not available please try another...";
+          this.myForm.controls['email'].setErrors({ 'invalid': true });
+          setTimeout(() => this.myForm.controls['email'].setErrors(null), 6000);
+        } else {
+          this.db.add('users', userObject);
+          this.web3Service.handleKycSubmit(userObject.web3Address);
+          this.sendWelcomeEmail(userObject.email, userObject.userName);
+        }
+      });
+  }
+
+  checkValidAddress(web3Address: string) {
+    const checkAddress = this.db.col('users', ref => {
+      ref.where('web3Address', '==', web3Address).limit(1);
+    })
+    if (checkAddress) {
+      console.log(`${web3Address} is not available`);
+    }
+  }
+
+  sendWelcomeEmail(email: string, userName: string) {
     const welcomeEmail = {
       to: [email],
       message: {
-        subject: 'Welcome from the Appollo Team.',
-        text: 'The World of Crypto Currency is at your fingertips...',
+        subject: `Welcome ${userName} from the Appollo Team.`,
+        text: "The world of crypto currency is just at your fingertips...",
         html: `
-        <h1>Thanks for joing we ave alot of great things coming very soon...</h1>
-        <img src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df"
-        style="width: 30px; height: 30px;"">
+        <h1> ${userName} thanks for joining. <br>
+        We have alot of great things coming very soon...</h1>
+        <img 
+        src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
         `,
       }
     }
