@@ -16,7 +16,7 @@ export class JoinComponent implements OnInit {
   users: Observable<SubmitFormModel[]>;
   myForm: FormGroup;
   whiteListed: boolean;
-  whiteListedAccount: string;
+  whiteListedAccount: any;
   whiteListedAccountSubscription: Subscription;
   whiteListedSubscription: Subscription;
   invalidEmailAddress = 'Your email address is invalid.';

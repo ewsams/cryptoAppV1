@@ -18,6 +18,8 @@ export class HomeLoggedInComponent implements OnInit {
   page = 1;
   pageSize = 12;
   totalPageElements: number;
+  accountAddress: any;
+  whiteListedSub: Subscription;
 
   constructor(public db: FirestoreService, 
     private authService: AuthService, 
@@ -29,19 +31,22 @@ export class HomeLoggedInComponent implements OnInit {
       this.totalPageElements = this.users$.length;
       this.loading = false;
     });
+    this.whiteListedSub = this.web3Service.whiteListedAccountAddress$.subscribe(address => {
+      this.accountAddress = address;
+    })
     this.gatherUserTokens();
-  }
+    }
 
  gatherUserTokens = () => {
     const tokens = this.web3Service.userCurrentTokens();
     this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
       this.appolloAmount$ = tokens;
-      console.log(this.appolloAmount$);
     });
   }
 
   ngOnDestroy(){
     this.userSub.unsubscribe();
     this.userTokenBalanceSub.unsubscribe();
+    this.whiteListedSub.unsubscribe()
   }
 }

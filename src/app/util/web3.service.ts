@@ -13,8 +13,8 @@ import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 export class Web3Service {
 
 
-  private whiteListedAccount = new Subject<string>();
-  accountStatus$ = this.whiteListedAccount.asObservable();
+  private whiteListedAccount = new Subject<any>();
+  whiteListedAccountAddress$ = this.whiteListedAccount.asObservable();
   private whiteListedBoolean = new Subject<boolean>();
   isWhiteListed$ = this.whiteListedBoolean.asObservable();
   private userTokens = new Subject<any>();
@@ -54,6 +54,13 @@ export class Web3Service {
     });
   }
 
+
+  async connectAccount() {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
+  }
+
   async handleKycSubmit(kycAddress: string) {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
@@ -77,7 +84,9 @@ export class Web3Service {
       AppolloToken.networks[5].address);
     let userTokens = await 
     this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
-    this.userTokens.next(userTokens);
+    // Tokens in Ethereum
+    let tokensInEth = userTokens/ 1000000000000000000;
+    this.userTokens.next(tokensInEth);
   }
 
 }
