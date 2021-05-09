@@ -1,3 +1,9 @@
+<div class="d-flex justify-content-center">
+  <button type="button" class="btn btn-primary btn-sm ml-4 mt-2 btn-mobile" [autoClose]="'outside'"
+  ngbPopover="You are currently Hodling {{appolloAmount}}">
+ <p><img src="../../../../assets/img/appollo-coin-icon.png"><strong>Your Current Hodlings</strong></p> 
+</button>
+</div>
 <div class="d-flex justify-content-center mb-4">
   <img class="logo" src="../../../../assets/img/appollo-logo.png" alt="">
   <img class="logo-text" src="../../../../assets/img/appollo-text-logo.png" alt="">
@@ -6,7 +12,7 @@
   <strong class="hodlers">Our Hodlers</strong>
   <h4 class="brand-statement">The World of Crypto Currency is at Your Fingertips...</h4>
 </div>
-<table *ngIf="!loading">
+<table>
   <thead>
     <tr>
       <th>Username</th>
@@ -14,7 +20,7 @@
       <th>Address</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="!loading">
     <tr *ngFor="let user of users$ | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
       <td>{{ user.userName }}</td>
       <td>{{ user.createdAt.seconds * 1000 | date }}</td>
@@ -23,12 +29,8 @@
   </tbody>
 </table>
 <nav>
-  <ngb-pagination
-    class="d-flex justify-content-center"
-    [collectionSize]="totalPageElements"
-    [(page)]="page"
-    [boundaryLinks]="true"
-  >
+  <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalPageElements" [(page)]="page"
+    [boundaryLinks]="true">
     <ng-template ngbPaginationPrevious>Previous</ng-template>
     <ng-template ngbPaginationNext>Next</ng-template>
   </ngb-pagination>

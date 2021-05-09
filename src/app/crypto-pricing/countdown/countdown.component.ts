@@ -6,11 +6,12 @@ import { AboutUsModalComponent } from 'src/app/decentral/front-end-authenticatio
 import { SetUpComponent } from 'src/app/decentral/front-end-authentication/set-up/set-up.component';
 
 import { Web3Service } from 'src/app/util/web3.service';
+import { AuthService } from 'src/app/decentral/front-end-authentication/services/auth.service';
 
 @Component({
   selector: 'app-countdown',
   template: `
-  <div class="row">
+  <div *ngIf="!isLoggedIn" class="row">
   <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
   <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div>
   <div class="text-white mx-auto mobile-cta" (click)="setUp()">Wallet Set Up</div>
@@ -30,8 +31,12 @@ import { Web3Service } from 'src/app/util/web3.service';
 export class CountDownComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
+  logginSub: Subscription;
+  isLoggedIn: boolean;
 
-  constructor( private modal: NgbModal, private web3Service: Web3Service) {}
+  constructor( private modal: NgbModal, 
+    private web3Service: Web3Service,
+    private authService: AuthService) {}
 
   public dateNow = new Date();
   public dDay = new Date('May 11 2021 00:00:00');
@@ -72,12 +77,18 @@ private allocateTimeUnits(timeDifference) {
     }
 
   ngOnInit() {
+
+    this.logginSub = this.authService.userLoggedInCheck$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
      this.subscription = interval(1000)
          .subscribe(x => { this.getTimeDifference(); this.formatSingleValues(); });
-  }
+  
+        }
 
  ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.logginSub.unsubscribe();
  }
 
  openJoin() {
