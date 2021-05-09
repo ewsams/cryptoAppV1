@@ -1,5 +1,5 @@
 <nav *ngIf="!isLoggedIn" class="navbar navbar-expand-sm bg-none">
-    <app-body-toggle></app-body-toggle>
+  <app-body-toggle></app-body-toggle>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto ml-auto mt-2">
       <li class="nav-item">
@@ -18,5 +18,63 @@
         </a>
       </li>
     </ul>
+  </div>
+</nav>
+
+<nav *ngIf="isLoggedIn" class="navbar navbar-expand-sm bg-none">
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mt-2">
+      <li class="nav-item">
+        <app-body-toggle></app-body-toggle>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;">Lottery</h3> <span class="sr-only"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;">NFT Market</h3> <span class="sr-only"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;">POLLS</h3><span class="sr-only"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;">Our Goals</h3><span class="sr-only"></span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav  ml-auto mt-2">
+      <li class="nav-item">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;" (click)="logOut()">Log Out</h3><span class="sr-only"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav *ngIf="isLoggedIn" class="mobile-nav d-inline">
+  <div class="link-container">
+    <app-body-toggle></app-body-toggle>
+    <strong>
+      Lottery
+    </strong>
+    <strong>
+      NFT Market
+    </strong>
+    <strong>
+      Polls
+    </strong>
+    <strong>
+      Our Goals
+    </strong>
+    <strong (click)="logOut()">
+      Log Out
+    </strong>
   </div>
 </nav>

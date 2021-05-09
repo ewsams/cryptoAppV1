@@ -20,7 +20,6 @@ import { BodyToggleComponent } from './decentral/front-end-authentication/body-t
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
-import { LoggedInNavComponent } from './decentral/front-end-authentication/logged-in-nav/logged-in-nav.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -53,5 +52,4 @@ export const routingComponents = [
   EmailLoginComponent,
   SetUpComponent,
   CountDownComponent,
-  LoggedInNavComponent
 ];

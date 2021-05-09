@@ -141,15 +141,6 @@ export class MobileModalComponent implements OnInit {
     this.db.add('welcomeEmails', welcomeEmail);
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
   closeModal() {
     this.modal.dismissAll();
   }

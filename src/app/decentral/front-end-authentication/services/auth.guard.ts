@@ -23,6 +23,7 @@ export class AuthGuard implements CanActivate {
   ):  Promise<boolean> {
     const user = await this.afAuth.currentUser;
     const isLoggedIn = !!user;
+    this.authService.userLoggedInSubject.next(isLoggedIn);
     if (!isLoggedIn) {
     this.router.navigate(['home']);
     }

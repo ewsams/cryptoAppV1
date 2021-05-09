@@ -5,6 +5,7 @@ import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
 import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
+  logginSub: Subscription;
 
   constructor(
     private modalService: NgbModal,
@@ -21,9 +23,10 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginCheck()
+    this.logginSub = this.authService.userLoggedInCheck$.subscribe(status => {
+      this.isLoggedIn = status;
+    })
   }
-  
 
   logOut() {
     this.authService.signOut();
@@ -43,9 +46,7 @@ export class NavbarComponent implements OnInit {
       size: 'md'
     });
   }
-
-  loginCheck = async () => {
-    const user = await this.afAuth.currentUser;
-    this.isLoggedIn = !!user;
+  ngOnDestroy() {
+    this.logginSub.unsubscribe();
   }
 }

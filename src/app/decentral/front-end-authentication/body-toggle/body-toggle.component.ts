@@ -1,6 +1,5 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { UserService } from '../services/user.service';
 
 @Component({
