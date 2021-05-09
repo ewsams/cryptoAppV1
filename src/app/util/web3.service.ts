@@ -5,7 +5,6 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import { Subject } from 'rxjs';
 import AppolloToken from 'build/contracts/AppolloToken.json';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
-import KycContract from 'build/contracts/KycContract.json';
 
 
 @Injectable({
@@ -80,10 +79,7 @@ export class Web3Service {
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
         AppolloTokenCrowdsale.networks[5].address); 
-
-    this.kycInstance =
-    new this.web3js.eth.Contract(KycContract.abi,
-      KycContract.networks[5].address);
+        
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
   }

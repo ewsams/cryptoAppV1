@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';

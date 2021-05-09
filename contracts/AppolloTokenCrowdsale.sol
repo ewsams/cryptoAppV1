@@ -6,7 +6,6 @@ import "./CappedCrowdsale.sol";
 import "./TimedCrowdsale.sol";
 import "./WhitelistedCrowdsale.sol";
 import "./Crowdsale.sol";
-import "./KycContract.sol";
 
 contract AppolloTokenCrowdsale is Crowdsale, CappedCrowdsale, TimedCrowdsale {
 
