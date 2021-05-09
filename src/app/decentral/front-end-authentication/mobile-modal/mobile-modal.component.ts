@@ -23,6 +23,7 @@ export class MobileModalComponent implements OnInit {
   whiteListedAccount: string;
   whiteListedAccountSubscription: Subscription;
   whiteListedSubscription: Subscription;
+  invalidEmailAddress = 'Your email address is invalid.';
 
   // tslint:disable-next-line:variable-name
   constructor(
@@ -45,15 +46,7 @@ export class MobileModalComponent implements OnInit {
         isValid: true,
       };
       console.log(this.profileRequestFormObject);
-      this.afAuth.createUserWithEmailAndPassword(this.email.value, this.password.value);
-      this.db.add('users', this.profileRequestFormObject);
-      this.web3Service.handleKycSubmit(this.profileRequestFormObject.web3Address);
-      this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
-        this.whiteListed = isListed;
-      });
-      this.whiteListedAccountSubscription = this.web3Service.accountStatus$.subscribe(account => {
-        this.whiteListedAccount = account;
-      });
+      this.addUser(this.profileRequestFormObject);
     }
   }
 
@@ -106,6 +99,58 @@ export class MobileModalComponent implements OnInit {
     return this.myForm.get('web3Address');
   }
 
+  async addUser(userObject: SubmitFormModel) {
+    await (this.afAuth.createUserWithEmailAndPassword(
+      userObject.email,
+      userObject.password)).catch(error => {
+        if (error.message ===
+          'The email address is already in use by another account.') {
+          this.invalidEmailAddress = "That email is not available please try another...";
+          this.myForm.controls['email'].setErrors({ 'invalid': true });
+          setTimeout(() => this.myForm.controls['email'].setErrors(null), 6000);
+        } else {
+          this.db.add('users', userObject);
+          this.web3Service.handleKycSubmit(userObject.web3Address);
+          this.sendWelcomeEmail(userObject.email, userObject.userName);
+        }
+      });
+  }
+
+  checkValidAddress(web3Address: string) {
+    const checkAddress = this.db.col('users', ref => {
+      ref.where('web3Address', '==', web3Address).limit(1);
+    })
+    if (checkAddress) {
+      console.log(`${web3Address} is not available`);
+    }
+  }
+
+  sendWelcomeEmail(email: string, userName: string) {
+    const welcomeEmail = {
+      to: [email],
+      message: {
+        subject: `Welcome ${userName} from the Appollo Team.`,
+        text: "The world of crypto currency is just at your fingertips...",
+        html: `
+        <h1> ${userName} thanks for joining. <br>
+        We have alot of great things coming very soon...</h1>
+        <img 
+        src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
+        `,
+      }
+    }
+    this.db.add('welcomeEmails', welcomeEmail);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   closeModal() {
     this.modal.dismissAll();
   }
