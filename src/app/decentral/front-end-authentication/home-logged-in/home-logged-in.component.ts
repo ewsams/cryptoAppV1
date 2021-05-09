@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Web3Service } from 'src/app/util/web3.service';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 
@@ -11,12 +12,16 @@ import { FirestoreService } from '../services/firestore.service';
 export class HomeLoggedInComponent implements OnInit {
   users$: any[];
   userSub: Subscription;
+  userTokenBalanceSub:Subscription;
+  appolloAmount$:any;
   loading = true;
   page = 1;
   pageSize = 12;
   totalPageElements: number;
 
-  constructor(public db: FirestoreService, private authService: AuthService) {}
+  constructor(public db: FirestoreService, 
+    private authService: AuthService, 
+    private web3Service: Web3Service) {}
 
   ngOnInit() {
   this.userSub = this.db.col$('users').subscribe(users => {
@@ -24,9 +29,19 @@ export class HomeLoggedInComponent implements OnInit {
       this.totalPageElements = this.users$.length;
       this.loading = false;
     });
+    this.gatherUserTokens();
+  }
+
+ gatherUserTokens = () => {
+    const tokens = this.web3Service.userCurrentTokens();
+    this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
+      this.appolloAmount$ = tokens;
+      console.log(this.appolloAmount$);
+    });
   }
 
   ngOnDestroy(){
     this.userSub.unsubscribe();
+    this.userTokenBalanceSub.unsubscribe();
   }
 }

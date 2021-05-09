@@ -17,7 +17,7 @@ export class Web3Service {
   accountStatus$ = this.whiteListedAccount.asObservable();
   private whiteListedBoolean = new Subject<boolean>();
   isWhiteListed$ = this.whiteListedBoolean.asObservable();
-  private userTokens = new Subject<string>();
+  private userTokens = new Subject<any>();
   userAvailiableTokens$ = this.userTokens.asObservable();
 
   // Contract related variables
@@ -54,23 +54,6 @@ export class Web3Service {
     });
   }
 
-  async connectAccount() {
-    this.provider = await this.web3Modal.connect(); // set provider
-    this.web3js = new Web3(this.provider); // create web3 instance
-    this.accounts = await this.web3js.eth.getAccounts();
-  }
-
-  private gatherContracts = () => {
-
-    this.appolloTokenInstance =
-      new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[5].address);
-
-    this.appolloTokenCrowdsaleInstance =
-      new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks[5].address);
-  }
-
   async handleKycSubmit(kycAddress: string) {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
@@ -79,12 +62,19 @@ export class Web3Service {
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
         AppolloTokenCrowdsale.networks[5].address); 
-        
+
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
   }
 
   userCurrentTokens = async () => {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
+    
+    this.appolloTokenInstance =
+    new this.web3js.eth.Contract(AppolloToken.abi,
+      AppolloToken.networks[5].address);
     let userTokens = await 
     this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
     this.userTokens.next(userTokens);
