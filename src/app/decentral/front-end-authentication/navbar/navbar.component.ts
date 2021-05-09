@@ -4,6 +4,7 @@ import { AboutUsModalComponent } from '../about-us-modal/about-us-modal.componen
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
 import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +12,18 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  isLoggedIn: boolean;
 
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
+    private afAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
+    this.loginCheck()
   }
+  
 
   logOut() {
     this.authService.signOut();
@@ -30,12 +35,21 @@ export class NavbarComponent implements OnInit {
   }
   openAboutModal() {
     const modalRef = this.modalService.open(AboutUsModalComponent, {
-      size: 'lg',
+      size: 'md',
     });
   }
   setUpModal() {
     const modalRef = this.modalService.open(SetUpComponent, {
       size: 'md'
     });
+  }
+
+  loginCheck = async () => {
+    const user = await this.afAuth.currentUser;
+    this.isLoggedIn = !!user;
+    if (!this.isLoggedIn) {
+
+    }
+    return this.isLoggedIn;
   }
 }

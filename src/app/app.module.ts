@@ -31,6 +31,7 @@ import { AuthService } from './decentral/front-end-authentication/services/auth.
 import { CommentsService } from './decentral/front-end-authentication/services/comments.service';
 import { UserService } from './decentral/front-end-authentication/services/user.service';
 import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-up.component';
+import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-
     JoinModalComponent,
     MobileModalComponent,
     AboutUsModalComponent,
+    NavbarComponent,
   ],
   imports: [
     HttpClientModule,

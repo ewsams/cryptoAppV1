@@ -12,7 +12,10 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth,) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private afAuth: AngularFireAuth,) { }
 
   async canActivate(
     next: ActivatedRouteSnapshot,
@@ -21,7 +24,7 @@ export class AuthGuard implements CanActivate {
     const user = await this.afAuth.currentUser;
     const isLoggedIn = !!user;
     if (!isLoggedIn) {
-      alert('Please Log In Prior to entering');
+    this.router.navigate(['home']);
     }
     return isLoggedIn;
   }

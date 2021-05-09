@@ -19,7 +19,6 @@ import { AuthGuard } from './decentral/front-end-authentication/services/auth.gu
 import { BodyToggleComponent } from './decentral/front-end-authentication/body-toggle/body-toggle.component';
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
-import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
 import { LoggedInNavComponent } from './decentral/front-end-authentication/logged-in-nav/logged-in-nav.component';
 
@@ -53,7 +52,6 @@ export const routingComponents = [
   BodyToggleComponent,
   EmailLoginComponent,
   SetUpComponent,
-  NavbarComponent,
   CountDownComponent,
   LoggedInNavComponent
 ];

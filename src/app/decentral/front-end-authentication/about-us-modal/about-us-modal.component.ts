@@ -20,7 +20,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   <span class="modal-header modal-header-style">
     <h3 class="modal-title" style="color:white;">
       <strong class="large-message small-message">
-        We aim to provide our Hodlers the best Liquidty and Lowest fees of any token</strong
+       We want the smallest fees <br> of any Token</strong
       >
     </h3>
   </span>
