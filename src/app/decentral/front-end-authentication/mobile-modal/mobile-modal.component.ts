@@ -100,20 +100,19 @@ export class MobileModalComponent implements OnInit {
   }
 
   async addUser(userObject: SubmitFormModel) {
-    await (this.afAuth.createUserWithEmailAndPassword(
-      userObject.email,
-      userObject.password)).catch(error => {
-        if (error.message ===
-          'The email address is already in use by another account.') {
-          this.invalidEmailAddress = "That email is not available please try another...";
-          this.myForm.controls['email'].setErrors({ 'invalid': true });
-          setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
-        } else {
-          this.db.add('users', userObject);
-          this.web3Service.handleKycSubmit(userObject.web3Address);
-          this.sendWelcomeEmail(userObject.email, userObject.userName);
-        }
-      });
+    try {
+      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email,userObject.password);
+      const addUser = await this.db.add('users', userObject);
+      const getWeb3 = await this.web3Service.handleKycSubmit(userObject.web3Address);
+      const sendEmail = await this.sendWelcomeEmail(userObject.email, userObject.userName);
+    } catch (error) {
+      if (error.message ===
+        'The email address is already in use by another account.') {
+        this.invalidEmailAddress = "That email is not available please try another...";
+        this.myForm.controls['email'].setErrors({ 'invalid': true });
+        setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
+      }
+    }
   }
 
   checkValidAddress(web3Address: string) {
