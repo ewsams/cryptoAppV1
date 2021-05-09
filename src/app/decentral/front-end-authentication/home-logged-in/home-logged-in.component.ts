@@ -12,12 +12,16 @@ export class HomeLoggedInComponent implements OnInit {
   users$: any[];
   userSub: Subscription;
   loading = true;
+  page = 1;
+  pageSize = 12;
+  totalPageElements: number;
 
   constructor(public db: FirestoreService, private authService: AuthService) {}
 
   ngOnInit() {
   this.userSub = this.db.col$('users').subscribe(users => {
       this.users$ = users;
+      this.totalPageElements = this.users$.length;
       this.loading = false;
     });
   }

@@ -98,7 +98,7 @@ export class JoinComponent implements OnInit {
           'The email address is already in use by another account.') {
           this.invalidEmailAddress = "That email is not available please try another...";
           this.myForm.controls['email'].setErrors({ 'invalid': true });
-          setTimeout(() => this.myForm.controls['email'].setErrors(null), 6000);
+          setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
         } else {
           this.db.add('users', userObject);
           this.web3Service.handleKycSubmit(userObject.web3Address);

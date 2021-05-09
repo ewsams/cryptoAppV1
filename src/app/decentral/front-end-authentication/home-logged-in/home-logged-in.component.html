@@ -16,10 +16,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users$">
+    <tr *ngFor="let user of users$ | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
       <td>{{ user.userName }}</td>
       <td>{{ user.createdAt.seconds * 1000 | date }}</td>
       <td id="address">{{ user.web3Address}}</td>
     </tr>
   </tbody>
 </table>
+<nav>
+  <ngb-pagination
+    class="d-flex justify-content-center"
+    [collectionSize]="totalPageElements"
+    [(page)]="page"
+    [boundaryLinks]="true"
+  >
+    <ng-template ngbPaginationPrevious>Previous</ng-template>
+    <ng-template ngbPaginationNext>Next</ng-template>
+  </ngb-pagination>
+</nav>
