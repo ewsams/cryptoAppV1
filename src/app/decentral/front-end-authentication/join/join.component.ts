@@ -91,20 +91,19 @@ export class JoinComponent implements OnInit {
   }
 
   async addUser(userObject: SubmitFormModel) {
-    await (this.afAuth.createUserWithEmailAndPassword(
-      userObject.email,
-      userObject.password)).catch(error => {
-        if (error.message ===
-          'The email address is already in use by another account.') {
-          this.invalidEmailAddress = "That email is not available please try another...";
-          this.myForm.controls['email'].setErrors({ 'invalid': true });
-          setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
-        } else {
-          this.db.add('users', userObject);
-          this.web3Service.handleKycSubmit(userObject.web3Address);
-          this.sendWelcomeEmail(userObject.email, userObject.userName);
-        }
-      });
+    try {
+      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email,userObject.password);
+      const addUser = await this.db.add('users', userObject);
+      const getWeb3 = await this.web3Service.handleKycSubmit(userObject.web3Address);
+      const sendEmail = await this.sendWelcomeEmail(userObject.email, userObject.userName);
+    } catch (error) {
+      if (error.message ===
+        'The email address is already in use by another account.') {
+        this.invalidEmailAddress = "That email is not available please try another...";
+        this.myForm.controls['email'].setErrors({ 'invalid': true });
+        setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
+      }
+    }
   }
 
   checkValidAddress(web3Address: string) {
@@ -123,11 +122,15 @@ export class JoinComponent implements OnInit {
         subject: `Welcome ${userName} from the Appollo Team.`,
         text: "The world of crypto currency is just at your fingertips...",
         html: `
+        <div style="magin-left:auto;margin-right:auto">
         <h1> ${userName} thanks for joining. <br>
         We have alot of great things coming very soon...</h1>
-        <img 
+        <img
         src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
-        `,
+        </div>
+        
+        
+        `
       }
     }
     this.db.add('welcomeEmails', welcomeEmail);

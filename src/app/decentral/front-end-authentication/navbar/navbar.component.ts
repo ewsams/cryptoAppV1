@@ -47,9 +47,5 @@ export class NavbarComponent implements OnInit {
   loginCheck = async () => {
     const user = await this.afAuth.currentUser;
     this.isLoggedIn = !!user;
-    if (!this.isLoggedIn) {
-
-    }
-    return this.isLoggedIn;
   }
 }
