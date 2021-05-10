@@ -1,24 +1,27 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-body-toggle',
   template: `
-<div class="container">
-    <div class="row">
+
+    <div class="align-self-left">
+    <div class="mt-4 ml-4">
     <img
-        class="justify-content-left"
         style="height:2rem;width:2rem;cursor:pointer;"
         (click)="toggleBodyBackground()"
         src={{icon}}/>
   </div>
-</div>
+
   `,
   styleUrls: ['./body-toggle.component.scss'],
 })
 export class BodyToggleComponent implements OnInit {
-  dark: any;
+  dark: boolean;
+  loggedInSub: Subscription;
+  isLoggedIn: boolean;
   constructor(private render: Renderer2,
               @Inject(DOCUMENT) private document: Document,
               private userService: UserService) {}
@@ -41,5 +44,8 @@ export class BodyToggleComponent implements OnInit {
       this.userService.getBackgroundColor(false);
       this.icon = '../../../../assets/img/pngjoy.com_sun-icon-white-sun-blue-background-transparent-png_2479146.png';
     }
+  }
+  ngOnDestroy() {
+    this.loggedInSub.unsubscribe();
   }
 }

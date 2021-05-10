@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AboutUsModalComponent } from '../about-us-modal/about-us-modal.component';
 import { NgbdModalContentComponent } from '../join-modal/join-modal.component';
 import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { WorkingComponent } from '../working/working.component';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -20,12 +20,19 @@ export class NavbarComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
-    private afAuth: AngularFireAuth
+    private render: Renderer2,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   ngOnInit() {
     this.logginSub = this.authService.userLoggedInCheck$.subscribe(status => {
       this.isLoggedIn = status;
+      if (this.isLoggedIn) {
+        this.render.setStyle(this.document.body,
+          'background', "url('https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/Animate.png?alt=media&token=f828dd90-e6f8-4731-88d0-75304d97fdd5')");
+      } else {
+        this.render.removeStyle(this.document.body, 'background');
+      }
     });
   }
 
@@ -50,7 +57,7 @@ export class NavbarComponent implements OnInit {
 
   workingModal() {
     const modalRef = this.modalService.open(WorkingComponent, {
-      size: 'lg'
+      size: 'md',
     });
   }
   ngOnDestroy() {
