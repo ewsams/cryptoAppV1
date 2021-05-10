@@ -23,7 +23,6 @@ export class Web3Service {
   // Contract related variables
   appolloTokenInstance;
   appolloTokenCrowdsaleInstance;
-  kycInstance;
   web3Modal;
 
   provider; // set provider
@@ -65,10 +64,10 @@ export class Web3Service {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
-    
+
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks[5].address); 
+        AppolloTokenCrowdsale.networks[5].address);
 
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
@@ -78,14 +77,14 @@ export class Web3Service {
     this.provider = await this.web3Modal.connect(); // set provider
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
-    
+
     this.appolloTokenInstance =
-    new this.web3js.eth.Contract(AppolloToken.abi,
-      AppolloToken.networks[5].address);
-    let userTokens = await 
-    this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[5].address);
+    let userTokens = await
+      this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
     // Tokens in Ethereum
-    let tokensInEth = userTokens/ 1000000000000000000;
+    let tokensInEth = userTokens / 1000000000000000000;
     this.userTokens.next(tokensInEth);
   }
 

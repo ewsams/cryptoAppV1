@@ -29,22 +29,22 @@
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <h3 style="font-family: Impact;">Lottery</h3> <span class="sr-only"></span>
+          <h3 style="font-family: Impact;" (click)="workingModal()">Lottery</h3> <span class="sr-only"></span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <h3 style="font-family: Impact;">NFT Market</h3> <span class="sr-only"></span>
+          <h3 style="font-family: Impact;" (click)="workingModal()">NFT Market</h3> <span class="sr-only"></span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <h3 style="font-family: Impact;">POLLS</h3><span class="sr-only"></span>
+          <h3 style="font-family: Impact;" (click)="workingModal()">Options</h3><span class="sr-only"></span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <h3 style="font-family: Impact;">Our Goals</h3><span class="sr-only"></span>
+          <h3 style="font-family: Impact;" (click)="workingModal()">Our Goals</h3><span class="sr-only"></span>
         </a>
       </li>
     </ul>
@@ -61,16 +61,16 @@
 <nav *ngIf="isLoggedIn" class="mobile-nav d-inline">
   <div class="link-container">
     <app-body-toggle></app-body-toggle>
-    <strong>
+    <strong (click)="workingModal()">
       Lottery
     </strong>
-    <strong>
+    <strong (click)="workingModal()">
       NFT Market
     </strong>
-    <strong>
-      Polls
+    <strong (click)="workingModal()">
+      Options
     </strong>
-    <strong>
+    <strong (click)="workingModal()">
       Our Goals
     </strong>
     <strong (click)="logOut()">

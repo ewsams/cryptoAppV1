@@ -6,6 +6,7 @@ import { SetUpComponent } from '../set-up/set-up.component';
 import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import { WorkingComponent } from '../working/working.component';
 
 @Component({
   selector: 'app-navbar',
@@ -44,6 +45,12 @@ export class NavbarComponent implements OnInit {
   setUpModal() {
     const modalRef = this.modalService.open(SetUpComponent, {
       size: 'md'
+    });
+  }
+
+  workingModal() {
+    const modalRef = this.modalService.open(WorkingComponent, {
+      size: 'lg'
     });
   }
   ngOnDestroy() {

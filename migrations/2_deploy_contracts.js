@@ -15,13 +15,13 @@ const duration = {
 
 module.exports = async function (deployer) {
   let startTime = Math.floor(Date.now() / 1000) + duration.seconds(300);
-  let endTime = startTime + duration.days(5);
+  let endTime = startTime + duration.days(7);
   let addr = await web3.eth.getAccounts();
-  const cap = web3.utils.toWei("50000", "ether") // 500000 eth
+  const cap = web3.utils.toWei("5000000", "ether") // 500000 eth
 
   await deployer.deploy(AppolloToken, process.env.INITIAL_TOKENS);
   await deployer.deploy(KycContract);
-  await deployer.deploy(AppolloTokenSale, 1000, addr[0], AppolloToken.address, cap,
+  await deployer.deploy(AppolloTokenSale, 10000, addr[0], AppolloToken.address, cap,
     startTime, endTime);
   let appolloInstance = await AppolloToken.deployed();
   await appolloInstance.transfer(AppolloTokenSale.address, process.env.INITIAL_TOKENS);

@@ -8657,8 +8657,8 @@
         }
       },
       "links": {},
-      "address": "0xBbd6050809E60e185DE290209aBBC86199ECb5B5",
-      "transactionHash": "0x49762a2fcf904d27494cc3ab369838d398e17be553c67bb866713c58a69463cc"
+      "address": "0x4ba490fA395bb04D39458b0b157EF242Be12E446",
+      "transactionHash": "0x42cc6bf81b7ac19811a364995e481ad65f30d27b21a90811126f6a7760089e24"
     },
     "5777": {
       "events": {
@@ -8719,7 +8719,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-04T22:58:13.609Z",
+  "updatedAt": "2021-05-09T23:46:03.169Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Remeber the naming conventions like in Java the \"contract\" ie class... and file name must be the same.********************************Very Appollo ERC20 Token example, where all tokens are pre-assigned to the creator. Note they can later distribute these tokens as they wish using `transfer` and other `ERC20` functions.",

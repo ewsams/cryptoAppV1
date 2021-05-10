@@ -66,7 +66,7 @@ export class NgbdModalContentComponent implements OnInit {
     this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
       this.whiteListed = isListed;
     })
-    this.whiteListedAccountSubscription = this.web3Service.accountStatus$.subscribe(account => {
+    this.whiteListedAccountSubscription = this.web3Service.whiteListedAccountAddress$.subscribe(account => {
       this.whiteListedAccount = account;
     });
    this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {

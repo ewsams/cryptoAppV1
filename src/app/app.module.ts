@@ -32,6 +32,7 @@ import { CommentsService } from './decentral/front-end-authentication/services/c
 import { UserService } from './decentral/front-end-authentication/services/user.service';
 import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-up.component';
 import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
+import { WorkingComponent } from './decentral/front-end-authentication/working/working.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NavbarComponent } from './decentral/front-end-authentication/navbar/nav
     MobileModalComponent,
     AboutUsModalComponent,
     NavbarComponent,
+    WorkingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -63,7 +65,7 @@ import { NavbarComponent } from './decentral/front-end-authentication/navbar/nav
     HttpClientModule,
     MetaModule
   ],
-  entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent, SetUpComponent],
+  entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent, SetUpComponent,WorkingComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService,Web3Service],
   bootstrap: [AppComponent],
