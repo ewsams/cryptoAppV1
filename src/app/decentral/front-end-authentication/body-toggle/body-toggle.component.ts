@@ -37,7 +37,7 @@ export class BodyToggleComponent implements OnInit {
      this.render.addClass(this.document.body, 'light');
      this.userService.getBackgroundColor(true);
      this.icon = '../../../../assets/img/pnghut_moon-icon-white.png';
-    } else if(!this.dark) {
+    } else {
       this.render.removeClass(this.document.body, 'light');
       this.render.addClass(this.document.body, 'brand-color-animation');
       this.userService.getBackgroundColor(false);

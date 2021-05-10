@@ -28,10 +28,12 @@ export class NavbarComponent implements OnInit {
     this.logginSub = this.authService.userLoggedInCheck$.subscribe(status => {
       this.isLoggedIn = status;
       if (this.isLoggedIn) {
-        this.render.setStyle(this.document.body,
-          'background', "url('https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/Animate.png?alt=media&token=f828dd90-e6f8-4731-88d0-75304d97fdd5')");
-      } else {
-        this.render.removeStyle(this.document.body, 'background');
+        this.render.addClass(this.document.body,
+          'background-logged-in');
+      }   
+      else {
+        this.render.removeClass(this.document.body, 
+          'background-logged-in');
       }
     });
   }
