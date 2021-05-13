@@ -25,7 +25,7 @@ import { LoterryComponent } from './decentral/front-end-authentication/loterry/l
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
-  { path: 'lottery', component: LoterryComponent},
+  { path: 'lottery', component: LoterryComponent,canActivate:[AuthGuard]},
   { path: '**', component: HomeComponent }
 ];
 

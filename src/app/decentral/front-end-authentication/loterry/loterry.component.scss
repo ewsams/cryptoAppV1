@@ -29,9 +29,21 @@
   
 }
 
+.bounce3{
+    animation: bounce3 400ms ease infinite;
+}
+
 .bounce2 {
-    animation: bounce2 2s ease infinite;
+    animation: bounce2 200ms ease infinite;
   }
+
+  .bounce4{
+    animation: bounce4 200ms ease infinite;
+  }
+
+  .bounce5{
+    animation: bounce5 400ms ease infinite;
+}
 
 .fade-out {
     animation: fade-out 2s linear infinite;
@@ -61,7 +73,7 @@
   }
 
   .bounce {
-    animation: bounce 2s ease infinite;
+    animation: bounce 500ms ease infinite;
   }
 
   .flash {
@@ -69,12 +81,12 @@
   }
 
   .wobble {
-    animation: wobble 2s ease infinite;
+    animation: wobble 500ms ease infinite;
   }
 
   .swing {
     transform-origin: top center;
-    animation: swing 2s ease infinite;
+    animation: swing 300ms ease infinite;
 }
 
 
@@ -146,6 +158,36 @@
       40% {transform: translateY(-20px);}
       60% {transform: translateY(-15px);}
   }
+
+  @keyframes bounce3 {
+    30% { transform:translateY(0%); }
+    50% { transform:translateY(-35%); }
+    80% { transform:translateY(0%); }
+    90% { transform:translateY(-10%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-6%); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes bounce4 {
+    30% { transform:translateY(0%); }
+    40% { transform:translateY(-25%); }
+    80% { transform:translateY(0%); }
+    92% { transform:translateY(-40%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-15%); }
+    100% { transform:translateY(0); }
+}
+
+@keyframes bounce5 {
+    20% { transform:translateY(0%); }
+    30% { transform:translateY(-15%); }
+    50% { transform:translateY(0%); }
+    70% { transform:translateY(-7%); }
+    80% { transform:translateY(0%); }
+    90% { transform:translateY(-3%); }
+    100% { transform:translateY(0); }
+}
   
   .shake {
     animation: shake 2s ease infinite;
@@ -184,9 +226,9 @@
   }
   
   @keyframes swing {
-      20% { transform: rotate(15deg); }	
+      10% { transform: rotate(5deg); }	
       40% { transform: rotate(-10deg); }
-      60% { transform: rotate(5deg); }	
+      50% { transform: rotate(5deg); }	
       80% { transform: rotate(-5deg); }	
       100% { transform: rotate(0deg); }
   }

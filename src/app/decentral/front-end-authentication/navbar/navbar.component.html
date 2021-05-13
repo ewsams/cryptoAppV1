@@ -45,6 +45,11 @@
       </li>
     </ul>
     <ul class="navbar-nav  ml-auto">
+      <li class="nav-item" (click)="homeNavigate()">
+        <a class="nav-link">
+          <h3 style="font-family: Impact;">Home</h3><span class="sr-only"></span>
+        </a>
+      </li>
       <li class="nav-item" (click)="logOut()">
         <a class="nav-link">
           <h3 style="font-family: Impact;">Log Out</h3><span class="sr-only"></span>
@@ -67,6 +72,9 @@
     </strong>
     <strong (click)="workingModal()">
       Our Goals
+    </strong>
+    <strong (click)="homeNavigate()">
+      Home
     </strong>
     <strong (click)="logOut()">
       Log Out

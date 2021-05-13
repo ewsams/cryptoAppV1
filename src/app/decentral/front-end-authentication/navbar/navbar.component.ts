@@ -69,6 +69,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['lottery']);
   }
 
+  
+  homeNavigate(){
+    this.router.navigate(['home-logged-in']);
+  }
+
   ngOnDestroy() {
     this.logginSub.unsubscribe();
   }
