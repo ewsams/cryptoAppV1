@@ -1,7 +1,6 @@
 const AppolloToken = artifacts.require("./AppolloToken.sol");
 const AppolloTokenSale = artifacts.require("./AppolloTokenCrowdsale.sol");
 const KycContract = artifacts.require("./KycContract.sol");
-const TestingTime = artifacts.require('TestingTime')
 require('dotenv').config({ path: '../.env' });
 
 const duration = {

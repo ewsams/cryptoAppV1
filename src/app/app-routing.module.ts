@@ -20,10 +20,12 @@ import { BodyToggleComponent } from './decentral/front-end-authentication/body-t
 import { EmailLoginComponent } from './decentral/front-end-authentication/email-login/email-login.component';
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
+import { LoterryComponent } from './decentral/front-end-authentication/loterry/loterry.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
+  { path: 'lottery', component: LoterryComponent},
   { path: '**', component: HomeComponent }
 ];
 
@@ -52,4 +54,5 @@ export const routingComponents = [
   EmailLoginComponent,
   SetUpComponent,
   CountDownComponent,
+  LoterryComponent,
 ];

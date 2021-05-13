@@ -23,7 +23,7 @@
 <nav *ngIf="isLoggedIn" class="navbar navbar-expand-sm bg-none">
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
-      <li class="nav-item" (click)="workingModal()">
+      <li class="nav-item" (click)="lotteryNavigate()">
         <a class="nav-link">
           <h3 style="font-family: Impact;">Lottery</h3> <span class="sr-only"></span>
         </a>
@@ -56,7 +56,7 @@
 
 <nav *ngIf="isLoggedIn" class="mobile-nav d-inline">
   <div class="link-container">
-    <strong (click)="workingModal()">
+    <strong (click)="lotteryNavigate()">
       Lottery
     </strong>
     <strong (click)="workingModal()">

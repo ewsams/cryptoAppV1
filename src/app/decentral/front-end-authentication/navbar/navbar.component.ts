@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { WorkingComponent } from '../working/working.component';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,7 @@ export class NavbarComponent implements OnInit {
     private modalService: NgbModal,
     private authService: AuthService,
     private render: Renderer2,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) { }
 
@@ -62,6 +64,11 @@ export class NavbarComponent implements OnInit {
       size: 'md',
     });
   }
+
+  lotteryNavigate(){
+    this.router.navigate(['lottery']);
+  }
+
   ngOnDestroy() {
     this.logginSub.unsubscribe();
   }

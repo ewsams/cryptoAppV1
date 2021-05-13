@@ -7,8 +7,8 @@ import { UserService } from '../services/user.service';
   selector: 'app-body-toggle',
   template: `
 
-    <div class="align-self-left">
-    <div class="mt-4 ml-4">
+    <div class="align-self">
+    <div class="mt-3 ml-3">
     <img
         style="height:2rem;width:2rem;cursor:pointer;"
         (click)="toggleBodyBackground()"
@@ -37,7 +37,7 @@ export class BodyToggleComponent implements OnInit {
      this.render.addClass(this.document.body, 'light');
      this.userService.getBackgroundColor(true);
      this.icon = '../../../../assets/img/pnghut_moon-icon-white.png';
-    } else {
+    } else  {
       this.render.removeClass(this.document.body, 'light');
       this.render.addClass(this.document.body, 'brand-color-animation');
       this.userService.getBackgroundColor(false);
