@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { WorkingComponent } from '../working/working.component';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
+import { OptionsNotifyComponent } from '../options-notify/options-notify.component';
 
 @Component({
   selector: 'app-navbar',
@@ -62,6 +63,12 @@ export class NavbarComponent implements OnInit {
   workingModal() {
     const modalRef = this.modalService.open(WorkingComponent, {
       size: 'md',
+    });
+  }
+
+  optionsNotify(){
+    const modalRef = this.modalService.open(OptionsNotifyComponent,{
+      size:'md',
     });
   }
 

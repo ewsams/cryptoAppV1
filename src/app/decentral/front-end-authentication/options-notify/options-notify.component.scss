@@ -26,7 +26,7 @@ display: none;
     // first we make all instances of this transparent. 
     opacity: 0; 
     // as we're using the same animation for each instance, call it here so we're not repeating it
-    animation: fadeIn 1s ease-in-out 300ms forwards;
+    animation: fadeIn 1s ease-in-out 150ms forwards;
   
     // then define the animation delay in each class
     &#Candle1 {
@@ -94,3 +94,22 @@ display: none;
       }
 
    }
+
+   @media only screen and (max-width: 600px) {
+    .small-message {
+     display: none;   
+      }
+      .close-icon {
+          color:white;
+            position:relative;
+            left: 95%;
+            top:.25rem;
+      }
+  }
+
+  @media only screen and (min-width: 600px) {
+      .close-icon {
+         display: none;
+
+      }
+  }

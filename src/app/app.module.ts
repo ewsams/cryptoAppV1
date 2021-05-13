@@ -33,6 +33,7 @@ import { UserService } from './decentral/front-end-authentication/services/user.
 import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-up.component';
 import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 import { WorkingComponent } from './decentral/front-end-authentication/working/working.component';
+import { OptionsNotifyComponent } from './decentral/front-end-authentication/options-notify/options-notify.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { WorkingComponent } from './decentral/front-end-authentication/working/w
     AboutUsModalComponent,
     NavbarComponent,
     WorkingComponent,
+    OptionsNotifyComponent
   ],
   imports: [
     HttpClientModule,
@@ -65,7 +67,9 @@ import { WorkingComponent } from './decentral/front-end-authentication/working/w
     HttpClientModule,
     MetaModule
   ],
-  entryComponents: [NgbdModalContentComponent, MobileModalComponent, AboutUsModalComponent, SetUpComponent,WorkingComponent],
+  entryComponents: [NgbdModalContentComponent, 
+    MobileModalComponent, AboutUsModalComponent,
+     SetUpComponent,WorkingComponent, OptionsNotifyComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService,Web3Service],
   bootstrap: [AppComponent],
