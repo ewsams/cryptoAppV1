@@ -44,7 +44,7 @@ import { OptionsNotifyComponent } from './decentral/front-end-authentication/opt
     AboutUsModalComponent,
     NavbarComponent,
     WorkingComponent,
-    OptionsNotifyComponent
+    OptionsNotifyComponent,
   ],
   imports: [
     HttpClientModule,

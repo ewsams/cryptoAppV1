@@ -50,9 +50,6 @@ testem.log
 /migrations
 /test
 
-#deployment
-/dist
-
 # System Files
 .DS_Store
 Thumbs.db

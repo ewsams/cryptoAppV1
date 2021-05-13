@@ -21,11 +21,13 @@ import { EmailLoginComponent } from './decentral/front-end-authentication/email-
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
 import { LoterryComponent } from './decentral/front-end-authentication/loterry/loterry.component';
+import { NftNotificationComponent } from './decentral/front-end-authentication/nft-notification/nft-notification.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
   { path: 'lottery', component: LoterryComponent,canActivate:[AuthGuard]},
+  { path: 'nft', component: NftNotificationComponent },
   { path: '**', component: HomeComponent }
 ];
 
@@ -55,4 +57,5 @@ export const routingComponents = [
   SetUpComponent,
   CountDownComponent,
   LoterryComponent,
+  NftNotificationComponent
 ];

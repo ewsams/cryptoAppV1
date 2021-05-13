@@ -1,0 +1,76 @@
+.musicians-size{
+height: 300px;
+width: 300px;
+}
+
+.rotate1{
+    animation: rotate 700ms linear infinite;
+}
+.rotate2{
+animation: rotate2 3s linear infinite;
+}
+
+.rotate3{
+    animation: rotate3 3s linear infinite;
+    }
+
+
+@keyframes rotate {
+    25% {
+      transform: translateZ(0) rotate(-1deg);
+    }
+    45% {
+      transform: translateZ(0) rotate(+1deg);
+    }
+  }
+ 
+  @keyframes rotate2 {
+    25% {
+      transform: translateZ(0) rotate(3deg);
+    }
+    40% {
+      transform: translateZ(0) rotate(-.2deg);
+    }
+  }
+
+  @keyframes rotate3 {
+    5% {
+      transform: translateZ(0) rotate(-.5deg);
+    }
+    10% {
+        transform: translateZ(0) rotate(-.35deg);
+      }
+    20% {
+      transform: translateZ(0) rotate(-.2deg);
+    }
+  }
+
+  @keyframes updown {
+    25% {
+      transform: translate(2vmin,0vmin);
+      margin-top: 3vmin;
+    }
+    50% {
+      transform: translate(0vmin,0vmin);
+      margin-top: 0vmin;
+    }
+    75% {
+      transform: translate(-2vmin,0vmin);
+      margin-top: 3vmin;
+    }
+  }
+  
+  @keyframes updown2 {
+    25% {
+      margin-top: 3vmin;
+    }
+    50% {
+      margin-top: 0vmin;
+    }
+    75% {
+      margin-top: 3vmin;
+    }
+  }
+  
+  
+  
