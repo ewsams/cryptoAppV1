@@ -1,0 +1,96 @@
+.options-svg{
+    width:"400px";
+     height:"400px" 
+}
+
+.displayNone{
+display: none;
+}
+
+/* defines the animation */
+@keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  div svg path {
+    // first we make all instances of this transparent. 
+    opacity: 0; 
+    // as we're using the same animation for each instance, call it here so we're not repeating it
+    animation: fadeIn 1s ease-in-out 300ms forwards;
+  
+    // then define the animation delay in each class
+    &#Candle1 {
+      animation-delay: 1s;
+    }
+    &#Candle2 {
+      animation-delay: 2s;
+    }
+    &#Candle3 {
+      animation-delay: 3s;
+    }
+    &#Candle4 {
+      animation-delay: 4s;
+    }
+    &#Candle5 {
+      animation-delay: 5s;
+    }
+    &#Candle6 {
+      animation-delay: 6s;
+    }
+    &#Candle7 {
+        animation-delay: 7s;
+      }
+      &#Candle8 {
+        animation-delay: 8s;
+      }
+      &#Candle9 {
+        animation-delay: 9s;
+      }
+      &#Candle10 {
+        animation-delay: 10s;
+      }
+      &#Candle11 {
+        animation-delay: 11s;
+      }
+      &#Candle12 {
+        animation-delay: 12s;
+      }
+      &#Candle13 {
+        animation-delay: 13s;
+      }
+      &#Candle14{
+        animation-delay: 14s;
+      }
+      &#Candle15 {
+        animation-delay: 15s;
+      }
+      &#Candle16 {
+        animation-delay: 16s;
+      }
+      &#Candle17 {
+        animation-delay: 17s;
+      }
+      &#Candle18 {
+        animation-delay: 18s;
+      }
+      &#Candle19 {
+        animation-delay: 19s;
+      }
+      &#Candle20{
+        animation-delay: 20s;
+      }
+      &#Candle21 {
+        animation-delay: 21s;
+      }
+
+   }
