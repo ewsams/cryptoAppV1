@@ -39,7 +39,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
     private authService: AuthService) {}
 
   public dateNow = new Date();
-  public dDay = new Date('May 15 2021 00:00:00');
+  public dDay = new Date('May 20 2021 00:00:00');
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;

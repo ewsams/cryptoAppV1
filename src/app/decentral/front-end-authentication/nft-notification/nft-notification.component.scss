@@ -1,15 +1,14 @@
 .musicians-size{
-height: 200px;
-width: 200px;
+  width: 100%; 
+  height: auto;
 }
 
 .rotate1{
-    animation: rotate 700ms linear infinite;
+    animation: rotate 700ms infinite;
 }
 .rotate2{
 animation: rotate2 3s linear infinite;
 }
-
 .rotate3{
     animation: rotate3 3s linear infinite;
     }
@@ -17,61 +16,34 @@ animation: rotate2 3s linear infinite;
 
 @keyframes rotate {
     25% {
-      transform: translateZ(0) rotate(-1deg);
+      transform:rotate(-1deg);
     }
     45% {
-      transform: translateZ(0) rotate(+1deg);
+      transform:rotate(+1deg);
     }
   }
  
   @keyframes rotate2 {
     25% {
-      transform: translateZ(0) rotate(3deg);
+      transform:rotate(3deg);
     }
     40% {
-      transform: translateZ(0) rotate(-.2deg);
+      transform: rotate(-.2deg);
     }
   }
 
   @keyframes rotate3 {
     5% {
-      transform: translateZ(0) rotate(-.5deg);
+      transform: rotate(-.5deg);
     }
     10% {
-        transform: translateZ(0) rotate(-.35deg);
+        transform:rotate(-.35deg);
       }
     20% {
-      transform: translateZ(0) rotate(-.2deg);
+      transform:rotate(-.2deg);
     }
   }
 
-  @keyframes updown {
-    25% {
-      transform: translate(2vmin,0vmin);
-      margin-top: 3vmin;
-    }
-    50% {
-      transform: translate(0vmin,0vmin);
-      margin-top: 0vmin;
-    }
-    75% {
-      transform: translate(-2vmin,0vmin);
-      margin-top: 3vmin;
-    }
-  }
-  
-  @keyframes updown2 {
-    25% {
-      margin-top: 3vmin;
-    }
-    50% {
-      margin-top: 0vmin;
-    }
-    75% {
-      margin-top: 3vmin;
-    }
-  }
-  
   @media only screen and (max-width: 600px) {
       .close-icon {
           color:white;
