@@ -21,13 +21,11 @@ import { EmailLoginComponent } from './decentral/front-end-authentication/email-
 import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up.component';
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
 import { LoterryComponent } from './decentral/front-end-authentication/loterry/loterry.component';
-import { OptionsNotifyComponent } from './decentral/front-end-authentication/options-notify/options-notify.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
   { path: 'lottery', component: LoterryComponent},
-  {path:'options', component:OptionsNotifyComponent},
   { path: '**', component: HomeComponent }
 ];
 

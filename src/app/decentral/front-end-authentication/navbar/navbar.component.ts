@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit {
 
   optionsNotify(){
     const modalRef = this.modalService.open(OptionsNotifyComponent,{
-      size:'md',
+      size:'md ',
     });
   }
 
