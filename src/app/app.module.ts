@@ -34,6 +34,7 @@ import { SetUpComponent } from './decentral/front-end-authentication/set-up/set-
 import { NavbarComponent } from './decentral/front-end-authentication/navbar/navbar.component';
 import { WorkingComponent } from './decentral/front-end-authentication/working/working.component';
 import { OptionsNotifyComponent } from './decentral/front-end-authentication/options-notify/options-notify.component';
+import { NftNotificationComponent } from './decentral/front-end-authentication/nft-notification/nft-notification.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { OptionsNotifyComponent } from './decentral/front-end-authentication/opt
     NavbarComponent,
     WorkingComponent,
     OptionsNotifyComponent,
+    NftNotificationComponent
   ],
   imports: [
     HttpClientModule,
@@ -69,7 +71,7 @@ import { OptionsNotifyComponent } from './decentral/front-end-authentication/opt
   ],
   entryComponents: [NgbdModalContentComponent, 
     MobileModalComponent, AboutUsModalComponent,
-     SetUpComponent,WorkingComponent, OptionsNotifyComponent],
+     SetUpComponent,WorkingComponent, OptionsNotifyComponent,NftNotificationComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService,Web3Service],
   bootstrap: [AppComponent],

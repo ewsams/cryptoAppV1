@@ -9,6 +9,7 @@ import { WorkingComponent } from '../working/working.component';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { OptionsNotifyComponent } from '../options-notify/options-notify.component';
+import { NftNotificationComponent } from '../nft-notification/nft-notification.component';
 
 @Component({
   selector: 'app-navbar',
@@ -68,6 +69,12 @@ export class NavbarComponent implements OnInit {
 
   optionsNotify(){
     const modalRef = this.modalService.open(OptionsNotifyComponent,{
+      size:'md',
+    });
+  }
+
+  nftNotification(){
+    const modalRef = this.modalService.open(NftNotificationComponent,{
       size:'md',
     });
   }

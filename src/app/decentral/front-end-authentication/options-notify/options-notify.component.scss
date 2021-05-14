@@ -26,7 +26,7 @@ display: none;
     // first we make all instances of this transparent. 
     opacity: 0; 
     // as we're using the same animation for each instance, call it here so we're not repeating it
-    animation: fadeIn 1s ease-in-out 150ms forwards;
+    animation: fadeIn 1s ease-in-out 75ms forwards;
   
     // then define the animation delay in each class
     &#Candle1 {
