@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Web3Service } from 'src/app/util/web3.service';
 
 
 @Component({
@@ -9,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class LoterryComponent implements OnInit {
  isPlaying = false;
 
-  constructor() {
+  constructor(private web3Service: Web3Service) {
   }
   ngOnInit() {
+  }
+
+  lottery = () => {
+
   }
 
   playLottery(){

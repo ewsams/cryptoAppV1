@@ -12,7 +12,6 @@ import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 })
 export class Web3Service {
 
-
   private whiteListedAccount = new Subject<any>();
   whiteListedAccountAddress$ = this.whiteListedAccount.asObservable();
   private whiteListedBoolean = new Subject<boolean>();

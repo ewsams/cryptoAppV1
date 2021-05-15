@@ -6,14 +6,15 @@
     left:14rem
 }
 
-.large-message {
-    border-bottom:solid white 1px
+.goal-align{
+text-align: left;
+font-family:Times
 }
 
+
+
 @media only screen and (max-width: 600px) {
-    .small-message {
-     display: none;   
-      }
+    
       .close-icon {
           color:white;
             position:relative;
@@ -28,3 +29,53 @@
 
       }
   }
+
+  @media only screen and (max-width: 600px) {
+    .close-icon {
+        color:white;
+          position:relative;
+          left: 95%;
+          top:.25rem;
+    }
+  }
+
+
+/* defines the animation */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+h3 {
+  // first we make all instances of this transparent. 
+  opacity: 0;
+ 
+  // as we're using the same animation for each instance, call it here so we're not repeating it
+  animation: fadeInUp 3s ease-in-out 3s forwards;
+
+  // then define the animation delay in each class
+  &#goal1 {
+    animation-delay: 500ms;
+  }
+  &#goal2{
+    animation-delay: 3.5s;
+  }
+  &#goal3 {
+    animation-delay: 6.5s;
+  }
+  &#goal4 {
+    animation-delay: 9.5s;
+  }
+  &#goal5 {
+    animation-delay: 12.5s;
+  }
+  &#goal6 {
+    animation-delay: 15.5s;
+  }
+}
+

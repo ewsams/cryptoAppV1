@@ -17,24 +17,15 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
     src="../assets/img/appollo-text-logo.png"
     style="width: 8rem; height: 8rem;"
   />
-  <span class="modal-header modal-header-style">
-    <h3 class="modal-title" style="color:white;">
-      <strong class="large-message small-message">
-       We want the smallest fees <br> of any Token</strong
-      >
-    </h3>
-  </span>
   <div class="modal-body">
-  <h3 style="text-align:center;font-family:Impact;">
-  Our goals through Quarter 3 2021 are as follows...</h3>
-  <h3 style="text-align:left; font-family:Times">I) Complete our ICO.</h3>
-  <h3 style="text-align:left; font-family:Times">II) Begin bi-weekly lottos.</h3>
-  <h3 style="text-align:left; font-family:Times">III) Initialize our NFT market.</h3>
-  <h3 style="text-align:left; font-family:Times">IV) Use the master wallet to reduce gas fees.</h3>
-  <h3 style="text-align:left; font-family:Times">V) Build a bridge in order to utilize other block chains.</h3>
-  <h3 style="text-align:left; font-family:Times">VI) Continue to build our presence and brand.</h3>
-    <h4 style="text-align:center">"The world of crypto currency is at your
-          fingertips"...</h4>
+  <h2 style="text-align:center;font-family:Impact;">
+  Our goals through 2021 are as follows...</h2>
+  <h3 class="goal-align" id="goal1">I) Complete our ICO.</h3>
+  <h3 class="goal-align" id="goal2">II) Begin Appollo Token lottos.</h3>
+  <h3 class="goal-align" id="goal3">III) Initialize our NFT market.</h3>
+  <h3 class="goal-align" id="goal4">IV) Create liquidity pools to reduce gas fees.</h3>
+  <h3 class="goal-align" id="goal5">V) Build a bridge in order to utilize other block chains.</h3>
+  <h3 class="goal-align" id="goal6">VI) Continue to build our presence and brand.</h3>
     </div>
 </div>
   `,
