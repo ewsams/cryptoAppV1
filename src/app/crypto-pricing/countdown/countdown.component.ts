@@ -103,7 +103,7 @@ openAbout() {
 }
 setUp() {
   this.modal.open(SetUpComponent, {
-    size: 'sm',
+    size: 'md',
   });
 }
 formatSingleValues() {
