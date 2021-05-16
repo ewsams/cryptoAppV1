@@ -15,8 +15,8 @@ export class SetUpComponent implements OnInit {
 
   gatherImages = () => {
     this.images = [
-      'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/Step1.gif?alt=media&token=f9dc1886-4745-4ead-86b5-d9637a08cc5b',
-      'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/Step2.gif?alt=media&token=a8b29f5c-b2b3-4dfd-bc9d-3f58d706b85d',
+      'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/metaMask.gif?alt=media&token=3dbcf322-1373-488e-9460-eada2af9607d',
+      'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/createWallet.gif?alt=media&token=a1d27ffc-2221-4d53-9674-d637a80c2453',
       'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/Step3.gif?alt=media&token=dae25d00-3143-451a-ada5-a43f4a7bd499',
       'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/addAddress.gif?alt=media&token=7d167c91-1eec-4ff8-8613-614318714cbf',
       'https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/sendEther.gif?alt=media&token=04e3fd80-8dab-454d-b99d-9fd428627dad',
