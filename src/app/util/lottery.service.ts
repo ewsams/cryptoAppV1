@@ -12,12 +12,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LotteryService {
-  numbersUrl = 'http://www.randomnumberapi.com/api/v1.0/randomredditnumber?min=1&max=100&count=5';
+  numbersUrl = 'https://www.random.org/integers/?num=10&min=0&max=100&col=1&base=10&format=plain&rnd=new';
 
   constructor(private http: HttpClient) {}
 
-  getNumbers(): Observable<any[]> {
-    return this.http.get<any[]>(this.numbersUrl);
+  getNumbers() {
+  return this.http.get(this.numbersUrl, {responseType: 'text'});
   }
 }
 

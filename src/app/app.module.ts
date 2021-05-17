@@ -35,6 +35,7 @@ import { NavbarComponent } from './decentral/front-end-authentication/navbar/nav
 import { WorkingComponent } from './decentral/front-end-authentication/working/working.component';
 import { OptionsNotifyComponent } from './decentral/front-end-authentication/options-notify/options-notify.component';
 import { NftNotificationComponent } from './decentral/front-end-authentication/nft-notification/nft-notification.component';
+import { LotteryService } from './util/lottery.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { NftNotificationComponent } from './decentral/front-end-authentication/n
     MobileModalComponent, AboutUsModalComponent,
      SetUpComponent,WorkingComponent, OptionsNotifyComponent,NftNotificationComponent],
   providers: [UserService, CommentsService,
-    FirestoreService, AuthService,Web3Service],
+    FirestoreService,AuthService,Web3Service,LotteryService],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })
