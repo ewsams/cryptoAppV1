@@ -5,7 +5,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import { Subject } from 'rxjs';
 import AppolloToken from 'build/contracts/AppolloToken.json';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
-
+import Lottery from 'build/contracts/Lottery.json';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,7 @@ export class Web3Service {
   // Contract related variables
   appolloTokenInstance;
   appolloTokenCrowdsaleInstance;
+  lotteryInstance;
   web3Modal;
 
   provider; // set provider
@@ -85,6 +86,26 @@ export class Web3Service {
     // Tokens in Ethereum
     let tokensInEth = userTokens / 1000000000000000000;
     this.userTokens.next(tokensInEth);
+  }
+
+  // palyer deposit amount in Ethereum
+  lottery = async (playerDeposit:number) => {
+      this.provider = await this.web3Modal.connect(); // set provider
+      this.web3js = new Web3(this.provider); // create web3 instance
+      this.accounts = await this.web3js.eth.getAccounts();
+
+      // Lottery Contract Instance
+      this.lotteryInstance = new this.web3js.eth.Contract(
+        Lottery.abi, Lottery.networks[5].address);
+      
+        //Appollo Token Instance
+      this.appolloTokenInstance =
+        new this.web3js.eth.Contract(AppolloToken.abi,
+          AppolloToken.networks[5].address);  
+        
+            // Transfer of Appollo Tokens to the Lottery Address
+          this.appolloTokenInstance.methods.transfer(
+          Lottery.networks[5].address,playerDeposit.toString()).send({from:this.accounts[0]});
   }
 
 }
