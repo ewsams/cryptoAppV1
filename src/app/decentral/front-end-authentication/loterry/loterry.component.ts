@@ -10,7 +10,7 @@ import { Web3Service } from 'src/app/util/web3.service';
   styleUrls: ['./loterry.component.scss']
 })
 export class LoterryComponent implements OnInit {
-  isPlaying = true;
+  isPlaying = false;
   lotterySub: Subscription;
   nums: number[];
 
@@ -32,7 +32,7 @@ export class LoterryComponent implements OnInit {
         numbers.replace(/\n/g, ',').split(',').map(
           Number).slice(0, -1);
     });
-    setTimeout(() => this.isPlaying = false, 5000);
+    setTimeout(() => this.isPlaying = false, 6500);
   }
 
   ngOnDestroy() {

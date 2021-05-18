@@ -1,10 +1,13 @@
 <div class="d-flex justify-content-center">
     <div *ngIf="isPlaying">
         <section class="stage">
-            <figure style="margin-left:6px;margin-top: 8px" *ngFor="let num of nums;" class="ball">
+            <figure style="margin-left:6px;margin-top:8px" *ngFor="let num of nums;" class="ball">
                 <span class="number">{{num}}</span>
             </figure>
         </section>
+        <div 
+        style="margin-left: 10%;
+        color: white;font-size:26px;">Congratualtions<br> You Won !!!</div>
     </div>
     <svg class="lotto-svg" viewBox="0 0 170 138" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="Vector"
