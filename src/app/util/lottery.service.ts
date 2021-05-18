@@ -16,7 +16,7 @@ export class LotteryService {
 
   constructor(private http: HttpClient) {}
 
-  getNumbers() {
+  getNumbers():Observable<any> {
   return this.http.get(this.numbersUrl, {responseType: 'text'});
   }
 }

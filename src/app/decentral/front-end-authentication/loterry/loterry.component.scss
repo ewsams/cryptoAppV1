@@ -476,7 +476,6 @@
   display: inline-flex;
   width: 30%;
   height: 30%;
-  margin: 0;
   border-radius: 50%;
   position: relative;
   background: radial-gradient(circle at 50% 40%, #fcfcfc, #efeff1 66%, #CE51E0 100%);
@@ -503,8 +502,6 @@
 .stage {
   width: 200px;
   height: 200px;
-  display: inline-block;
-  margin: 20px;
   -webkit-perspective: 200px;
   -moz-perspective: 200px;
   -ms-perspective: 200px;
@@ -522,16 +519,15 @@
   width: 100%;
   text-align: center;
   line-height: 50px;
-  font-size: 10px;
+  font-size: 12px;
   color: #CE51E0;
-  font-family: 'Roboto', sans-serif;
+  font-family: Impact;
   animation: ballRoll 2s ease-out;
 }
 
 .number:after {
   position: absolute;
   transform: translateX(-35%);
-  opacity: 0;
   animation: numberReveal 0.1s 4.5s reverse forwards;
 }
 
