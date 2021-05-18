@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { LotteryService } from 'src/app/util/lottery.service';
 import { Web3Service } from 'src/app/util/web3.service';
+import { LotteryInputComponent } from '../lottery-input/lottery-input.component';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class LoterryComponent implements OnInit {
   nums: number[];
 
   constructor(private web3Service: Web3Service,
-    private lottorryService: LotteryService) {
+    private lottorryService: LotteryService,
+    private modal:NgbModal) {
   }
   ngOnInit() {
   }
@@ -37,6 +40,12 @@ export class LoterryComponent implements OnInit {
 
   ngOnDestroy() {
     this.lotterySub.unsubscribe();
+  }
+
+  openLotteryNumbersInput() {
+    this.modal.open(LotteryInputComponent, {
+      size: 'md',
+    });
   }
 
 }

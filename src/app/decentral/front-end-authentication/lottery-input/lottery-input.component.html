@@ -1,0 +1,103 @@
+<div class="container" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}"
+    style="position: absolute;top: 12px;">
+    <div class="row justify-content-center" style="border:solid white 3px;"
+        [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
+        <img src="../assets/img/appollo-logo.png" style="height: 106px;width: 106px;float: right;">
+        <img src="../assets/img/appollo-text-logo.png" style="height: 160px;width: 160px; float: left;">
+        <p class="close-icon " (click)="closeModal()">X</p>
+        <div class="row" style="position: relative; bottom: 30px;">
+            <div class="card col-md-12 col-sm-12 border-large"
+                style="background-color: transparent;">
+                <div class="card-body">
+                    <form [formGroup]="myForm">
+                        <h6 class="heading-small text-muted">Lottery Input</h6>
+                        <div class="form-group focused">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-control-label" for="input-input1">1st Number</label>
+                                    <small *ngIf="inputOne.invalid && inputOne.touched" id="input1HelpBlock"
+                                        class="form-text text-warning font-weight-bold">
+                                        Your input is invalid.
+                                    </small>
+                                    <input formControlName="input1" type="text" id="input1"
+                                        class="form-control form-control-alternative white-placeholder"
+                                        placeholder="Number 1" />
+
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-control-label" for="input-input2">2nd Number</label>
+                                    <small *ngIf="inputTwo.invalid && inputTwo.touched" id="input2HelpBlock"
+                                        class="form-text text-warning font-weight-bold">
+                                        Your input is invalid.
+                                    </small>
+                                    <input formControlName="input2" type="text" id="input2"
+                                        class="form-control form-control-alternative white-placeholder"
+                                        placeholder="Number 2" />
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-control-label" for="input-input3">3rd Number</label>
+                                    <small *ngIf="inputThree.invalid && inputThree.touched" id="input3HelpBlock"
+                                        class="form-text text-warning font-weight-bold">
+                                        Your input is invalid.
+                                    </small>
+                                    <input formControlName="input3" type="text" id="input3"
+                                        class="form-control form-control-alternative white-placeholder"
+                                        placeholder="Number 3" />
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label class="form-control-label" for="input-input4">4th Number</label>
+                                    <small *ngIf="inputFour.invalid && inputFour.touched" id="input4HelpBlock"
+                                        class="form-text text-warning font-weight-bold">
+                                        Your input is invalid.
+                                    </small>
+                                    <input formControlName="input4" type="text" id="input4"
+                                        class="form-control form-control-alternative white-placeholder"
+                                        placeholder="Number 4" />
+
+                                </div>
+                            </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-input5">5th Number</label>
+                            <small *ngIf="inputFive.invalid && inputFive.touched" id="input5HelpBlock"
+                                class="form-text text-warning font-weight-bold">
+                                Your input is invalid.
+                            </small>
+                            <input formControlName="input5" type="text" id="input5"
+                                class="form-control form-control-alternative white-placeholder"
+                                placeholder="Number 5" />
+
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-input5">6th Number</label>
+                            <small *ngIf="inputSix.invalid && inputSix.touched" id="input6HelpBlock"
+                                class="form-text text-warning font-weight-bold">
+                                Your input is invalid.
+                            </small>
+                            <input formControlName="input6" type="text" id="input6"
+                                class="form-control form-control-alternative white-placeholder"
+                                placeholder="Number 6" />
+                            </div>
+                        </div>
+                        
+                            <div class="row">
+                                <div class="col text-center mb-4">
+                                    <button class="btn btn-info btn-lg" (click)="onSubmit()"
+                                        [disabled]="this.myForm.status !== 'VALID'">
+                                        Submit Numbers
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>

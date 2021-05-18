@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 // Local imports
-import {MetaModule} from './meta/meta.module';
+import { MetaModule } from './meta/meta.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
 import { CryptoPricingModule } from './crypto-pricing/crypto-pricing.module';
@@ -26,7 +26,7 @@ import { AboutUsModalComponent } from './decentral/front-end-authentication/abou
 
 // Services
 import { Web3Service } from './util/web3.service';
-import {FirestoreService} from './decentral/front-end-authentication/services/firestore.service';
+import { FirestoreService } from './decentral/front-end-authentication/services/firestore.service';
 import { AuthService } from './decentral/front-end-authentication/services/auth.service';
 import { CommentsService } from './decentral/front-end-authentication/services/comments.service';
 import { UserService } from './decentral/front-end-authentication/services/user.service';
@@ -36,6 +36,7 @@ import { WorkingComponent } from './decentral/front-end-authentication/working/w
 import { OptionsNotifyComponent } from './decentral/front-end-authentication/options-notify/options-notify.component';
 import { NftNotificationComponent } from './decentral/front-end-authentication/nft-notification/nft-notification.component';
 import { LotteryService } from './util/lottery.service';
+import { LotteryInputComponent } from './decentral/front-end-authentication/lottery-input/lottery-input.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LotteryService } from './util/lottery.service';
     NavbarComponent,
     WorkingComponent,
     OptionsNotifyComponent,
-    NftNotificationComponent
+    NftNotificationComponent,
+    LotteryInputComponent
   ],
   imports: [
     HttpClientModule,
@@ -70,11 +72,11 @@ import { LotteryService } from './util/lottery.service';
     HttpClientModule,
     MetaModule
   ],
-  entryComponents: [NgbdModalContentComponent, 
+  entryComponents: [NgbdModalContentComponent,
     MobileModalComponent, AboutUsModalComponent,
-     SetUpComponent,WorkingComponent, OptionsNotifyComponent,NftNotificationComponent],
+    SetUpComponent, WorkingComponent, OptionsNotifyComponent, NftNotificationComponent, LotteryInputComponent],
   providers: [UserService, CommentsService,
-    FirestoreService,AuthService,Web3Service,LotteryService],
+    FirestoreService, AuthService, Web3Service, LotteryService],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule, NgbModule],
 })
