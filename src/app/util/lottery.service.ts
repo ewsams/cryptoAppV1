@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LotteryService {
-  numbersUrl = 'https://www.random.org/integers/?num=10&min=0&max=100&col=1&base=10&format=plain&rnd=new';
+  numbersUrl = 'https://www.random.org/integers/?num=6&min=0&max=100&col=1&base=10&format=plain&rnd=new';
 
   constructor(private http: HttpClient) {}
 

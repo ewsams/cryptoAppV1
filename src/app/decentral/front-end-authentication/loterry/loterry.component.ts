@@ -10,9 +10,9 @@ import { Web3Service } from 'src/app/util/web3.service';
   styleUrls: ['./loterry.component.scss']
 })
 export class LoterryComponent implements OnInit {
-  isPlaying = false;
-  playerDeposit: number;
+  isPlaying = true;
   lotterySub: Subscription;
+  nums: number[];
 
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService) {
@@ -20,17 +20,19 @@ export class LoterryComponent implements OnInit {
   ngOnInit() {
   }
 
+  async purchaseSpins(){
+    await this.web3Service.lottery(200000000000000000000);
+  }
+
   // The User will enter their wager in Ethereum
   async playLottery() {
-    await this.web3Service.lottery(200000000000000000000);
     this.isPlaying = true;
     this.lotterySub = this.lottorryService.getNumbers().subscribe(numbers => {
-      const nums =
+        this.nums =
         numbers.replace(/\n/g, ',').split(',').map(
           Number).slice(0, -1);
-      console.log(nums);
     });
-    setTimeout(() => this.isPlaying = false, 10000);
+    setTimeout(() => this.isPlaying = false, 5000);
   }
 
   ngOnDestroy() {
