@@ -17,11 +17,12 @@ import { UserService } from '../services/user.service';
         <span *ngIf="!whiteListed" class="w-100" style="border-bottom:solid white 1px;">
             Welcome Let's Get Started</span
           >
-          <div *ngIf="whiteListed" class="text-success whitelisted-notification">Congrats Account: {{whiteListedAccount}} <br> is now Whitelisted</div>
+          <div *ngIf="whiteListed" class="text-success whitelisted-notification">Congrats Account: {{whiteListedAccount}} 
+          <br> is now Whitelisted. Please Log In...</div>
           <div class="mt-4" style="padding:2rem">
             <strong
-              >"You can earn crypto by posting content with your
-              friends"</strong
+              >"You can earn crypto by creating your own artistic 
+              content with your friends..."</strong
             >
           </div>
 

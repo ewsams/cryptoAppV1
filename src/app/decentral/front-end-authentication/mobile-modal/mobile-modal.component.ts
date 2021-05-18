@@ -24,13 +24,13 @@ export class MobileModalComponent implements OnInit {
   whiteListedAccountSubscription: Subscription;
   whiteListedSubscription: Subscription;
   invalidEmailAddress = 'Your email address is invalid.';
+  colorSub: Subscription;
 
   // tslint:disable-next-line:variable-name
   constructor(
     private fb: FormBuilder,
     private db: FirestoreService,
     private afAuth: AngularFireAuth,
-    private router: Router,
     private modal: NgbModal, private userService: UserService,
     private web3Service: Web3Service
   ) {}
@@ -51,8 +51,15 @@ export class MobileModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+    this.colorSub = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
+    });
+
+    this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
+      this.whiteListed = isListed;
+    })
+    this.whiteListedAccountSubscription = this.web3Service.whiteListedAccountAddress$.subscribe(account => {
+      this.whiteListedAccount = account;
     });
 
     // form for database
@@ -146,6 +153,7 @@ export class MobileModalComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.colorSub.unsubscribe();
     this.whiteListedAccountSubscription.unsubscribe();
     this.whiteListedSubscription.unsubscribe();
   }

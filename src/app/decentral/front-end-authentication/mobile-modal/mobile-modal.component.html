@@ -1,13 +1,21 @@
 <div class="container" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}" style="position: absolute;top: 12px;">
-  <div *ngIf="whiteListed"><strong class="text-success">Congrats Account: <small>{{whiteListedAccount}} </small><br> is now Whitelisted</strong></div>
   <div class="row justify-content-center" style="border:solid white 3px;" [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
     <img src="../assets/img/appollo-logo.png" style="height: 106px;width: 106px;float: right;">
     <img src="../assets/img/appollo-text-logo.png" style="height: 160px;width: 160px; float: left;">
     <p class="close-icon " (click)="closeModal()">X</p>
     <div class="row" style="position: relative; bottom: 30px;">
-      <div class="card col-12" style="border: solid rgb(255, 255, 255) 2px;background-color: transparent;">
+      <div class="card col-12" style="background-color: transparent;">
         <div class="card-body">
           <form [formGroup]="myForm">
+            
+            <div class="row" *ngIf="whiteListed">
+              <div class="ml-3 mb-3">
+                <strong class="text-success">Congrats Account: 
+                  <small>{{whiteListedAccount}} </small>
+                  <br> is now Whitelisted. Please Log In...</strong>
+              </div>
+            </div>
+            
             <h6 class="heading-small text-muted">Profile information</h6>
             <div class="form-group focused">
               <label class="form-control-label" for="input-username">Username</label>
