@@ -16,7 +16,7 @@ export class LotteryService {
 
   constructor(private http: HttpClient) {}
 
-  playerNumbers = new BehaviorSubject<Number[]>([]);
+  playerNumbers = new BehaviorSubject<Number[]>(null);
   playerNumbers$ = this.playerNumbers.asObservable();
 
   getNumbers():Observable<any> {

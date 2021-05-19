@@ -25,11 +25,11 @@ export class LoterryComponent implements OnInit {
   }
 
    // The User will enter their wager in Ethereum
-  async purchaseSpins(){
+   purchaseSpins = async () => {
     await this.web3Service.lottery(200000000000000000000);
   }
 
-  async playLottery() {
+  playLottery = async () => {
     this.getPlayersLottoNumbers();
     if(this.playerNumbers === null){
       this.isPlaying = false;
@@ -41,7 +41,7 @@ export class LoterryComponent implements OnInit {
       }
   }
 
-  finishedPlaying = ()=> {
+  finishedPlaying = () => {
     this.isPlaying = false;
     this.lottorryService.playerNumbers.next(null);
   }
@@ -50,7 +50,7 @@ export class LoterryComponent implements OnInit {
     this.lotterySub.unsubscribe();
   }
 
-  getLottoNumbers(){
+  getLottoNumbers = () => { 
     this.lotterySub = this.lottorryService.getNumbers().subscribe(numbers => {
       this.nums =
       numbers.replace(/\n/g, ',').split(',').map(
@@ -58,13 +58,13 @@ export class LoterryComponent implements OnInit {
   });
   }
 
-  openLotteryNumbersInput() {
+  openLotteryNumbersInput = () =>  {
     this.modal.open(LotteryInputComponent, {
       size: 'md',
     });
   }
 
-  getPlayersLottoNumbers(){
+  getPlayersLottoNumbers = () => {
     this.lottorryService.playerNumbers$.subscribe(numbers => {
       this.playerNumbers = numbers;
       console.log(this.playerNumbers);
