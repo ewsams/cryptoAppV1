@@ -16,6 +16,7 @@ export class LoterryComponent implements OnInit {
   lotterySub: Subscription;
   nums: number[];
   playerNumbers: Number[];
+  playerNumbersSub: Subscription;
 
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService,
@@ -46,10 +47,6 @@ export class LoterryComponent implements OnInit {
     this.lottorryService.playerNumbers.next(null);
   }
 
-  ngOnDestroy() {
-    this.lotterySub.unsubscribe();
-  }
-
   getLottoNumbers = () => { 
     this.lotterySub = this.lottorryService.getNumbers().subscribe(numbers => {
       this.nums =
@@ -65,10 +62,15 @@ export class LoterryComponent implements OnInit {
   }
 
   getPlayersLottoNumbers = () => {
-    this.lottorryService.playerNumbers$.subscribe(numbers => {
+    this.playerNumbersSub = this.lottorryService.playerNumbers$.subscribe(numbers => {
       this.playerNumbers = numbers;
       console.log(this.playerNumbers);
     })
+  }
+
+  ngOnDestroy() {
+    this.lotterySub.unsubscribe();
+    this.playerNumbersSub.unsubscribe();
   }
 
 }
