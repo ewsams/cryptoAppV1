@@ -4,6 +4,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { UserService } from '../services/user.service';
 import {LotteryInput} from '../models/lottery-input';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LotteryService } from 'src/app/util/lottery.service';
 
 @Component({
   selector: 'app-lottery-input',
@@ -23,6 +24,7 @@ export class LotteryInputComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private lotteryService:LotteryService,
     private db: FirestoreService,
     private userService: UserService,
     private modal: NgbModal,
@@ -38,6 +40,8 @@ export class LotteryInputComponent implements OnInit {
         input5: this.inputFive.value,
         input6: this.inputSix.value,
       };
+      this.lotteryService.playerNumbers.next(Object.values(this.lotterInputObject));
+      console.log(this.lotterInputObject);
     }
   }
 

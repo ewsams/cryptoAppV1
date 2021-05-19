@@ -15,6 +15,7 @@ export class LoterryComponent implements OnInit {
   isPlaying = false;
   lotterySub: Subscription;
   nums: number[];
+  playerNumbers: Number[];
 
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService,
@@ -23,29 +24,51 @@ export class LoterryComponent implements OnInit {
   ngOnInit() {
   }
 
+   // The User will enter their wager in Ethereum
   async purchaseSpins(){
     await this.web3Service.lottery(200000000000000000000);
   }
 
-  // The User will enter their wager in Ethereum
   async playLottery() {
-    this.isPlaying = true;
-    this.lotterySub = this.lottorryService.getNumbers().subscribe(numbers => {
-        this.nums =
-        numbers.replace(/\n/g, ',').split(',').map(
-          Number).slice(0, -1);
-    });
-    setTimeout(() => this.isPlaying = false, 6500);
+    this.getPlayersLottoNumbers();
+    if(this.playerNumbers === null){
+      this.isPlaying = false;
+      alert('please add numbers to play');
+    }else{ 
+        this.isPlaying = true;
+        this.getLottoNumbers();
+        setTimeout(() => this.finishedPlaying(), 6500);
+      }
+  }
+
+  finishedPlaying = ()=> {
+    this.isPlaying = false;
+    this.lottorryService.playerNumbers.next(null);
   }
 
   ngOnDestroy() {
     this.lotterySub.unsubscribe();
   }
 
+  getLottoNumbers(){
+    this.lotterySub = this.lottorryService.getNumbers().subscribe(numbers => {
+      this.nums =
+      numbers.replace(/\n/g, ',').split(',').map(
+        Number).slice(0, -1);
+  });
+  }
+
   openLotteryNumbersInput() {
     this.modal.open(LotteryInputComponent, {
       size: 'md',
     });
+  }
+
+  getPlayersLottoNumbers(){
+    this.lottorryService.playerNumbers$.subscribe(numbers => {
+      this.playerNumbers = numbers;
+      console.log(this.playerNumbers);
+    })
   }
 
 }
