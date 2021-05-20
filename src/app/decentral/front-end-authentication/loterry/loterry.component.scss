@@ -1,10 +1,24 @@
 .lotto-svg {
    width: 600px;
    height: 500px;
+   display:flex;
+   align-items:center;
+   justify-content:center;
 }
 
 .lotto-btn {
    width: fit-content;
+}
+
+.appBalance div{
+  float:left;
+}
+.appBalance img{
+  float:right;
+}
+
+.playingDisplayFont{
+  font-size: 28px;
 }
 
 //Ball Animations
@@ -598,4 +612,11 @@
 .stage:nth-child(4) .number:after,
 .stage:nth-child(4) .number:before {
   animation-delay: 2.4s;
+}
+
+@media only screen and (max-width: 600px) {
+  .playingDisplayFontMobile{
+    font-size: 22px;
+  
+  }
 }

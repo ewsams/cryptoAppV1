@@ -24,6 +24,12 @@ strong {
       top: 2%;
       left: 90%;
     }
+    .numbersMobile{
+      width: 50%;
+    }
+    .mobileCenter{
+      justify-content: center;
+    }
   }
 
   @media only screen and (min-width: 600px) {

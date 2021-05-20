@@ -6,14 +6,14 @@
         <img src="../assets/img/appollo-text-logo.png" style="height: 160px;width: 160px; float: left;">
         <p class="close-icon " (click)="closeModal()">X</p>
         <div class="row" style="position: relative; bottom: 30px;">
-            <div class="card col-md-12 col-sm-12 border-large"
+            <div class="card col-md-12 mobileCenter border-large"
                 style="background-color: transparent;">
                 <div class="card-body">
                     <form [formGroup]="myForm">
                         <h6 class="heading-small text-muted">Lottery Numbers</h6>
                         <div class="form-group focused">
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 numbersMobile">
                                     <label class="form-control-label" for="input-input1">1st Number</label>
                                     <small *ngIf="inputOne.invalid && inputOne.touched" id="input1HelpBlock"
                                         class="form-text text-warning font-weight-bold">
@@ -24,7 +24,7 @@
                                         placeholder="Number 1" />
 
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 numbersMobile">
                                     <label class="form-control-label" for="input-input2">2nd Number</label>
                                     <small *ngIf="inputTwo.invalid && inputTwo.touched" id="input2HelpBlock"
                                         class="form-text text-warning font-weight-bold">
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 numbersMobile">
                                     <label class="form-control-label" for="input-input3">3rd Number</label>
                                     <small *ngIf="inputThree.invalid && inputThree.touched" id="input3HelpBlock"
                                         class="form-text text-warning font-weight-bold">
@@ -48,7 +48,7 @@
                                         class="form-control form-control-alternative white-placeholder"
                                         placeholder="Number 3" />
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 numbersMobile">
                                     <label class="form-control-label" for="input-input4">4th Number</label>
                                     <small *ngIf="inputFour.invalid && inputFour.touched" id="input4HelpBlock"
                                         class="form-text text-warning font-weight-bold">
@@ -63,7 +63,7 @@
 
 
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 numbersMobile">
                             <label class="form-control-label" for="input-input5">5th Number</label>
                             <small *ngIf="inputFive.invalid && inputFive.touched" id="input5HelpBlock"
                                 class="form-text text-warning font-weight-bold">
@@ -74,7 +74,7 @@
                                 placeholder="Number 5" />
 
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 numbersMobile">
                             <label class="form-control-label" for="input-input5">6th Number</label>
                             <small *ngIf="inputSix.invalid && inputSix.touched" id="input6HelpBlock"
                                 class="form-text text-warning font-weight-bold">

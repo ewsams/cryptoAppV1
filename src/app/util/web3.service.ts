@@ -18,6 +18,8 @@ export class Web3Service {
   isWhiteListed$ = this.whiteListedBoolean.asObservable();
   private userTokens = new Subject<any>();
   userAvailiableTokens$ = this.userTokens.asObservable();
+  private lottoBalanceSubject = new Subject<number>();
+  lottoBalance$ = this.lottoBalanceSubject.asObservable();
 
   // Contract related variables
   appolloTokenInstance;
@@ -89,7 +91,7 @@ export class Web3Service {
   }
 
   // palyer deposit amount in Ethereum
-  lottery = async (playerDeposit:number) => {
+  lotteryDeposit = async (playerDeposit:number) => {
       this.provider = await this.web3Modal.connect(); // set provider
       this.web3js = new Web3(this.provider); // create web3 instance
       this.accounts = await this.web3js.eth.getAccounts();
@@ -106,6 +108,20 @@ export class Web3Service {
             // Transfer of Appollo Tokens to the Lottery Address
           this.appolloTokenInstance.methods.transfer(
           Lottery.networks[5].address,playerDeposit.toString()).send({from:this.accounts[0]});
+  }
+
+  checkLottoBalance = async () => {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
+
+      this.appolloTokenInstance =
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[5].address);
+    let lottoBalance = await
+      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[5].address).call();
+    const lottoBalanceInEth = lottoBalance / 1000000000000000000;
+    this.lottoBalanceSubject.next(lottoBalanceInEth);
   }
 
 }

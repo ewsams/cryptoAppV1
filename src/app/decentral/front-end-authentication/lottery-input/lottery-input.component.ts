@@ -42,6 +42,7 @@ export class LotteryInputComponent implements OnInit {
       };
       this.lotteryService.playerNumbers.next(Object.values(this.lotterInputObject));
       console.log(this.lotterInputObject);
+      this.closeModal();
     }
   }
 
