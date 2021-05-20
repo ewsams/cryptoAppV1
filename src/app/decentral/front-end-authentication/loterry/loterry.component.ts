@@ -29,6 +29,7 @@ export class LoterryComponent implements OnInit {
     this.lotteryBalanceSub = this.web3Service.lottoBalance$.subscribe(balance => {
       this.currentLotteryBalance = balance;
     });
+    this.getPlayersLottoNumbers();
   }
 
    // The User will enter their wager in Ethereum
@@ -37,7 +38,6 @@ export class LoterryComponent implements OnInit {
   }
 
   playLottery = async () => {
-    this.getPlayersLottoNumbers();
     if(this.playerNumbers === null){
       this.isPlaying = false;
       alert('please add numbers to play');
