@@ -12,14 +12,15 @@ import { LotteryInputComponent } from '../lottery-input/lottery-input.component'
   styleUrls: ['./loterry.component.scss']
 })
 export class LoterryComponent implements OnInit {
-  isPlaying = false;
+  isPlaying:boolean;
   nums: number[];
   playerNumbers: Number[];
   playerNumbersSub: Subscription;
   currentLotteryBalance: number;
   lotteryBalanceSub: Subscription;
   randomLotteryNumberSub: Subscription;
-  winnerString: String;
+  winnerString: string;
+  alertMessage: boolean;
 
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService,
@@ -41,7 +42,7 @@ export class LoterryComponent implements OnInit {
   playLottery = async () => {
     if (this.playerNumbers === null) {
       this.isPlaying = false;
-      alert('please add numbers to play');
+      this.alertMessage = true;
     } else {
       this.isPlaying = true;
       this.getLottoNumbers();
@@ -84,6 +85,7 @@ export class LoterryComponent implements OnInit {
     }
     return this.winnerString = `Congratulations You Win!`;
   }
+
 
   ngOnDestroy() {
     this.randomLotteryNumberSub.unsubscribe();

@@ -1,3 +1,6 @@
+<p class="d-flex justify-content-center">
+    <ngb-alert *ngIf="alertMessage" type="primary" (click)="alertMessage = false" style="cursor: pointer;"><strong>Please Select Numbers to Play...</strong></ngb-alert>
+</p>
 <div class="d-flex justify-content-center">
     <div *ngIf="!isPlaying" class="appBalance mt-2 ml-4 h4 text-white text-center">
         Current Lottery Balance:
@@ -10748,8 +10751,9 @@
             color: white;">{{winnerString}}</div>
     </div>
 </div>
-<div *ngIf="playerNumbers != null" class="d-flex justify-content-center marginNumbers"> <p class="h3 text-white" style="font-family: Impact;">Your Numbers:</p> <p
-        *ngFor="let number of playerNumbers" class="text-white d-inline h3 ml-2">{{number}}</p>
+<div *ngIf="playerNumbers != null" class="d-flex justify-content-center marginNumbers">
+    <p class="h3 text-white" style="font-family: Impact;">Your Numbers:</p>
+    <p *ngFor="let number of playerNumbers" class="text-white d-inline h3 ml-2">{{number}}</p>
 </div>
 <div class="d-flex justify-content-center">
     <div class="btn btn-sm btn-primary lotto-btn" (click)="playLottery()"><img
