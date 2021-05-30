@@ -68,9 +68,14 @@ export class AuthService {
   }
 
   async signOut() {
-    await this.afAuth.signOut();
-    this.userLoggedInSubject.next(false);
-    this.router.navigate(['/']);
+    try {
+      await this.afAuth.signOut();
+      this.userLoggedInSubject.next(false);
+      this.router.navigate(['home']);
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
 }

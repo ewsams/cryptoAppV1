@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
   logOut() {
     this.authService.signOut();
   }
+
   openJoinModal() {
     const modalRef = this.modalService.open(NgbdModalContentComponent, {
       size: 'lg',

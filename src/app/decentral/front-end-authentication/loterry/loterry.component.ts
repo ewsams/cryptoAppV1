@@ -12,7 +12,7 @@ import { LotteryInputComponent } from '../lottery-input/lottery-input.component'
   styleUrls: ['./loterry.component.scss']
 })
 export class LoterryComponent implements OnInit {
-  isPlaying:boolean;
+  isPlaying: boolean;
   nums: number[];
   playerNumbers: Number[];
   playerNumbersSub: Subscription;
@@ -80,7 +80,7 @@ export class LoterryComponent implements OnInit {
   compareUsersNumbers = (): String => {
     for (let i = 0; i < this.nums.length; i++) {
       if (this.nums[i] !== this.playerNumbers[i]) {
-        return  this.winnerString = `Please Play Again...`;
+        return this.winnerString = `Please Play Again...`;
       }
     }
     return this.winnerString = `Congratulations You Win!`;
@@ -88,9 +88,13 @@ export class LoterryComponent implements OnInit {
 
 
   ngOnDestroy() {
-    this.randomLotteryNumberSub.unsubscribe();
-    this.playerNumbersSub.unsubscribe();
-    this.lotteryBalanceSub.unsubscribe();
+    if (this.randomLotteryNumberSub && 
+      this.playerNumbersSub &&
+      this.lotteryBalanceSub) {
+      this.randomLotteryNumberSub.unsubscribe();
+      this.playerNumbersSub.unsubscribe();
+      this.lotteryBalanceSub.unsubscribe();
+    }
   }
 
 }
