@@ -19,10 +19,11 @@ export class LoterryComponent implements OnInit {
   currentLotteryBalance: number;
   lotteryBalanceSub: Subscription;
   randomLotteryNumberSub: Subscription;
+  winnerString: String;
 
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService,
-    private modal:NgbModal) {
+    private modal: NgbModal) {
   }
   ngOnInit() {
     this.web3Service.checkLottoBalance();
@@ -32,20 +33,20 @@ export class LoterryComponent implements OnInit {
     this.getPlayersLottoNumbers();
   }
 
-   // The User will enter their wager in Ethereum
-   purchaseSpins = async () => {
+  // The User will enter their wager in Ethereum
+  purchaseSpins = async () => {
     await this.web3Service.lotteryDeposit(200000000000000000000);
   }
 
   playLottery = async () => {
-    if(this.playerNumbers === null){
+    if (this.playerNumbers === null) {
       this.isPlaying = false;
       alert('please add numbers to play');
-    } else{ 
-        this.isPlaying = true;
-        this.getLottoNumbers();
-        setTimeout(() => this.finishedPlaying(), 6500);
-      }
+    } else {
+      this.isPlaying = true;
+      this.getLottoNumbers();
+      setTimeout(() => this.finishedPlaying(), 6500);
+    }
   }
 
   finishedPlaying = () => {
@@ -53,15 +54,17 @@ export class LoterryComponent implements OnInit {
     this.lottorryService.playerNumbers.next(null);
   }
 
-  getLottoNumbers = () => { 
+  getLottoNumbers = () => {
     this.randomLotteryNumberSub = this.lottorryService.getNumbers().subscribe(numbers => {
       this.nums =
-      numbers.replace(/\n/g, ',').split(',').map(
-        Number).slice(0, -1);
-  });
+        numbers.replace(/\n/g, ',').split(',').map(
+          Number).slice(0, -1);
+      // comparing users numbers
+      this.compareUsersNumbers();
+    });
   }
 
-  openLotteryNumbersInput = () =>  {
+  openLotteryNumbersInput = () => {
     this.modal.open(LotteryInputComponent, {
       size: 'md',
     });
@@ -70,8 +73,16 @@ export class LoterryComponent implements OnInit {
   getPlayersLottoNumbers = () => {
     this.playerNumbersSub = this.lottorryService.playerNumbers$.subscribe(numbers => {
       this.playerNumbers = numbers;
-      console.log(this.playerNumbers);
     });
+  }
+
+  compareUsersNumbers = (): String => {
+    for (let i = 0; i < this.nums.length; i++) {
+      if (this.nums[i] !== this.playerNumbers[i]) {
+        return  this.winnerString = `Please Play Again...`;
+      }
+    }
+    return this.winnerString = `Congratulations You Win!`;
   }
 
   ngOnDestroy() {
