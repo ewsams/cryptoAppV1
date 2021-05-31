@@ -36,11 +36,10 @@ export class LoterryComponent implements OnInit {
   }
 
   // The User will enter their wager in Ethereum
-  purchaseSpins = async () => {
+  purchaseSpins = () => {
     this.modal.open(PurchaseSpinsComponent, {
       size: 'lg',
     });
-    // await this.web3Service.lotteryDeposit(200000000000000000000);
   }
 
   playLottery = async () => {
