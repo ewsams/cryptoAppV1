@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LotteryService } from 'src/app/util/lottery.service';
 import { Web3Service } from 'src/app/util/web3.service';
 import { LotteryInputComponent } from '../lottery-input/lottery-input.component';
+import { PurchaseSpinsComponent } from '../purchase-spins/purchase-spins.component';
 
 
 @Component({
@@ -36,7 +37,10 @@ export class LoterryComponent implements OnInit {
 
   // The User will enter their wager in Ethereum
   purchaseSpins = async () => {
-    await this.web3Service.lotteryDeposit(200000000000000000000);
+    this.modal.open(PurchaseSpinsComponent, {
+      size: 'lg',
+    });
+    // await this.web3Service.lotteryDeposit(200000000000000000000);
   }
 
   playLottery = async () => {

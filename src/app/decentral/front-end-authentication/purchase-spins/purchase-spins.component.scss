@@ -1,0 +1,34 @@
+.modal-header-style {
+    background-color:transparent;
+    text-align:center;
+    position:absolute;
+    top:0;
+    left:14rem
+}
+
+.large-message {
+    border-bottom:solid white 1px
+}
+
+@media only screen and (max-width: 600px) {
+      .close-icon {
+          color:white;
+            position:relative;
+            left: 95%;
+            top:.90rem;
+      }
+      .mobile-margin-top {
+        position: relative;
+        top: 2rem;
+      }
+  }
+
+  @media only screen and (min-width: 600px) {
+      .close-icon {
+         display: none;
+      }
+     .dice-container {
+         position: relative;
+         right: 2.25rem;
+     }
+}
