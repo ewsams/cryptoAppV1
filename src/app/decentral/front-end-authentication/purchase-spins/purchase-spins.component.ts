@@ -11,6 +11,8 @@ import { UserService } from '../services/user.service';
 })
 export class PurchaseSpinsComponent implements OnInit {color: boolean;
   colorSubscription: Subscription;
+  spinsTransactionReceipt: any;
+  transactionSubscription: Subscription;
   constructor( public activeModal: NgbModal,
                private userService: UserService,
                private web3Service: Web3Service) { }
@@ -24,18 +26,33 @@ export class PurchaseSpinsComponent implements OnInit {color: boolean;
    
     purchase50Spins = async () => {
       await this.web3Service.lotteryDeposit(100000000000000000000);
+      this.confirmSpinsPurchase();
     }
 
     purchase100Spins = async () => {
       await this.web3Service.lotteryDeposit(250000000000000000000);
+      this.confirmSpinsPurchase();
     }
 
     purchase200Spins = async () => {
       await this.web3Service.lotteryDeposit(500000000000000000000);
+      this.confirmSpinsPurchase();
+    }
+
+    confirmSpinsPurchase = () => {
+      this.transactionSubscription = this.web3Service.spinsTransactionReceipt$.subscribe(receipt => {
+        this.spinsTransactionReceipt = receipt;
+      });
+      if(this.spinsTransactionReceipt !== null){
+        console.log(this.spinsTransactionReceipt);
+      }
     }
 
    ngOnDestroy() {
      this.colorSubscription.unsubscribe();
+     if(this.transactionSubscription){
+      this.transactionSubscription.unsubscribe();
+     }
   }
 
   closeModal() {
