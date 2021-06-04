@@ -3,6 +3,12 @@
     <div class="close-icon" (click)="closeModal()">X</div>
     <img src="../assets/img/appollo-logo.png" style="width: 6rem; height: 6rem;" />
     <img src="../assets/img/appollo-text-logo.png" style="width: 8rem; height: 8rem;" />
+    <p *ngIf="awaitingTransactionConfirmation" class="text-success d-flex justify-content-center">
+        Currently wating for Your Purchase to Post...
+    </p>
+    <p *ngIf="!awaitingTransactionConfirmation" class="text-success d-flex justify-content-center">
+        {{spinsPurchased}}
+    </p>
     <div class="modal-body">
         <div class="row">
             <div class="col-sm-4" style="text-align:center;font-family:Impact;">
