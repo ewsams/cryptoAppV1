@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
         this.loggedIn = true;
       }
     });
-    this.crowdSaleAddress = AppolloTokenCrowdsale.networks[5].address;
-    this.appolloTokenAddress = AppolloToken.networks[5].address;
+    this.crowdSaleAddress = AppolloTokenCrowdsale.networks[3].address;
+    this.appolloTokenAddress = AppolloToken.networks[3].address;
   }
   ngOnDestroy() {
     this.backgroundColor.unsubscribe();

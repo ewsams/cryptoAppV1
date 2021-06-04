@@ -187,28 +187,28 @@
     "absolutePath": "/Users/Thomas/Desktop/cryptoAppV1/contracts/CappedCrowdsale.sol",
     "exportedSymbols": {
       "Address": [
-        2895
+        2664
       ],
       "CappedCrowdsale": [
         215
       ],
       "Context": [
-        2918
+        2687
       ],
       "Crowdsale": [
         516
       ],
       "IERC20": [
-        2350
+        2119
       ],
       "ReentrancyGuard": [
-        1765
+        1534
       ],
       "SafeERC20": [
-        2599
+        2368
       ],
       "SafeMath": [
-        1615
+        1384
       ]
     },
     "id": 216,
@@ -232,7 +232,7 @@
         "id": 91,
         "nodeType": "ImportDirective",
         "scope": 216,
-        "sourceUnit": 1616,
+        "sourceUnit": 1385,
         "src": "74:58:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -266,8 +266,8 @@
         ],
         "contractDependencies": [
           516,
-          1765,
-          2918
+          1534,
+          2687
         ],
         "contractKind": "contract",
         "documentation": {
@@ -281,8 +281,8 @@
         "linearizedBaseContracts": [
           215,
           516,
-          1765,
-          2918
+          1534,
+          2687
         ],
         "name": "CappedCrowdsale",
         "nodeType": "ContractDefinition",
@@ -293,7 +293,7 @@
               "id": 96,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1615,
+              "referencedDeclaration": 1384,
               "src": "310:8:2"
             },
             "nodeType": "UsingForDirective",
@@ -1054,7 +1054,7 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1479,
+                      "referencedDeclaration": 1248,
                       "src": "1404:25:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -1559,7 +1559,7 @@
                             "lValueRequested": false,
                             "memberName": "add",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1479,
+                            "referencedDeclaration": 1248,
                             "src": "2019:15:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -1765,28 +1765,28 @@
     "absolutePath": "/Users/Thomas/Desktop/cryptoAppV1/contracts/CappedCrowdsale.sol",
     "exportedSymbols": {
       "Address": [
-        2895
+        2664
       ],
       "CappedCrowdsale": [
         215
       ],
       "Context": [
-        2918
+        2687
       ],
       "Crowdsale": [
         516
       ],
       "IERC20": [
-        2350
+        2119
       ],
       "ReentrancyGuard": [
-        1765
+        1534
       ],
       "SafeERC20": [
-        2599
+        2368
       ],
       "SafeMath": [
-        1615
+        1384
       ]
     },
     "id": 216,
@@ -1810,7 +1810,7 @@
         "id": 91,
         "nodeType": "ImportDirective",
         "scope": 216,
-        "sourceUnit": 1616,
+        "sourceUnit": 1385,
         "src": "74:58:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1844,8 +1844,8 @@
         ],
         "contractDependencies": [
           516,
-          1765,
-          2918
+          1534,
+          2687
         ],
         "contractKind": "contract",
         "documentation": {
@@ -1859,8 +1859,8 @@
         "linearizedBaseContracts": [
           215,
           516,
-          1765,
-          2918
+          1534,
+          2687
         ],
         "name": "CappedCrowdsale",
         "nodeType": "ContractDefinition",
@@ -1871,7 +1871,7 @@
               "id": 96,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1615,
+              "referencedDeclaration": 1384,
               "src": "310:8:2"
             },
             "nodeType": "UsingForDirective",
@@ -2632,7 +2632,7 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1479,
+                      "referencedDeclaration": 1248,
                       "src": "1404:25:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3137,7 +3137,7 @@
                             "lValueRequested": false,
                             "memberName": "add",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1479,
+                            "referencedDeclaration": 1248,
                             "src": "2019:15:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3345,7 +3345,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-11T01:32:27.535Z",
+  "updatedAt": "2021-06-04T18:14:55.398Z",
   "devdoc": {
     "details": "Crowdsale with a limit for total contributions.",
     "kind": "dev",

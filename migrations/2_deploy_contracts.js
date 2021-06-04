@@ -14,9 +14,9 @@ const duration = {
 
 module.exports = async function (deployer) {
   let startTime = Math.floor(Date.now() / 1000) + duration.seconds(300);
-  let endTime = startTime + duration.days(7);
+  let endTime = startTime + duration.years(5);
   let addr = await web3.eth.getAccounts();
-  const cap = web3.utils.toWei("5000000", "ether") // 500000 eth
+  const cap = web3.utils.toWei("50000000", "ether") // 500000 eth
 
   await deployer.deploy(AppolloToken, process.env.INITIAL_TOKENS);
   await deployer.deploy(KycContract);

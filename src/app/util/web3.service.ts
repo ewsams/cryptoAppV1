@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import AppolloToken from 'build/contracts/AppolloToken.json';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 import Lottery from 'build/contracts/Lottery.json';
@@ -20,6 +20,8 @@ export class Web3Service {
   userAvailiableTokens$ = this.userTokens.asObservable();
   private lottoBalanceSubject = new Subject<number>();
   lottoBalance$ = this.lottoBalanceSubject.asObservable();
+  private spinsReceiptBehaviorSubject = new BehaviorSubject<any>(null);
+  spinsTransactionReceipt$ = this.spinsReceiptBehaviorSubject.asObservable();
 
   // Contract related variables
   appolloTokenInstance;
@@ -69,7 +71,7 @@ export class Web3Service {
 
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks[5].address);
+        AppolloTokenCrowdsale.networks[3].address);
 
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
@@ -82,7 +84,7 @@ export class Web3Service {
 
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[5].address);
+        AppolloToken.networks[3].address);
     let userTokens = await
       this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
     // Tokens in Ethereum
@@ -91,23 +93,24 @@ export class Web3Service {
   }
 
   // palyer deposit amount in Ethereum
-  lotteryDeposit = async (playerDeposit:number) => {
-      this.provider = await this.web3Modal.connect(); // set provider
-      this.web3js = new Web3(this.provider); // create web3 instance
-      this.accounts = await this.web3js.eth.getAccounts();
+  lotteryDeposit = async (playerDeposit: number) => {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
 
-      // Lottery Contract Instance
-      this.lotteryInstance = new this.web3js.eth.Contract(
-        Lottery.abi, Lottery.networks[5].address);
-      
-        //Appollo Token Instance
-      this.appolloTokenInstance =
-        new this.web3js.eth.Contract(AppolloToken.abi,
-          AppolloToken.networks[5].address);  
-        
-            // Transfer of Appollo Tokens to the Lottery Address
-          this.appolloTokenInstance.methods.transfer(
-          Lottery.networks[5].address,playerDeposit.toString()).send({from:this.accounts[0]});
+    // Lottery Contract Instance
+    this.lotteryInstance = new this.web3js.eth.Contract(
+      Lottery.abi, Lottery.networks[3].address);
+
+    //Appollo Token Instance
+    this.appolloTokenInstance =
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[3].address);
+
+    // Transfer of Appollo Tokens to the Lottery Address
+    this.appolloTokenInstance.methods.transfer(
+      Lottery.networks[3].address, playerDeposit.toString()).send({ from: this.accounts[0] }).on('receipt',
+        receipt => this.spinsReceiptBehaviorSubject.next(receipt));
   }
 
   checkLottoBalance = async () => {
@@ -115,11 +118,11 @@ export class Web3Service {
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
 
-      this.appolloTokenInstance =
+    this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[5].address);
+        AppolloToken.networks[3].address);
     let lottoBalance = await
-      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[5].address).call();
+      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[3].address).call();
     const lottoBalanceInEth = lottoBalance / 1000000000000000000;
     this.lottoBalanceSubject.next(lottoBalanceInEth);
   }

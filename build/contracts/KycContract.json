@@ -1726,13 +1726,13 @@
     "absolutePath": "/Users/Thomas/Desktop/cryptoAppV1/contracts/KycContract.sol",
     "exportedSymbols": {
       "Context": [
-        2918
+        2687
       ],
       "KycContract": [
         566
       ],
       "Ownable": [
-        1725
+        1494
       ]
     },
     "id": 567,
@@ -1756,7 +1756,7 @@
         "id": 519,
         "nodeType": "ImportDirective",
         "scope": 567,
-        "sourceUnit": 1726,
+        "sourceUnit": 1495,
         "src": "73:52:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1769,7 +1769,7 @@
               "id": 520,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1725,
+              "referencedDeclaration": 1494,
               "src": "151:7:4"
             },
             "id": 521,
@@ -1778,16 +1778,16 @@
           }
         ],
         "contractDependencies": [
-          1725,
-          2918
+          1494,
+          2687
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 566,
         "linearizedBaseContracts": [
           566,
-          1725,
-          2918
+          1494,
+          2687
         ],
         "name": "KycContract",
         "nodeType": "ContractDefinition",
@@ -1928,7 +1928,7 @@
                   "id": 529,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1674,
+                  "referencedDeclaration": 1443,
                   "src": "251:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -2074,7 +2074,7 @@
                   "id": 543,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1674,
+                  "referencedDeclaration": 1443,
                   "src": "350:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -2271,13 +2271,13 @@
     "absolutePath": "/Users/Thomas/Desktop/cryptoAppV1/contracts/KycContract.sol",
     "exportedSymbols": {
       "Context": [
-        2918
+        2687
       ],
       "KycContract": [
         566
       ],
       "Ownable": [
-        1725
+        1494
       ]
     },
     "id": 567,
@@ -2301,7 +2301,7 @@
         "id": 519,
         "nodeType": "ImportDirective",
         "scope": 567,
-        "sourceUnit": 1726,
+        "sourceUnit": 1495,
         "src": "73:52:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2314,7 +2314,7 @@
               "id": 520,
               "name": "Ownable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1725,
+              "referencedDeclaration": 1494,
               "src": "151:7:4"
             },
             "id": 521,
@@ -2323,16 +2323,16 @@
           }
         ],
         "contractDependencies": [
-          1725,
-          2918
+          1494,
+          2687
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 566,
         "linearizedBaseContracts": [
           566,
-          1725,
-          2918
+          1494,
+          2687
         ],
         "name": "KycContract",
         "nodeType": "ContractDefinition",
@@ -2473,7 +2473,7 @@
                   "id": 529,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1674,
+                  "referencedDeclaration": 1443,
                   "src": "251:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -2619,7 +2619,7 @@
                   "id": 543,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1674,
+                  "referencedDeclaration": 1443,
                   "src": "350:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -2817,6 +2817,12 @@
     "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0xfC73e14E7aE78f5b57bcd28592dA5468cF8D9C5C",
+      "transactionHash": "0xaf6af2885805e9eb8dc8f3f3348360a3a0eb7829c3f01ff1caf46f00c340e29e"
+    },
     "5": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -2866,12 +2872,12 @@
         }
       },
       "links": {},
-      "address": "0x5f126a76B9765504f5402bdE97Db251a82cbe6B2",
-      "transactionHash": "0xbaa27a33142927b2a696efcc4be3ddefe6c1f13750f26eb92fc3bd9dce52c0ed"
+      "address": "0x3105575a7B35A293dbd58cAd7b843787d68EF26a",
+      "transactionHash": "0xd8245705b6131abc3a591aac6708d52633a48d3a011b11eb2ea2c109253c74fb"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-11T03:33:58.859Z",
+  "updatedAt": "2021-06-04T18:58:52.447Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
