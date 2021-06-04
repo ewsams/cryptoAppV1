@@ -108,9 +108,14 @@ export class Web3Service {
         AppolloToken.networks[3].address);
 
     // Transfer of Appollo Tokens to the Lottery Address
-    this.appolloTokenInstance.methods.transfer(
-      Lottery.networks[3].address, playerDeposit.toString()).send({ from: this.accounts[0] }).on('receipt',
-        receipt => this.spinsReceiptBehaviorSubject.next(receipt));
+    await this.appolloTokenInstance.methods.transfer(
+      Lottery.networks[3].address, playerDeposit.toString()).send({ from: this.accounts[0] }).
+      on('receipt',
+        receipt => {
+          if(receipt.status === true){
+            this.spinsReceiptBehaviorSubject.next(receipt);
+          }
+        });
   }
 
   checkLottoBalance = async () => {

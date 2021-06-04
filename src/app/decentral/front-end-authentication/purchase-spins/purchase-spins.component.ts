@@ -13,6 +13,7 @@ export class PurchaseSpinsComponent implements OnInit {color: boolean;
   colorSubscription: Subscription;
   spinsTransactionReceipt: any;
   transactionSubscription: Subscription;
+  
   constructor( public activeModal: NgbModal,
                private userService: UserService,
                private web3Service: Web3Service) { }
@@ -40,12 +41,12 @@ export class PurchaseSpinsComponent implements OnInit {color: boolean;
     }
 
     confirmSpinsPurchase = () => {
-      this.transactionSubscription = this.web3Service.spinsTransactionReceipt$.subscribe(receipt => {
-        this.spinsTransactionReceipt = receipt;
-      });
-      if(this.spinsTransactionReceipt !== null){
+      this.transactionSubscription = this.web3Service.spinsTransactionReceipt$.subscribe(receipt => { 
+          if(receipt.status === true){
+            this.spinsTransactionReceipt = receipt;
+          }
+      });  
         console.log(this.spinsTransactionReceipt);
-      }
     }
 
    ngOnDestroy() {
