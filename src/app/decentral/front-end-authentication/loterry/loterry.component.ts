@@ -19,7 +19,7 @@ export class LoterryComponent implements OnInit {
   nums: number[];
   playerNumbers: Number[];
   playerNumbersSub: Subscription;
-  currentLotteryBalance: number;
+  currentLotteryBalance: string;
   lotteryBalanceSub: Subscription;
   randomLotteryNumberSub: Subscription;
   winnerString: string;
@@ -41,7 +41,7 @@ export class LoterryComponent implements OnInit {
     this.getCurrentUser();
     this.web3Service.checkLottoBalance();
     this.lotteryBalanceSub = this.web3Service.lottoBalance$.subscribe(balance => {
-      this.currentLotteryBalance = balance;
+      this.currentLotteryBalance = balance.toFixed(2);
     });
     this.getPlayersLottoNumbers();
   }

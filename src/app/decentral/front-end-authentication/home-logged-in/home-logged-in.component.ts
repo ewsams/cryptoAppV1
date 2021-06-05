@@ -36,11 +36,8 @@ export class HomeLoggedInComponent implements OnInit {
  gatherUserTokens = () => {
     const tokens = this.web3Service.userCurrentTokens();
     this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
-      this.appolloAmount$ = tokens;
+      this.appolloAmount$ = tokens.toFixed(2);
     });
-    if(this.appolloAmount$ === 0) {
-      this.appolloAmount$ = 0;
-    }
   }
 
   ngOnDestroy(){

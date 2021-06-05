@@ -5,6 +5,7 @@ import { Web3Service } from 'src/app/util/web3.service';
 import { UserService } from '../services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirestoreService } from '../services/firestore.service';
+import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 
 @Component({
   selector: 'app-purchase-spins',
@@ -24,6 +25,10 @@ export class PurchaseSpinsComponent implements OnInit {
   userSub: Subscription;
   user: any;
   userRetrieved: boolean;
+  userTokenBalanceSub: Subscription;
+  appolloAmount$: number;
+  zeroAppolloAvailable: boolean;
+  zeroAPPMessage: string;
 
 
   constructor(public activeModal: NgbModal,
@@ -33,6 +38,7 @@ export class PurchaseSpinsComponent implements OnInit {
     private db: FirestoreService) { }
 
   ngOnInit() {
+    this.gatherUserTokens();
     this.userRetrieved = false;
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
@@ -91,9 +97,11 @@ export class PurchaseSpinsComponent implements OnInit {
 
   ngOnDestroy() {
     this.colorSubscription.unsubscribe();
-    if (this.transactionSubscription && this.userSub) {
+    if (this.transactionSubscription && 
+      this.userSub && this.userTokenBalanceSub) {
       this.transactionSubscription.unsubscribe();
       this.userSub.unsubscribe();
+      this.userTokenBalanceSub.unsubscribe();
     }
   }
 
@@ -117,4 +125,22 @@ export class PurchaseSpinsComponent implements OnInit {
       this.db.set(`users/${this.user.id}`,{...this.user,spins: userSpinsNumber + this.user.spins});
     }
   }
+
+  gatherUserTokens = () => {
+    const tokens = this.web3Service.userCurrentTokens();
+    this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
+      this.appolloAmount$ = tokens;
+      if(this.appolloAmount$ < 100){
+        this.zeroAppolloAvailable = true; 
+        const appRequiredToPurchase = 100 - this.appolloAmount$;
+        const appolloSaleAddress = AppolloTokenCrowdsale.networks[3].address;
+        this.zeroAPPMessage = 
+        `Currently you have ${this.appolloAmount$} APP
+          You need ${appRequiredToPurchase} more APP to purchase Spins... 
+          Use this address: ${appolloSaleAddress} to purchase APP... 
+        `;
+      }
+    });
+  }
+
 }
