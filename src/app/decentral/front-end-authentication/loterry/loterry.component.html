@@ -1,5 +1,5 @@
 <p class="d-flex justify-content-center">
-    <ngb-alert *ngIf="alertMessage" type="primary" (click)="alertMessage = false" style="cursor: pointer;"><strong>Please Select Numbers to Play...</strong></ngb-alert>
+    <ngb-alert *ngIf="alertMessage" type="primary" (click)="alertMessage = false" style="cursor: pointer;"><strong>{{alertMessageString}}</strong></ngb-alert>
 </p>
 <div class="d-flex justify-content-center">
     <div *ngIf="!isPlaying" class="appBalance mt-2 ml-4 h4 text-white text-center">

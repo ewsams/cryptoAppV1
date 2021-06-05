@@ -21,7 +21,6 @@ export class PurchaseSpinsComponent implements OnInit {
   spinsPurchased: string;
   awaitingTransactionConfirmation: boolean;
   users$: any;
-  currentUser: any;
   userSub: Subscription;
   user: any;
   userRetrieved: boolean;
@@ -103,10 +102,10 @@ export class PurchaseSpinsComponent implements OnInit {
   }
 
   getCurrentUser = async () => {
-    this.currentUser = await this.afAuth.currentUser;
+    let currentUser = await this.afAuth.currentUser;
     this.userSub = this.db.colWithIds$('users').subscribe(users => {
       this.users$ = users;
-      this.user = this.users$.find(user => user.email === this.currentUser.email);
+      this.user = this.users$.find(user => user.email === currentUser.email);
       this.userRetrieved = true;
     });
   }
