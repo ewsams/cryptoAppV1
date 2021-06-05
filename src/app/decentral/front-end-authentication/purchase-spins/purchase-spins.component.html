@@ -14,7 +14,9 @@
         {{spinsPurchased}}<br>
         You currently have {{user.spins ? user.spins: 0}} spins...
     </p>
-    <p *ngIf="zeroAppolloAvailable" class="text-success d-flex justify-content-center mt-3">
+    <p *ngIf="zeroAppolloAvailable" 
+    class="text-success d-flex justify-content-center mt-3"
+    style="text-align:center">
        {{zeroAPPMessage}}
     </p>
     <div *ngIf="!zeroAppolloAvailable" class="modal-body">

@@ -38,6 +38,7 @@ import { NftNotificationComponent } from './decentral/front-end-authentication/n
 import { LotteryService } from './util/lottery.service';
 import { LotteryInputComponent } from './decentral/front-end-authentication/lottery-input/lottery-input.component';
 import { PurchaseSpinsComponent } from './decentral/front-end-authentication/purchase-spins/purchase-spins.component';
+import { LotteryInfoComponent } from './decentral/front-end-authentication/lottery-info/lottery-info.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PurchaseSpinsComponent } from './decentral/front-end-authentication/pur
     OptionsNotifyComponent,
     NftNotificationComponent,
     LotteryInputComponent,
-    PurchaseSpinsComponent
+    PurchaseSpinsComponent,
+    LotteryInfoComponent
   ],
   imports: [
     HttpClientModule,
@@ -76,7 +78,8 @@ import { PurchaseSpinsComponent } from './decentral/front-end-authentication/pur
   ],
   entryComponents: [NgbdModalContentComponent,
     MobileModalComponent, AboutUsModalComponent,
-    SetUpComponent, WorkingComponent, OptionsNotifyComponent, NftNotificationComponent, LotteryInputComponent,PurchaseSpinsComponent],
+    SetUpComponent, WorkingComponent, OptionsNotifyComponent,
+    NftNotificationComponent, LotteryInputComponent,PurchaseSpinsComponent, LotteryInfoComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService, Web3Service, LotteryService],
   bootstrap: [AppComponent],

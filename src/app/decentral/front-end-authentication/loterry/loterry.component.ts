@@ -7,6 +7,7 @@ import { LotteryInputComponent } from '../lottery-input/lottery-input.component'
 import { PurchaseSpinsComponent } from '../purchase-spins/purchase-spins.component';
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { LotteryInfoComponent } from '../lottery-info/lottery-info.component';
 
 
 @Component({
@@ -88,6 +89,12 @@ export class LoterryComponent implements OnInit {
 
   openLotteryNumbersInput = () => {
     this.modal.open(LotteryInputComponent, {
+      size: 'md',
+    });
+  }
+
+  lotteryInfo = () => {
+    this.modal.open(LotteryInfoComponent, {
       size: 'md',
     });
   }
