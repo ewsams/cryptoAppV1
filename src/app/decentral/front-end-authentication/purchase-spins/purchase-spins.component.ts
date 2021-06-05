@@ -75,17 +75,19 @@ export class PurchaseSpinsComponent implements OnInit {
       if (this.appolloTransfered === 100) {
         this.spinsPurchased =
           `Congrats you just purchased 50 spins using ${this.appolloTransfered} APP`;
-      }
+        this.setUserSpins(50);
+        }
       if (this.appolloTransfered === 250) {
         this.spinsPurchased =
           `Congrats you just purchased 100 spins using ${this.appolloTransfered} APP`;
-      }
+         this.setUserSpins(100);
+        }
       if (this.appolloTransfered === 500) {
         this.spinsPurchased =
           `Congrats you just purchased 200 spins using ${this.appolloTransfered} APP`;
+          this.setUserSpins(200);
       }
     });
-    console.log(this.spinsTransactionReceipt, this.confirmationWallet, this.appolloTransfered);
   }
 
   ngOnDestroy() {
@@ -106,7 +108,14 @@ export class PurchaseSpinsComponent implements OnInit {
       this.users$ = users;
       this.user = this.users$.find(user => user.email === this.currentUser.email);
       this.userRetrieved = true;
-      console.log(this.users$);
     });
+  }
+
+  setUserSpins = (userSpinsNumber:number) => {
+    if(!this.user.spins){
+      this.db.set(`users/${this.user.id}`,{...this.user,spins: userSpinsNumber});
+    } else {
+      this.db.set(`users/${this.user.id}`,{...this.user,spins: userSpinsNumber + this.user.spins});
+    }
   }
 }

@@ -10,8 +10,9 @@
     <p *ngIf="awaitingTransactionConfirmation" class="text-success d-flex justify-content-center">
         Currently wating for Your Purchase to Post...
     </p>
-    <p *ngIf="!awaitingTransactionConfirmation" class="text-success d-flex justify-content-center">
-        {{spinsPurchased}}
+    <p *ngIf="userRetrieved && !awaitingTransactionConfirmation" class="text-success d-flex justify-content-center">
+        {{spinsPurchased}}<br>
+        You currently have {{user.spins ? user.spins: 0}} spins...
     </p>
     <div class="modal-body">
         <div class="row">
