@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { Web3Service } from 'src/app/util/web3.service';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home-logged-in',
@@ -20,12 +22,18 @@ export class HomeLoggedInComponent implements OnInit {
   totalPageElements: number;
   accountAddress: any;
   whiteListedSub: Subscription;
+  user: any;
+  userRetrieved: boolean;
 
   constructor(public db: FirestoreService, 
-    private web3Service: Web3Service) {}
+    private web3Service: Web3Service,
+    private afAuth: AngularFireAuth,
+    private userService: UserService) {}
 
   ngOnInit() {
-  this.userSub = this.db.col$('users').subscribe(users => {
+  const users = this.userService.getCurrentUsers();
+  this.userService.getCurrentUser();
+  this.userSub = users.subscribe(users => {
       this.users$ = users;
       this.totalPageElements = this.users$.length;
       this.loading = false;

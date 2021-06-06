@@ -8,6 +8,7 @@ import { PurchaseSpinsComponent } from '../purchase-spins/purchase-spins.compone
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LotteryInfoComponent } from '../lottery-info/lottery-info.component';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -26,7 +27,6 @@ export class LoterryComponent implements OnInit {
   winnerString: string;
   alertMessage: boolean;
   userSub: Subscription;
-  users$: any;
   user: any;
   userRetrieved: boolean;
   alertMessageString: string;
@@ -34,7 +34,7 @@ export class LoterryComponent implements OnInit {
   constructor(private web3Service: Web3Service,
     private lottorryService: LotteryService,
     private modal: NgbModal,
-    private afAuth: AngularFireAuth,
+    private userService: UserService,
     private db: FirestoreService) {
   }
   ngOnInit() {
@@ -115,14 +115,11 @@ export class LoterryComponent implements OnInit {
   }
 
   getCurrentUser = async () => {
-    let currentUser = await this.afAuth.currentUser;
-    this.userSub = this.db.colWithIds$('users').subscribe(users => {
-      this.users$ = users;
-      this.user = this.users$.find(user => user.email === currentUser.email);
+    this.userSub = this.userService.currentUser$.subscribe(user => {
+      this.user = user;
       this.userRetrieved = true;
     });
   }
-
 
   ngOnDestroy() {
     if (this.randomLotteryNumberSub &&
@@ -134,5 +131,4 @@ export class LoterryComponent implements OnInit {
       this.userSub.unsubscribe();
     }
   }
-
 }

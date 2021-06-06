@@ -27,8 +27,8 @@ export class PurchaseSpinsComponent implements OnInit {
   userRetrieved: boolean;
   userTokenBalanceSub: Subscription;
   appolloAmount$: number;
-  zeroAppolloAvailable: boolean;
-  zeroAPPMessage: string;
+  insufficientAppolloAvailable: boolean;
+  insufficientAPPMessage: string;
 
 
   constructor(public activeModal: NgbModal,
@@ -110,12 +110,10 @@ export class PurchaseSpinsComponent implements OnInit {
   }
 
   getCurrentUser = async () => {
-    let currentUser = await this.afAuth.currentUser;
-    this.userSub = this.db.colWithIds$('users').subscribe(users => {
-      this.users$ = users;
-      this.user = this.users$.find(user => user.email === currentUser.email);
-      this.userRetrieved = true;
-    });
+      this.userSub = this.userService.currentUser$.subscribe(user => {
+        this.user = user;
+        this.userRetrieved = true;
+      });
   }
 
   setUserSpins = (userSpinsNumber:number) => {
@@ -131,10 +129,10 @@ export class PurchaseSpinsComponent implements OnInit {
     this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
       this.appolloAmount$ = tokens;
       if(this.appolloAmount$ < 100){
-        this.zeroAppolloAvailable = true; 
+        this.insufficientAppolloAvailable = true; 
         const appRequiredToPurchase = 100 - this.appolloAmount$;
         const appolloSaleAddress = AppolloTokenCrowdsale.networks[3].address;
-        this.zeroAPPMessage = 
+        this.insufficientAPPMessage = 
         `Currently you have ${this.appolloAmount$} APP
           You need ${appRequiredToPurchase} more APP to purchase Spins... 
           Use this address: ${appolloSaleAddress} to purchase APP... 

@@ -20,8 +20,8 @@ import { UserService } from '../services/user.service';
   />
   <div class="modal-body">
   <h3 style="text-align:center;font-family:Impact;">
-  We are currently working as fast as we can to get this functionality available...</h3>
-  <h3 style="text-align:left; font-family:Impact">The developers thank you for your patience as this is going to be worth the wait...</h3>
+  No Pump and Dumps ever. This project is dedicated to a long and prosperous life...</h3>
+  <h3 style="text-align:left; font-family:Impact">The developers thank you for your patience as we continue to develop.This is going to be worth the wait...</h3>
     <h4 style="text-align:center">"The world of crypto currency is at your
           fingertips"...</h4>
     </div>

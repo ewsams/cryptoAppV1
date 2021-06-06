@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SubmitFormModel } from '../models/submitform';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirestoreService } from './firestore.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,18 +10,25 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   user: SubmitFormModel;
   users: any;
-  userLandSelection = new BehaviorSubject<any>(null);
-  currentBackgroundSelection = new BehaviorSubject<any>(null);
-
+  private userLandSelection = new BehaviorSubject<any>(null);
   userLandSelectionObservable$ = this.userLandSelection.asObservable();
 
-  userWearableSelection = new BehaviorSubject<any>(null);
+  private userWearableSelection = new BehaviorSubject<any>(null);
   userWearableSelectionObservable$ = this.userWearableSelection.asObservable();
 
-  userBackgroundSelection = new BehaviorSubject<any>(null);
+  private userBackgroundSelection = new BehaviorSubject<any>(null);
   userBackgroundSelectionObservable$ = this.userBackgroundSelection.asObservable();
 
-  constructor() {}
+  private currentUsers = new BehaviorSubject<any>(null);
+  currentUsers$ = this.currentUsers.asObservable();
+
+  private currentUser = new BehaviorSubject<any>(null);
+  currentUser$ = this.currentUser.asObservable();
+  
+  private currentUsersPrivate: Observable<any>;
+
+  constructor(private afAuth: AngularFireAuth,
+    public db: FirestoreService) { }
 
   getUserLandSelection(data) {
     this.userLandSelection.next(data);
@@ -29,7 +38,22 @@ export class UserService {
     this.userWearableSelection.next(data);
   }
 
-getBackgroundColor(color) {
-this.userBackgroundSelection.next(color);
+  getBackgroundColor(color) {
+    this.userBackgroundSelection.next(color);
+  }
+
+  getCurrentUsers = (): Observable<any> => {
+    this.currentUsersPrivate = this.db.colWithIds$('users');
+    return this.currentUsersPrivate;
+  }
+
+  getCurrentUser = async () => {
+    const currentUser = await this.afAuth.currentUser;
+    this.currentUsersPrivate.subscribe(users => {
+      const currentUsers = users;
+      this.currentUsers.next(currentUsers);
+      const user = currentUsers.find(user => user.email === currentUser.email);
+      this.currentUser.next(user);
+    });
   }
 }

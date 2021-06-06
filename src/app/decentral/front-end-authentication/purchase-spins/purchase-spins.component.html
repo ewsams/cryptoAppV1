@@ -14,12 +14,12 @@
         {{spinsPurchased}}<br>
         You currently have {{user.spins ? user.spins: 0}} spins...
     </p>
-    <p *ngIf="zeroAppolloAvailable" 
+    <p *ngIf="insufficientAppolloAvailable" 
     class="text-success d-flex justify-content-center mt-3"
     style="text-align:center">
-       {{zeroAPPMessage}}
+       {{insufficientAPPMessage}}
     </p>
-    <div *ngIf="!zeroAppolloAvailable" class="modal-body">
+    <div *ngIf="!insufficientAppolloAvailable" class="modal-body">
         <div class="row">
             <div class="col-sm-4" style="text-align:center;font-family:Impact;">
                 <h3>
