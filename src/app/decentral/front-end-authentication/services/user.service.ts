@@ -43,7 +43,7 @@ export class UserService {
   }
 
   getCurrentUsers = (): Observable<any> => {
-    this.currentUsersPrivate = this.db.colWithIds$('users');
+    this.currentUsersPrivate = this.db.colWithIds$('profiles');
     return this.currentUsersPrivate;
   }
 
@@ -52,7 +52,7 @@ export class UserService {
     this.currentUsersPrivate.subscribe(users => {
       const currentUsers = users;
       this.currentUsers.next(currentUsers);
-      const user = currentUsers.find(user => user.email === currentUser.email);
+      const user = currentUsers.find(user => user.id === currentUser.uid);
       this.currentUser.next(user);
     });
   }

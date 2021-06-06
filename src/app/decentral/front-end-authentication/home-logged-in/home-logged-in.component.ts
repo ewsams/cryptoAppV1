@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { Web3Service } from 'src/app/util/web3.service';
-import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { UserService } from '../services/user.service';
 
@@ -27,7 +26,6 @@ export class HomeLoggedInComponent implements OnInit {
 
   constructor(public db: FirestoreService, 
     private web3Service: Web3Service,
-    private afAuth: AngularFireAuth,
     private userService: UserService) {}
 
   ngOnInit() {

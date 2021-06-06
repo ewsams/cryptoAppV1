@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription } from 'rxjs';
 import { SubmitFormModel } from '../models/submitform';
@@ -45,7 +44,6 @@ export class MobileModalComponent implements OnInit {
         web3Address: this.web3Address.value,
         isValid: true,
       };
-      console.log(this.profileRequestFormObject);
       this.addUser(this.profileRequestFormObject);
     }
   }
@@ -109,7 +107,17 @@ export class MobileModalComponent implements OnInit {
   async addUser(userObject: SubmitFormModel) {
     try {
       const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email,userObject.password);
-      const addUser = await this.db.add('users', userObject);
+      const id = (await this.afAuth.currentUser).uid;
+      const addUser = await this.db.set(`users/${id}`,
+      {id:id,...userObject});
+      const addUserProfile = await this.db.set(`profiles/${id}`,
+      {
+      id:id,
+      userName:userObject.userName,
+      web3Address: userObject.web3Address,
+      spins:0
+    }
+    )    
       const getWeb3 = await this.web3Service.handleKycSubmit(userObject.web3Address);
       const sendEmail = await this.sendWelcomeEmail(userObject.email, userObject.userName);
     } catch (error) {
@@ -122,30 +130,24 @@ export class MobileModalComponent implements OnInit {
     }
   }
 
-  checkValidAddress(web3Address: string) {
-    const checkAddress = this.db.col('users', ref => {
-      ref.where('web3Address', '==', web3Address).limit(1);
-    })
-    if (checkAddress) {
-      console.log(`${web3Address} is not available`);
-    }
-  }
-
-  sendWelcomeEmail(email: string, userName: string) {
+  async sendWelcomeEmail(email: string, userName: string) {
+    const id = (await this.afAuth.currentUser).uid;
     const welcomeEmail = {
       to: [email],
       message: {
         subject: `Welcome ${userName} from the Appollo Team.`,
         text: "The world of crypto currency is just at your fingertips...",
         html: `
+        <div style="magin-left:auto;margin-right:auto">
         <h1> ${userName} thanks for joining. <br>
         We have alot of great things coming very soon...</h1>
-        <img 
+        <img
         src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
-        `,
+        </div>    
+        `
       }
     }
-    this.db.add('welcomeEmails', welcomeEmail);
+    this.db.set(`welcomeEmails/${id}`, welcomeEmail);
   }
   
   closeModal() {

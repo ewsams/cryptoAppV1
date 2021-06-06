@@ -66,7 +66,7 @@ export class LoterryComponent implements OnInit {
       this.alertMessageString = 'Please Select Numbers to Play...';
     } else {
       this.isPlaying = true;
-      this.db.set(`users/${this.user.id}`,{...this.user,spins: this.user.spins - 1});
+      this.db.update(`profiles/${this.user.id}`,{...this.user,spins: this.user.spins - 1});
       this.getLottoNumbers();
       setTimeout(() => this.finishedPlaying(), 6500);
     }

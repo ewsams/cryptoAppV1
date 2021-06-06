@@ -3,7 +3,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Web3Service } from 'src/app/util/web3.service';
 import { UserService } from '../services/user.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { FirestoreService } from '../services/firestore.service';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 
@@ -34,7 +33,6 @@ export class PurchaseSpinsComponent implements OnInit {
   constructor(public activeModal: NgbModal,
     private userService: UserService,
     private web3Service: Web3Service,
-    private afAuth: AngularFireAuth,
     private db: FirestoreService) { }
 
   ngOnInit() {
@@ -80,17 +78,17 @@ export class PurchaseSpinsComponent implements OnInit {
       if (this.appolloTransfered === 100) {
         this.spinsPurchased =
           `Congrats you just purchased 50 spins using ${this.appolloTransfered} APP`;
-        this.setUserSpins(50);
+        this.updateUserSpins(50);
         }
       if (this.appolloTransfered === 250) {
         this.spinsPurchased =
           `Congrats you just purchased 100 spins using ${this.appolloTransfered} APP`;
-         this.setUserSpins(100);
+         this.updateUserSpins(100);
         }
       if (this.appolloTransfered === 500) {
         this.spinsPurchased =
           `Congrats you just purchased 200 spins using ${this.appolloTransfered} APP`;
-          this.setUserSpins(200);
+          this.updateUserSpins(200);
       }
     });
   }
@@ -116,11 +114,11 @@ export class PurchaseSpinsComponent implements OnInit {
       });
   }
 
-  setUserSpins = (userSpinsNumber:number) => {
+  updateUserSpins = (userSpinsNumber:number) => {
     if(!this.user.spins){
-      this.db.set(`users/${this.user.id}`,{...this.user,spins: userSpinsNumber});
+      this.db.update(`profiles/${this.user.id}`,{spins: userSpinsNumber});
     } else {
-      this.db.set(`users/${this.user.id}`,{...this.user,spins: userSpinsNumber + this.user.spins});
+      this.db.update(`profiles/${this.user.id}`,{spins: userSpinsNumber + this.user.spins});
     }
   }
 

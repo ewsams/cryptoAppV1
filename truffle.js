@@ -19,6 +19,12 @@ module.exports = {
       },
       network_id: 5777
     },
+    mainnet_infura: {
+      provider: function () {
+        return new HDWalletProvider(process.env.MNEMONIC, `https://mainnet.infura.io/v3/${process.env.INFURA_ID}`, MetaMaskAccountIndex)
+      },
+      network_id: 1
+    },
     ropsten_infura: {
       provider: function () {
         return new HDWalletProvider(process.env.MNEMONIC, `https://ropsten.infura.io/v3/${process.env.INFURA_ID}`, MetaMaskAccountIndex)
