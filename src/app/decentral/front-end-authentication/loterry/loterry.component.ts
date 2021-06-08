@@ -111,6 +111,7 @@ export class LoterryComponent implements OnInit {
         return this.winnerString = `Please Play Again...`;
       }
     }
+    this.web3Service.payLotteryWinner();
     return this.winnerString = `Congratulations You Win!`;
   }
 

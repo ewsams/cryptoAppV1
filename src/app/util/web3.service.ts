@@ -132,4 +132,18 @@ export class Web3Service {
     this.lottoBalanceSubject.next(lottoBalanceInEth);
   }
 
+  payLotteryWinner = async () => {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
+
+    this.appolloTokenInstance =
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[1].address);
+    let lottoBalance = await
+      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[1].address).call();
+   
+      await this.appolloTokenInstance.transferFrom(Lottery.networks[1].address,this.accounts[0],lottoBalance);
+  }
+
 }
