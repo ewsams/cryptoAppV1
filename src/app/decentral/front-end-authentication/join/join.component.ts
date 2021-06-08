@@ -123,11 +123,12 @@ export class JoinComponent implements OnInit {
         subject: `Welcome ${userName} from the Appollo Team.`,
         text: "The world of crypto currency is just at your fingertips...",
         html: `
-        <div style="magin-left:auto;margin-right:auto">
-        <h1> ${userName} thanks for joining. <br>
-        We have alot of great things coming very soon...</h1>
+        <div style="display:flex;justify-content:center">
+        <h2 style="text-align: center;"> ${userName} thanks for joining... <br>
+        We have alot of great things coming soon...</h2>
         <img
-        src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
+        style="height:45%;width:45%;"
+        src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/emailLogo.png?alt=media&token=3959acc4-f69d-4662-a541-de0288e88c0e">
         </div>   
         `
       }

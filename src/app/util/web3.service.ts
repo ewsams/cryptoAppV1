@@ -71,7 +71,7 @@ export class Web3Service {
 
     this.appolloTokenCrowdsaleInstance =
       new this.web3js.eth.Contract(AppolloTokenCrowdsale.abi,
-        AppolloTokenCrowdsale.networks[3].address);
+        AppolloTokenCrowdsale.networks[1].address);
 
     this.whiteListedAccount.next(kycAddress);
     this.whiteListedBoolean.next(true);
@@ -84,7 +84,7 @@ export class Web3Service {
 
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[3].address);
+        AppolloToken.networks[1].address);
     let userTokens = await
       this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
     // Tokens in Ethereum
@@ -100,16 +100,16 @@ export class Web3Service {
 
     // Lottery Contract Instance
     this.lotteryInstance = new this.web3js.eth.Contract(
-      Lottery.abi, Lottery.networks[3].address);
+      Lottery.abi, Lottery.networks[1].address);
 
     //Appollo Token Instance
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[3].address);
+        AppolloToken.networks[1].address);
 
     // Transfer of Appollo Tokens to the Lottery Address
     await this.appolloTokenInstance.methods.transfer(
-      Lottery.networks[3].address, playerDeposit.toString()).send({ from: this.accounts[0] }).
+      Lottery.networks[1].address, playerDeposit.toString()).send({ from: this.accounts[0] }).
       on('receipt',
         receipt => {
           if(receipt.status === true){
@@ -125,9 +125,9 @@ export class Web3Service {
 
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
-        AppolloToken.networks[3].address);
+        AppolloToken.networks[1].address);
     let lottoBalance = await
-      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[3].address).call();
+      this.appolloTokenInstance.methods.balanceOf(Lottery.networks[1].address).call();
     const lottoBalanceInEth = lottoBalance / 1000000000000000000;
     this.lottoBalanceSubject.next(lottoBalanceInEth);
   }

@@ -8029,16 +8029,16 @@
         23
       ],
       "Context": [
-        2687
+        2665
       ],
       "ERC20": [
-        2041
+        2019
       ],
       "IERC20": [
-        2119
+        2097
       ],
       "IERC20Metadata": [
-        2144
+        2122
       ]
     },
     "id": 24,
@@ -8062,7 +8062,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 24,
-        "sourceUnit": 2042,
+        "sourceUnit": 2020,
         "src": "74:55:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -8075,7 +8075,7 @@
               "id": 4,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2041,
+              "referencedDeclaration": 2019,
               "src": "570:5:0"
             },
             "id": 5,
@@ -8084,10 +8084,10 @@
           }
         ],
         "contractDependencies": [
-          2041,
-          2119,
-          2144,
-          2687
+          2019,
+          2097,
+          2122,
+          2665
         ],
         "contractKind": "contract",
         "documentation": {
@@ -8100,10 +8100,10 @@
         "id": 23,
         "linearizedBaseContracts": [
           23,
-          2041,
-          2144,
-          2119,
-          2687
+          2019,
+          2122,
+          2097,
+          2665
         ],
         "name": "AppolloToken",
         "nodeType": "ContractDefinition",
@@ -8171,7 +8171,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1922,
+                      "referencedDeclaration": 1900,
                       "src": "744:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -8249,7 +8249,7 @@
                   "id": 10,
                   "name": "ERC20",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 2041,
+                  "referencedDeclaration": 2019,
                   "src": "704:5:0"
                 },
                 "nodeType": "ModifierInvocation",
@@ -8317,16 +8317,16 @@
         23
       ],
       "Context": [
-        2687
+        2665
       ],
       "ERC20": [
-        2041
+        2019
       ],
       "IERC20": [
-        2119
+        2097
       ],
       "IERC20Metadata": [
-        2144
+        2122
       ]
     },
     "id": 24,
@@ -8350,7 +8350,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 24,
-        "sourceUnit": 2042,
+        "sourceUnit": 2020,
         "src": "74:55:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -8363,7 +8363,7 @@
               "id": 4,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2041,
+              "referencedDeclaration": 2019,
               "src": "570:5:0"
             },
             "id": 5,
@@ -8372,10 +8372,10 @@
           }
         ],
         "contractDependencies": [
-          2041,
-          2119,
-          2144,
-          2687
+          2019,
+          2097,
+          2122,
+          2665
         ],
         "contractKind": "contract",
         "documentation": {
@@ -8388,10 +8388,10 @@
         "id": 23,
         "linearizedBaseContracts": [
           23,
-          2041,
-          2144,
-          2119,
-          2687
+          2019,
+          2122,
+          2097,
+          2665
         ],
         "name": "AppolloToken",
         "nodeType": "ContractDefinition",
@@ -8459,7 +8459,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1922,
+                      "referencedDeclaration": 1900,
                       "src": "744:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -8537,7 +8537,7 @@
                   "id": 10,
                   "name": "ERC20",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 2041,
+                  "referencedDeclaration": 2019,
                   "src": "704:5:0"
                 },
                 "nodeType": "ModifierInvocation",
@@ -8603,6 +8603,63 @@
     "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xc6bA3Ae26eC066a73c4DFd82c1A7d150495051cD",
+      "transactionHash": "0xf8d7c363faad630d8dccccb10f48125ad612ef8671c8f28bdde661591fdc5f2f"
+    },
     "3": {
       "events": {
         "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
@@ -8771,12 +8828,12 @@
         }
       },
       "links": {},
-      "address": "0xB138467d477623fBd5660b31eF2d002F2c36D449",
-      "transactionHash": "0x2eceab4668ad09a0c906990f44c0545139e54680c191a9aa88dbbf7fcb9c3a3f"
+      "address": "0xE65780c2C486f70472874956ee23B45A3d13FFBd",
+      "transactionHash": "0x55ae0020a1aa809ea29002573e74fafad9d4342c809e411842d6eeacf6c690e5"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-06-04T18:58:52.432Z",
+  "updatedAt": "2021-06-08T21:44:09.931Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Remeber the naming conventions like in Java the \"contract\" ie class... and file name must be the same.********************************Very Appollo ERC20 Token example, where all tokens are pre-assigned to the creator. Note they can later distribute these tokens as they wish using `transfer` and other `ERC20` functions.",

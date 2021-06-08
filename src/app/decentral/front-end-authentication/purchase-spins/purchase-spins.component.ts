@@ -129,7 +129,7 @@ export class PurchaseSpinsComponent implements OnInit {
       if(this.appolloAmount$ < 100){
         this.insufficientAppolloAvailable = true; 
         const appRequiredToPurchase = 100 - this.appolloAmount$;
-        const appolloSaleAddress = AppolloTokenCrowdsale.networks[3].address;
+        const appolloSaleAddress = AppolloTokenCrowdsale.networks[1].address;
         this.insufficientAPPMessage = 
         `Currently you have ${this.appolloAmount$} APP
           You need ${appRequiredToPurchase} more APP to purchase Spins... 
