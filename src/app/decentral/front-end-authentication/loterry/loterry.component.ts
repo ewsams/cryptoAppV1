@@ -31,7 +31,8 @@ export class LoterryComponent implements OnInit {
   userRetrieved: boolean;
   alertMessageString: string;
 
-  constructor(private web3Service: Web3Service,
+  constructor(
+    private web3Service: Web3Service,
     private lottorryService: LotteryService,
     private modal: NgbModal,
     private userService: UserService,
