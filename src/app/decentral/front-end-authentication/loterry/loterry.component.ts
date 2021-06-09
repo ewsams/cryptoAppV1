@@ -113,6 +113,9 @@ export class LoterryComponent implements OnInit {
       }
     }
     this.web3Service.payLotteryWinner();
+    this.db.update(`profiles/${this.user.id}`, {
+      winner:true, amount:this.currentLotteryBalance
+    });
     return this.winnerString = `Congratulations You Win!`;
   }
 
