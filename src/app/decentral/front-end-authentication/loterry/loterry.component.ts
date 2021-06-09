@@ -106,17 +106,18 @@ export class LoterryComponent implements OnInit {
     });
   }
 
-  compareUsersNumbers = (): String => {
+   compareUsersNumbers = (): String => {
     for (let i = 0; i < this.nums.length; i++) {
       if (this.nums[i] !== this.playerNumbers[i]) {
         return this.winnerString = `Please Play Again...`;
+      } else if(this.nums[i] === this.playerNumbers[i]){
+        this.web3Service.payLotteryWinner();
+        this.db.update(`profiles/${this.user.id}`, {
+          winner:true, amount:this.currentLotteryBalance
+        });
+        return this.winnerString = `Congratulations You Win!`;
       }
     }
-    this.web3Service.payLotteryWinner();
-    this.db.update(`profiles/${this.user.id}`, {
-      winner:true, amount:this.currentLotteryBalance
-    });
-    return this.winnerString = `Congratulations You Win!`;
   }
 
   getCurrentUser = async () => {
