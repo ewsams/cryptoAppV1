@@ -5,24 +5,37 @@
             NFT Creation
         </div>
         <div class="card-body">
-            <form [formGroup]="nftNameInput">
-                <div class="form-group focused">
-                    <label class="form-control-label text-white" for="input-nftName">Nft Name</label>
-                    <small *ngIf="nftName.invalid && nftName.touched" id="nftNameHelpBlock"
-                        class="form-text text-warning font-weight-bold">
-                        Nft Name must be between 6 and 20 charecters long.
-                    </small>
-                    <input formControlName="nftName" type="text" id="nftName"
-                        class="form-control form-control-alternative white-placeholder" placeholder="Ntf Name" />
-                </div>
-            </form>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4 text-center">
+                    <p *ngIf="nftUpdate && nftName.value.length != 0"   class="text-success">{{ updateNftMessage}}</p>
+                    <form [formGroup]="nftNameInput">
+                        <div class="form-group centered focused">
+                            <label class="form-control-label" for="input-nftName"
+                            >Nft Name</label
+                          >
+                            <small *ngIf="nftName.invalid && nftName.touched" id="nftNameHelpBlock"
+                                class="form-text text-warning font-weight-bold">
+                                Nft Name must be 6 charecters long.
+                            </small>
+                            <input formControlName="nftName" type="text" id="input-nftName"
+                                class="form-control form-control-alternative white-placeholder"
+                                placeholder="Ntf Name between 6 and 20 characters" />
 
-            <button type="button" class="btn btn-primary ml-3" (click)="onSubmit()">Submit Nft Name</button>
-            <h5 class="card-title text-white h4 mt-2">Select a file for your NFT use .png or .jpg format:</h5>
-            <button class="btn btn-primary" (click)="inputNft.click()" [disabled]="!nftNameSubmitted">Select Your Artwork</button>
-            <input style="display: none;" type="file" (change)="upload($event)" accept=".png,.jpg" #inputNft />
-            <br><br>
-            <div class="progress">
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-primary btn-sm ml-2" (click)="onSubmit()">Submit</button>
+                </div>
+                <div class="col-4 text-center">
+                    <h5 class="card-title text-white">Select a file for your NFT use .png or .jpg format:
+                        <br>Images should be 200px by 200px
+                    </h5>
+                    <button class="btn btn-primary" (click)="inputNft.click()"
+                        [disabled]="!nftNameSubmitted">Upload</button>
+                    <input style="display: none;" type="file" (change)="upload($event)" accept=".png,.jpg" #inputNft />
+                    <br><br>
+                </div>
+            </div>
+            <div class="progress mt-4">
                 <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
                     [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
                     aria-valuemin="0" aria-valuemax="100">
@@ -38,7 +51,7 @@
             <br><br>
             <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
                 File Preview:
-                    <img style="width: 200px;height: 200px;"src="{{downloadSrc}}" alt="nftImage">
+                <img style="width: 200px;height: 200px;" src="{{downloadSrc}}" alt="nftImage">
             </div>
         </div>
     </div>
