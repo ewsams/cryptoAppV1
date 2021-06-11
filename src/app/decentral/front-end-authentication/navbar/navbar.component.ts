@@ -75,9 +75,7 @@ export class NavbarComponent implements OnInit {
   }
 
   nftNotification(){
-    const modalRef = this.modalService.open(NftNotificationComponent,{
-      size:'md',
-    });
+   this.router.navigate(['nft-upload']);
   }
 
   lotteryNavigate(){

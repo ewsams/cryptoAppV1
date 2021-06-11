@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header text-white h3 
+        d-flex justify-content-center" style="font-family: Impact;">
+            NFT Creation
+        </div>
+        <div class="card-body">
+            <form [formGroup]="nftNameInput">
+                <div class="form-group focused">
+                    <label class="form-control-label text-white" for="input-nftName">Nft Name</label>
+                    <small *ngIf="nftName.invalid && nftName.touched" id="nftNameHelpBlock"
+                        class="form-text text-warning font-weight-bold">
+                        Nft Name must be between 6 and 20 charecters long.
+                    </small>
+                    <input formControlName="nftName" type="text" id="nftName"
+                        class="form-control form-control-alternative white-placeholder" placeholder="Ntf Name" />
+                </div>
+            </form>
+
+            <button type="button" class="btn btn-primary ml-3" (click)="onSubmit()">Submit Nft Name</button>
+            <h5 class="card-title text-white h4 mt-2">Select a file for your NFT use .png or .jpg format:</h5>
+            <button class="btn btn-primary" (click)="inputNft.click()" [disabled]="!nftNameSubmitted">Select Your Artwork</button>
+            <input style="display: none;" type="file" (change)="upload($event)" accept=".png,.jpg" #inputNft />
+            <br><br>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                    aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+            <br>
+            <div class="btn-group d-flex justify-content-center" role="group" *ngIf="uploadState | async; let state">
+                <button type="button" class="btn btn-primary ml-2" (click)="task.cancel()"
+                    [disabled]="!(state === 'paused' || state ==='running')">Cancel</button>
+                <button type="button" class="btn btn-primary ml-2" (click)="task.resume()"
+                    [disabled]="state === 'running'">Resume</button>
+            </div>
+            <br><br>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                File Preview:
+                    <img style="width: 200px;height: 200px;"src="{{downloadSrc}}" alt="nftImage">
+            </div>
+        </div>
+    </div>
+</div>
