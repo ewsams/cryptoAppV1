@@ -35,6 +35,7 @@ export class NftUploadComponent implements OnInit {
   nftSub: Subscription;
   updateNftMessage: string;
   nftUpdate: boolean;
+  validDescription: string;
 
 
   constructor(
@@ -52,7 +53,11 @@ export class NftUploadComponent implements OnInit {
       nftName: ['', [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(20)]]
+        Validators.maxLength(20)]],
+        nftDescription: ['',[
+          Validators.required,
+          Validators.minLength(30),
+          Validators.maxLength(100)]]
     });
 
     this.userService.currentUser$.subscribe(user => this.user = user);
@@ -81,6 +86,7 @@ export class NftUploadComponent implements OnInit {
     if (this.nftNameInput.status === 'VALID') {
       this.nftNameSubmitted = true;
       this.validNftName = this.nftName.value;
+      this.validDescription = this.nftDescription.value;
       this.checkForUpdate();
     }
   }
@@ -88,20 +94,25 @@ export class NftUploadComponent implements OnInit {
     return this.nftNameInput.get('nftName');
   }
 
+  get nftDescription() {
+    return this.nftNameInput.get('nftDescription');
+  }
+
   nftDbUpload = () => {
     const id = this.user.id;
-    const nftName = this.nftName.value;
+    const nftName = this.validNftName;
+    const nftDescription = this.validDescription;
     this.urlSub = this.storage.ref(
-      `${this.path}_200x200`).getDownloadURL().subscribe(uri => {
+      `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
         this.nftUploadUri = uri;
         const nftData: any = {
           uri: this.nftUploadUri,
-          name: nftName
+          name: nftName,
+          description:nftDescription
         };
         this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
           data: { nftData }
         });
-        console.log(this.nftUploadUri);
         this.dbUploadComplete = true;
       });
   }
@@ -126,7 +137,6 @@ export class NftUploadComponent implements OnInit {
           const nftList = nfts;
           const updateNft: any =
             nftList.find((nft: any) => nft.data.nftData.name === this.nftName.value);
-          console.log(updateNft);
           if (updateNft) {
             this.nftUpdate = true;
             this.updateNftMessage =

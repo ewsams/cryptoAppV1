@@ -20,6 +20,20 @@
                             <input formControlName="nftName" type="text" id="input-nftName"
                                 class="form-control form-control-alternative white-placeholder"
                                 placeholder="Ntf Name between 6 and 20 characters" />
+                            
+
+                                <label class="form-control-label mt-2" for="input-nftDescription"
+                                >Nft Description</label
+                              >
+                                <small *ngIf="nftDescription.invalid && nftDescription.touched" id="nftDescriptionHelpBlock"
+                                    class="form-text text-warning font-weight-bold">
+                                    Nft Description must be 30 charecters long.
+                                </small>
+                                <textarea  formControlName="nftDescription" id="input-nftDescription"
+                                    class="form-control form-control-alternative white-placeholder"
+                                    placeholder="Ntf Description between 30 and 100 characters"
+                                    cols="90" rows="20" >
+                                </textarea> 
 
                         </div>
                     </form>
@@ -27,7 +41,7 @@
                 </div>
                 <div class="col-4 text-center">
                     <h5 class="card-title text-white">Select a file for your NFT use .png or .jpg format:
-                        <br>Images should be 200px by 200px
+                        <br>Images should be 300px by 300px
                     </h5>
                     <button class="btn btn-primary" (click)="inputNft.click()"
                         [disabled]="!nftNameSubmitted">Upload</button>
@@ -42,6 +56,7 @@
                 </div>
             </div>
             <br>
+            <p *ngIf="downloadURL | async;" class="text-success h4 d-flex justify-content-center">Nft Uploaded</p>
             <div class="btn-group d-flex justify-content-center" role="group" *ngIf="uploadState | async; let state">
                 <button type="button" class="btn btn-primary ml-2" (click)="task.cancel()"
                     [disabled]="!(state === 'paused' || state ==='running')">Cancel</button>
@@ -49,9 +64,9 @@
                     [disabled]="state === 'running'">Resume</button>
             </div>
             <br><br>
-            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-                File Preview:
-                <img style="width: 200px;height: 200px;" src="{{downloadSrc}}" alt="nftImage">
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info"  class="d-flex justify-content-center">
+               <p class="mr-2">File Preview:</p>
+                <img class="text-center mt-2" style="width: 300px;height: 300px;" src="{{downloadSrc}}" alt="nftImage">
             </div>
         </div>
     </div>
