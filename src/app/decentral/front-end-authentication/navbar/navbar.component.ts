@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit {
   }
 
   nftNotification(){
-   this.router.navigate(['nft-upload']);
+   this.router.navigate(['nft-market']);
   }
 
   lotteryNavigate(){

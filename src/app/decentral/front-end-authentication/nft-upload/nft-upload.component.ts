@@ -9,6 +9,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { FirestoreService } from '../services/firestore.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -36,18 +37,25 @@ export class NftUploadComponent implements OnInit {
   updateNftMessage: string;
   nftUpdate: boolean;
   validDescription: string;
+  colorSubscription: Subscription;
+  color: boolean;
 
 
   constructor(
     private storage: AngularFireStorage,
     private userService: UserService,
     private fb: FormBuilder,
-    private db: FirestoreService) { }
+    private db: FirestoreService,
+    public activeModal: NgbModal) { }
 
   ngOnInit() {
     this.nftUpdate = false;
     this.dbUploadComplete = false;
     this.nftNameSubmitted = false;
+
+    this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+      this.color = color;
+    });
 
     this.nftNameInput = this.fb.group({
       nftName: ['', [
@@ -150,6 +158,10 @@ export class NftUploadComponent implements OnInit {
         }
       )
     }
+  }
+
+  closeModal() {
+    this.activeModal.dismissAll();
   }
 }
 
