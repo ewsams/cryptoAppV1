@@ -5,9 +5,9 @@
     </div>
     <p class="d-flex justify-content-center text-success mt-2 h3">Your Nfts</p>
     <div class="container" style="margin-top: 1.5rem">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
           <div
-            class="card card-animation-on-hover col-md-3 col-sm-2"
+            class="card card-animation-on-hover col-md-4 col-sm-2"
             style="width: 20rem; margin: 1rem; border: solid rgb(166, 79, 245) 1px"
             *ngFor="
               let nft of userNfts
@@ -20,12 +20,24 @@
               alt="Card image cap"
             />
             <div class="card-body">
-              <p class="card-text">{{ nft.nftData.description }}</p>
+              <p class="card-text text-center">{{ nft.nftData.description }}</p>
               <a
                 (click)="onSelect(data)"
                 class="btn btn-primary btn-sm d-flex justify-content-center"
                 style="color: white"
                 >Add to Nft Market</a
+              >
+              <a
+                (click)="onSelect(data)"
+                class="btn btn-info btn-sm d-flex justify-content-center mt-1"
+                style="color: white"
+                >Update Nft</a
+              >
+              <a
+                (click)="onSelect(data)"
+                class="btn btn-danger btn-sm d-flex justify-content-center mt-1"
+                style="color: white"
+                >Delete Nft</a
               >
             </div>
           </div>
