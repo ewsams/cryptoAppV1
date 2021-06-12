@@ -24,7 +24,7 @@ export class UserService {
 
   private currentUser = new BehaviorSubject<any>(null);
   currentUser$ = this.currentUser.asObservable();
-  
+
   private currentUsersPrivate: Observable<any>;
 
   private userNfts = new BehaviorSubject<any>(null);
@@ -67,5 +67,16 @@ export class UserService {
         this.userNfts.next(nfts);
       }
     )
+  }
+  addNftToMarket = (nft: any, user: any) => {
+    console.log(nft);
+    this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
+      nftData: {
+        addedToMarket: true,
+        description:nft.nftData.description,
+        uri:nft.nftData.uri,
+        name:nft.nftData.name
+      }
+    });
   }
 }

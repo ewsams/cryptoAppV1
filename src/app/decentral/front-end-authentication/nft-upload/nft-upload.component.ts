@@ -116,7 +116,8 @@ export class NftUploadComponent implements OnInit {
         const nftData: any = {
           uri: this.nftUploadUri,
           name: nftName,
-          description:nftDescription
+          description:nftDescription,
+          addedToMarket:false
         };
         this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
         nftData 

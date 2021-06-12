@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { Web3Service } from 'src/app/util/web3.service';
 import { NftUploadComponent } from '../nft-upload/nft-upload.component';
 import { UserService } from '../services/user.service';
 
@@ -16,10 +17,14 @@ export class NftMarketComponent implements OnInit {
   pageSize = 9;
   totalPageElements: number;
   loading: boolean;
+  user: any;
+  userSub: Subscription;
+  marketSub: Subscription;
 
   constructor( 
     private userService:UserService,
-    private modal: NgbModal) { }
+    private modal: NgbModal,
+    private web3Service:Web3Service) { }
 
   ngOnInit() {
     this.loading = true;
@@ -30,6 +35,8 @@ export class NftMarketComponent implements OnInit {
         this.loading = false;
       }
     )
+    this.userSub = this.userService.currentUser$.subscribe(
+      user => {this.user = user});
   }
 
   createNft = () => {
@@ -38,9 +45,21 @@ export class NftMarketComponent implements OnInit {
     });
   }
 
+  addNftToMarket = async (nft:any) => {
+    const nftName = nft.nftData.name;
+    this.web3Service.payToAddToMarket();
+    this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
+      if(confirmed === true){
+        this.userService.addNftToMarket(nft,this.user);
+      }
+    })
+  }
+
   ngOnDestroy(){
-    if(this.userNftsSub){
+    if(this.userNftsSub && this.userSub && this.marketSub){
       this.userNftsSub.unsubscribe();
+      this.userSub.unsubscribe();
+      this.marketSub.unsubscribe();
     }
   }
 

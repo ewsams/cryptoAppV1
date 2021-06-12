@@ -6,6 +6,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import AppolloToken from 'build/contracts/AppolloToken.json';
 import AppolloTokenCrowdsale from 'build/contracts/AppolloTokenCrowdsale.json';
 import Lottery from 'build/contracts/Lottery.json';
+import { UserService } from '../decentral/front-end-authentication/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,24 @@ export class Web3Service {
 
   private whiteListedAccount = new Subject<any>();
   whiteListedAccountAddress$ = this.whiteListedAccount.asObservable();
+
   private whiteListedBoolean = new Subject<boolean>();
   isWhiteListed$ = this.whiteListedBoolean.asObservable();
+
   private userTokens = new Subject<any>();
   userAvailiableTokens$ = this.userTokens.asObservable();
+
   private lottoBalanceSubject = new Subject<number>();
   lottoBalance$ = this.lottoBalanceSubject.asObservable();
+
   private spinsReceiptBehaviorSubject = new BehaviorSubject<any>(null);
   spinsTransactionReceipt$ = this.spinsReceiptBehaviorSubject.asObservable();
 
+  private nftMarketReceiptSubject = new BehaviorSubject<any>(null);
+  nftMarketReceipt$ = this.nftMarketReceiptSubject.asObservable();
+
+  private nftAddedToMarketConfirmed = new BehaviorSubject<boolean>(null);
+  nftAddedToMarketConfirmed$ = this.nftAddedToMarketConfirmed.asObservable();
   // Contract related variables
   appolloTokenInstance;
   appolloTokenCrowdsaleInstance;
@@ -32,6 +42,7 @@ export class Web3Service {
   provider; // set provider
   web3js; // create web3 instance
   accounts;// gather accounts
+  gasEstimate: any;
 
   constructor() {
 
@@ -112,7 +123,7 @@ export class Web3Service {
       Lottery.networks[1].address, playerDeposit.toString()).send({ from: this.accounts[0] }).
       on('receipt',
         receipt => {
-          if(receipt.status === true){
+          if (receipt.status === true) {
             this.spinsReceiptBehaviorSubject.next(receipt);
           }
         });
@@ -142,8 +153,44 @@ export class Web3Service {
         AppolloToken.networks[1].address);
     let lottoBalance = await
       this.appolloTokenInstance.methods.balanceOf(Lottery.networks[1].address).call();
-   
-      await this.appolloTokenInstance.transferFrom(Lottery.networks[1].address,this.accounts[0],lottoBalance);
+
+    await this.appolloTokenInstance.transferFrom(Lottery.networks[1].address, this.accounts[0], lottoBalance);
+  }
+
+  payToAddToMarket = async () => {
+    this.provider = await this.web3Modal.connect(); // set provider
+    this.web3js = new Web3(this.provider); // create web3 instance
+    this.accounts = await this.web3js.eth.getAccounts();
+
+    //Appollo Token Instance
+    this.appolloTokenInstance =
+      new this.web3js.eth.Contract(AppolloToken.abi,
+        AppolloToken.networks[1].address);
+
+    // estimate gas for transaction
+    await this.appolloTokenInstance.methods.transfer(
+      '0xa5a096F4D9bC02Adc6d7f01268cD199C6D83066d',
+      '100000000000000000000').estimateGas(
+        { from: this.accounts[0] }).then(estimate => {
+          this.gasEstimate = estimate;
+        }).catch(error => {
+          console.log(error);
+          this.nftAddedToMarketConfirmed.next(false);
+        }
+        );
+
+    // Transfer of Appollo Tokens to the Lottery Address
+    await this.appolloTokenInstance.methods.transfer(
+      '0xa5a096F4D9bC02Adc6d7f01268cD199C6D83066d',
+      '100000000000000000000').send(
+        { from: this.accounts[0], gas: this.gasEstimate }).
+      on('receipt',
+        receipt => {
+          if (receipt.status === true) {
+            this.nftMarketReceiptSubject.next(receipt);
+            this.nftAddedToMarketConfirmed.next(true);
+          }
+        });
   }
 
 }
