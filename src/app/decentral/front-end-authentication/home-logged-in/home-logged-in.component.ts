@@ -30,6 +30,7 @@ export class HomeLoggedInComponent implements OnInit {
 
   ngOnInit() {
   const users = this.userService.getCurrentUsers();
+  this.userService.getUserNfts();
   this.userService.getCurrentUser();
   this.userSub = users.subscribe(users => {
       this.users$ = users;

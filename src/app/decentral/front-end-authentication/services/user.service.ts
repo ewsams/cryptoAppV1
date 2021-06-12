@@ -27,6 +27,9 @@ export class UserService {
   
   private currentUsersPrivate: Observable<any>;
 
+  private userNfts = new BehaviorSubject<any>(null);
+  userNfts$ = this.userNfts.asObservable();
+
   constructor(private afAuth: AngularFireAuth,
     public db: FirestoreService) { }
 
@@ -55,5 +58,14 @@ export class UserService {
       const user = currentUsers.find(user => user.id === currentUser.uid);
       this.currentUser.next(user);
     });
+  }
+
+  getUserNfts = async () => {
+    const currentUser = await this.afAuth.currentUser;
+    this.db.colWithIds$(`nftCollection/${currentUser.uid}/nftData`).subscribe(
+      nfts => {
+        this.userNfts.next(nfts);
+      }
+    )
   }
 }

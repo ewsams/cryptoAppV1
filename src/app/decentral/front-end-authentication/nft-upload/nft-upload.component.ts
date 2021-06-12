@@ -119,7 +119,7 @@ export class NftUploadComponent implements OnInit {
           description:nftDescription
         };
         this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
-          data: { nftData }
+        nftData 
         });
         this.dbUploadComplete = true;
       });
