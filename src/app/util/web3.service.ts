@@ -31,8 +31,9 @@ export class Web3Service {
   private nftMarketReceiptSubject = new BehaviorSubject<any>(null);
   nftMarketReceipt$ = this.nftMarketReceiptSubject.asObservable();
 
-  private nftAddedToMarketConfirmed = new BehaviorSubject<boolean>(null);
+  nftAddedToMarketConfirmed = new BehaviorSubject<boolean>(null);
   nftAddedToMarketConfirmed$ = this.nftAddedToMarketConfirmed.asObservable();
+  
   // Contract related variables
   appolloTokenInstance;
   appolloTokenCrowdsaleInstance;

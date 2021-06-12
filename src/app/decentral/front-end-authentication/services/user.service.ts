@@ -30,6 +30,9 @@ export class UserService {
   private userNfts = new BehaviorSubject<any>(null);
   userNfts$ = this.userNfts.asObservable();
 
+  private nftMarketNfts = new BehaviorSubject<any>(null);
+  marketNfts$ = this.nftMarketNfts.asObservable();
+
   constructor(private afAuth: AngularFireAuth,
     public db: FirestoreService) { }
 
@@ -69,15 +72,23 @@ export class UserService {
     )
   }
   addNftToMarket = (nft: any, user: any) => {
-    console.log(nft);
-    const nftData =  {
+    const nftData = {
       addedToMarket: true,
-      description:nft.nftData.description,
-      uri:nft.nftData.uri,
-      name:nft.nftData.name
+      description: nft.nftData.description,
+      uri: nft.nftData.uri,
+      name: nft.nftData.name
     }
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
       nftData
     });
+    this.db.set(`nftMarketCollection/${nft.nftData.name}_${user.id}`,{
+      nftData
+    });
+  }
+
+  getNftMarket = () => {
+   this.db.colWithIds$('nftMarketCollection').subscribe(marketNfts => {
+    this.nftMarketNfts.next(marketNfts);
+   });
   }
 }

@@ -17,7 +17,7 @@
         <div class="modal-body">
             <div class="row d-flex justify-content-center">
                 <div class="col-4 text-center">
-                    <p *ngIf="nftUpdate && nftName.value.length != 0"   class="text-success">{{ updateNftMessage}}</p>
+                    <p *ngIf="nftUniqueCheck && nftName.value.length != 0"   class="text-success">{{ updateNftMessage}}</p>
                     <form [formGroup]="nftNameInput">
                         <div class="form-group centered focused">
                             <label class="form-control-label text-white" for="input-nftName"

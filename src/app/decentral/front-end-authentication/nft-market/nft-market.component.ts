@@ -51,13 +51,14 @@ export class NftMarketComponent implements OnInit {
   }
 
   addNftToMarket = async (nft:any) => {
+    this.web3Service.nftAddedToMarketConfirmed.next(false);
     const nftName = nft.nftData.name;
     this.web3Service.payToAddToMarket();
     this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
       if(confirmed === true){
         this.userService.addNftToMarket(nft,this.user);
       }
-    })
+    });
   }
 
   ngOnDestroy(){

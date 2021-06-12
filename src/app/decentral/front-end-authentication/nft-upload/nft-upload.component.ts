@@ -35,7 +35,7 @@ export class NftUploadComponent implements OnInit {
   nftUploadSub: Subscription;
   nftSub: Subscription;
   updateNftMessage: string;
-  nftUpdate: boolean;
+  nftUniqueCheck: boolean;
   validDescription: string;
   colorSubscription: Subscription;
   color: boolean;
@@ -49,7 +49,7 @@ export class NftUploadComponent implements OnInit {
     public activeModal: NgbModal) { }
 
   ngOnInit() {
-    this.nftUpdate = false;
+    this.nftUniqueCheck = false;
     this.dbUploadComplete = false;
     this.nftNameSubmitted = false;
 
@@ -85,7 +85,6 @@ export class NftUploadComponent implements OnInit {
       finalize(() => this.downloadURL = this.ref.getDownloadURL())
     )
       .subscribe(element => {
-        console.log(element);
         this.path = element.ref.fullPath;
       });
   }
@@ -95,7 +94,7 @@ export class NftUploadComponent implements OnInit {
       this.nftNameSubmitted = true;
       this.validNftName = this.nftName.value;
       this.validDescription = this.nftDescription.value;
-      this.checkForUpdate();
+      this.checkUnique();
     }
   }
   get nftName() {
@@ -139,21 +138,22 @@ export class NftUploadComponent implements OnInit {
     }
   }
 
-  checkForUpdate = () => {
+  checkUnique = () => {
     if (this.nftNameSubmitted) {
       this.nftSub = this.db.col$(`nftCollection/${this.user.id}/nftData`).subscribe(
         nfts => {
           const nftList = nfts;
-          const updateNft: any =
-            nftList.find((nft: any) => nft.data.nftData.name === this.nftName.value);
-          if (updateNft) {
-            this.nftUpdate = true;
+          const notUniqueNft: any =
+            nftList.find((nft: any) => nft.nftData.name === this.nftName.value);
+          if (notUniqueNft) {
+            this.nftUniqueCheck = true;
+            this.nftNameSubmitted = false;
             this.updateNftMessage =
-              `${updateNft.data.nftData.name} is currently stored.
-            Choosing this name will update your current Nft.
+              `${notUniqueNft.nftData.name} is currently stored.
+            Please Submit a Unique name.
             `;
-          }else if(!updateNft){
-            this.nftUpdate = false;
+          }else if(!notUniqueNft){
+            this.nftUniqueCheck = false;
             this.updateNftMessage = '';
           }
         }
