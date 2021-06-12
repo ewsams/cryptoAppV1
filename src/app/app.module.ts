@@ -12,6 +12,8 @@ import { InMemoryCache } from 'apollo-angular-boost';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 // Local imports
 import { MetaModule } from './meta/meta.module';
 import { AppComponent } from './app.component';
@@ -39,6 +41,7 @@ import { LotteryService } from './util/lottery.service';
 import { LotteryInputComponent } from './decentral/front-end-authentication/lottery-input/lottery-input.component';
 import { PurchaseSpinsComponent } from './decentral/front-end-authentication/purchase-spins/purchase-spins.component';
 import { LotteryInfoComponent } from './decentral/front-end-authentication/lottery-info/lottery-info.component';
+import { NftUploadComponent } from './decentral/front-end-authentication/nft-upload/nft-upload.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { LotteryInfoComponent } from './decentral/front-end-authentication/lotte
     NftNotificationComponent,
     LotteryInputComponent,
     PurchaseSpinsComponent,
-    LotteryInfoComponent
+    LotteryInfoComponent,
+    NftUploadComponent
   ],
   imports: [
     HttpClientModule,
@@ -74,12 +78,14 @@ import { LotteryInfoComponent } from './decentral/front-end-authentication/lotte
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MetaModule
+    MetaModule,
+    AngularFireStorageModule
+    
   ],
   entryComponents: [NgbdModalContentComponent,
     MobileModalComponent, AboutUsModalComponent,
     SetUpComponent, WorkingComponent, OptionsNotifyComponent,
-    NftNotificationComponent, LotteryInputComponent,PurchaseSpinsComponent, LotteryInfoComponent],
+    NftNotificationComponent, LotteryInputComponent,PurchaseSpinsComponent, LotteryInfoComponent,NftUploadComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService, Web3Service, LotteryService],
   bootstrap: [AppComponent],

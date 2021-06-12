@@ -22,7 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [UserPricingService],
   exports: [routingComponents],
