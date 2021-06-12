@@ -70,13 +70,14 @@ export class UserService {
   }
   addNftToMarket = (nft: any, user: any) => {
     console.log(nft);
+    const nftData =  {
+      addedToMarket: true,
+      description:nft.nftData.description,
+      uri:nft.nftData.uri,
+      name:nft.nftData.name
+    }
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
-      nftData: {
-        addedToMarket: true,
-        description:nft.nftData.description,
-        uri:nft.nftData.uri,
-        name:nft.nftData.name
-      }
+      nftData
     });
   }
 }

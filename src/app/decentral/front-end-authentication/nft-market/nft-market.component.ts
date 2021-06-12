@@ -20,6 +20,8 @@ export class NftMarketComponent implements OnInit {
   user: any;
   userSub: Subscription;
   marketSub: Subscription;
+  colorSubscription: Subscription;
+  color: boolean;
 
   constructor( 
     private userService:UserService,
@@ -28,6 +30,9 @@ export class NftMarketComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+      this.color = color;
+    });
     this.userNftsSub = this.userService.userNfts$.subscribe(
       nfts => {
         this.userNfts = nfts;
@@ -56,10 +61,12 @@ export class NftMarketComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    if(this.userNftsSub && this.userSub && this.marketSub){
+    if(this.userNftsSub && this.userSub 
+      && this.marketSub && this.colorSubscription){
       this.userNftsSub.unsubscribe();
       this.userSub.unsubscribe();
       this.marketSub.unsubscribe();
+      this.colorSubscription.unsubscribe();
     }
   }
 
