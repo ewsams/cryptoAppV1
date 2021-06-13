@@ -7,13 +7,13 @@ import { NftUploadComponent } from '../nft-upload/nft-upload.component';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-nft-market',
-  templateUrl: './nft-market.component.html',
-  styleUrls: ['./nft-market.component.scss']
+  selector: 'app-nft-marketplace',
+  templateUrl: './nft-marketplace.component.html',
+  styleUrls: ['./nft-marketplace.component.scss']
 })
-export class NftMarketComponent implements OnInit {
-  userNftsSub: Subscription;
-  userNfts: any;
+export class NftMarketplaceComponent implements OnInit {
+  marketNftsSub: Subscription;
+  marketNfts: any;
   page = 1;
   pageSize = 9;
   totalPageElements: number;
@@ -35,10 +35,10 @@ export class NftMarketComponent implements OnInit {
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
     });
-    this.userNftsSub = this.userService.userNfts$.subscribe(
+    this.marketNftsSub = this.userService.marketNfts$.subscribe(
       nfts => {
-        this.userNfts = nfts;
-        this.totalPageElements = this.userNfts.length;
+        this.marketNfts = nfts;
+        this.totalPageElements = this.marketNfts.length;
         this.loading = false;
       }
     )
@@ -52,29 +52,19 @@ export class NftMarketComponent implements OnInit {
     });
   }
 
-  addNftToMarket = async (nft:any) => {
-    this.web3Service.nftAddedToMarketConfirmed.next(false);
-    const nftName = nft.nftData.name;
-    this.web3Service.payToAddToMarket();
-    this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
-      if(confirmed === true){
-        this.userService.addNftToMarket(nft,this.user);
-      }
-    });
-  }
-
   ngOnDestroy(){
-    if(this.userNftsSub && this.userSub 
-      && this.marketSub && this.colorSubscription){
-      this.userNftsSub.unsubscribe();
+    if(this.marketNftsSub && this.userSub 
+      && this.marketSub && this.colorSubscription
+    ){
+      this.marketNftsSub.unsubscribe();
       this.userSub.unsubscribe();
       this.marketSub.unsubscribe();
       this.colorSubscription.unsubscribe();
     }
   }
 
-  toNftMarket = () => {
-    this.router.navigate(['nft-market']);
+  toYourNfts = () => {
+    this.router.navigate(['your-nfts']);
   }
 
 }

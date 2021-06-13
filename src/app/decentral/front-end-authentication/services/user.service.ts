@@ -33,6 +33,7 @@ export class UserService {
   private nftMarketNfts = new BehaviorSubject<any>(null);
   marketNfts$ = this.nftMarketNfts.asObservable();
 
+
   constructor(private afAuth: AngularFireAuth,
     public db: FirestoreService) { }
 
