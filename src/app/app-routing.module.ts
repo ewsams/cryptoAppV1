@@ -22,12 +22,14 @@ import {SetUpComponent} from './decentral/front-end-authentication/set-up/set-up
 import { CountDownComponent } from './crypto-pricing/countdown/countdown.component';
 import { LoterryComponent } from './decentral/front-end-authentication/loterry/loterry.component';
 import { NftMarketComponent } from './decentral/front-end-authentication/nft-market/nft-market.component';
+import { NftMarketplaceComponent } from './decentral/front-end-authentication/nft-marketplace/nft-marketplace.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
   { path: 'lottery', component: LoterryComponent,canActivate:[AuthGuard]},
-  {path:'nft-market',component:NftMarketComponent,canActivate:[AuthGuard]},
+  {path:'your-nfts',component:NftMarketComponent,canActivate:[AuthGuard]},
+  {path:'nft-market',component:NftMarketplaceComponent,canActivate:[AuthGuard]},
   { path: '**', component: HomeComponent }
 ];
 
@@ -57,5 +59,6 @@ export const routingComponents = [
   SetUpComponent,
   CountDownComponent,
   LoterryComponent,
-  NftMarketComponent
+  NftMarketComponent,
+  NftMarketplaceComponent
 ];

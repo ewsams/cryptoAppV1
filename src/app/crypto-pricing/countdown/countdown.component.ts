@@ -1,28 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MobileModalComponent } from 'src/app/decentral/front-end-authentication/mobile-modal/mobile-modal.component';
-import { AboutUsModalComponent } from 'src/app/decentral/front-end-authentication/about-us-modal/about-us-modal.component';
-import { SetUpComponent } from 'src/app/decentral/front-end-authentication/set-up/set-up.component';
-
 import { Web3Service } from 'src/app/util/web3.service';
 import { AuthService } from 'src/app/decentral/front-end-authentication/services/auth.service';
+import { UserService } from 'src/app/decentral/front-end-authentication/services/user.service';
 
 @Component({
   selector: 'app-countdown',
   template: `
-  <div *ngIf="!isLoggedIn" class="row">
-  <div class="text-white mx-auto mobile-cta" (click)="openJoin()">Join Us</div>
-  <div class="text-white mx-auto mobile-cta" (click)="openAbout()">About Us</div>
-  <div class="text-white mx-auto mobile-cta" (click)="setUp()">Wallet Set Up</div>
-  <span class="connect-Cta text-white mx-auto mobile-cta btn btn-primary" (click)="connectWallet()">Connect Your Web3 Wallet</span>
-  </div>
-  <div class="row">
-  <div class="text-white mx-auto">ICO begins in:
-      <span id="days"> {{daysToDday}} {{Days}}</span>
-        <span id="hours"> {{hoursToDday}} {{Hours}}</span>
-      <span id="minutes"> {{minutesToDday}} {{Minutes}}</span>
-    <span id="seconds"> {{secondsToDday}} {{Seconds}} </span>
+  <div *ngIf="dateLoaded" class="row justify-content-center">
+  <div [ngStyle]="{'color': dangerColorDisplay ? 'rgb(255,129,123)' :'rgb(2,233,188)'}"
+  class="mx-auto text-center">Auction Ends:
+      <p [ngStyle]="{'color': dangerColorDisplay ? 'rgb(255,129,123)' :'rgb(2,233,188)'}"
+       id="days"> {{daysToDday}} {{Days}}</p>
+      <p [ngStyle]="{'color': dangerColorDisplay ? 'rgb(255,129,123)' :'rgb(2,233,188)'}"
+       id="hours"> {{hoursToDday}} {{Hours}}</p><br>
+    <p [ngStyle]="{'color': dangerColorDisplay ? 'rgb(255,129,123)' :'rgb(2,233,188)'}"
+     id="minutes"> {{minutesToDday}} {{Minutes}}</p>
+    <p [ngStyle]="{'color': dangerColorDisplay ? 'rgb(255,129,123)' :'rgb(2,233,188)'}"
+     id="seconds"> {{secondsToDday}} {{Seconds}} </p>
     </div>
   </div>
   `,
@@ -30,20 +25,25 @@ import { AuthService } from 'src/app/decentral/front-end-authentication/services
 })
 export class CountDownComponent implements OnInit, OnDestroy {
 
+  @Input() auctionStart;
   private subscription: Subscription;
   logginSub: Subscription;
   isLoggedIn: boolean;
+  auctionCountdowDate: any;
+  dateLoaded: boolean;
+  dangerColorDisplay: boolean;
 
-  constructor( private modal: NgbModal, 
+  constructor(
     private web3Service: Web3Service,
-    private authService: AuthService) {}
+    private authService: AuthService,
+    private userService: UserService) { }
 
   public dateNow = new Date();
-  public dDay = new Date('June 10 2021 00:00:00');
+  dDay: Date;
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;
-  SecondsInAMinute  = 60;
+  SecondsInAMinute = 60;
 
   public timeDifference;
   public secondsToDday;
@@ -57,76 +57,70 @@ export class CountDownComponent implements OnInit, OnDestroy {
   public Seconds = 'Seconds';
 
   private getTimeDifference() {
-      this.timeDifference = this.dDay.getTime() - new  Date().getTime();
-      this.allocateTimeUnits(this.timeDifference);
+    this.getCountdown();
+    this.timeDifference = this.dDay.getTime() - new Date().getTime();
+    this.allocateTimeUnits(this.timeDifference);
   }
 
-private allocateTimeUnits(timeDifference) {
-      this.secondsToDday =
+  private allocateTimeUnits(timeDifference) {
+    this.secondsToDday =
       Math.floor((timeDifference) /
-      (this.milliSecondsInASecond) % this.SecondsInAMinute);
-      this.minutesToDday =
+        (this.milliSecondsInASecond) % this.SecondsInAMinute);
+    this.minutesToDday =
       Math.floor((timeDifference) /
-      (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
-      this.hoursToDday =
+        (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+    this.hoursToDday =
       Math.floor((timeDifference) /
-      (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
-      this.daysToDday =
+        (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+    this.daysToDday =
       Math.floor((timeDifference) /
-      (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
-    }
+        (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+  }
 
   ngOnInit() {
-
+    this.dateLoaded = false;
     this.logginSub = this.authService.userLoggedInCheck$.subscribe(status => {
       this.isLoggedIn = status;
     });
-     this.subscription = interval(1000)
-         .subscribe(x => { this.getTimeDifference(); this.formatSingleValues(); });
-  
+    this.subscription = interval(1000)
+      .subscribe(x => {
+        this.getTimeDifference();
+        this.formatSingleValues();
+        if (this.daysToDday === 1){
+          this.dangerColorDisplay = true;
         }
+        this.dateLoaded = true;
+      });
 
- ngOnDestroy() {
+  }
+
+  ngOnDestroy() {
     this.subscription.unsubscribe();
     this.logginSub.unsubscribe();
- }
-
- openJoin() {
-  this.modal.open(MobileModalComponent, {
-    size: 'sm',
-  });
-}
-openAbout() {
-  this.modal.open(AboutUsModalComponent, {
-    size: 'sm',
-  });
-}
-setUp() {
-  this.modal.open(SetUpComponent, {
-    size: 'md',
-  });
-}
-formatSingleValues() {
-  if (this.daysToDday === 1) {
-    this.Days = 'Day';
-  } else {
-    this.Days = 'Days';
-  }  if (this.hoursToDday === 1) {
-    this.Hours = 'Hour';
-  } else {
-    this.Hours = 'Hours';
-  } if (this.minutesToDday === 1) {
-    this.Minutes = 'Minute';
-  } else {
-    this.Minutes = 'Minutes';
-  } if (this.secondsToDday === 1) {
-    this.Seconds = 'Second';
-  } else {
-    this.Seconds = 'Seconds';
   }
-}
 
-connectWallet() {
-  this.web3Service.connectAccount();
-}
+  formatSingleValues() {
+    if (this.daysToDday === 1) {
+      this.Days = 'Day';
+    } else {
+      this.Days = 'Days';
+    } if (this.hoursToDday === 1) {
+      this.Hours = 'Hour';
+    } else {
+      this.Hours = 'Hours';
+    } if (this.minutesToDday === 1) {
+      this.Minutes = 'Minute';
+    } else {
+      this.Minutes = 'Minutes';
+    } if (this.secondsToDday === 1) {
+      this.Seconds = 'Second';
+    } else {
+      this.Seconds = 'Seconds';
+    }
+  }
+
+  getCountdown = () => {
+    const auctionCountDownDate = this.auctionStart.setDate(this.auctionStart.getDate() + 7)
+    this.dDay = new Date(auctionCountDownDate);
+  }
 }

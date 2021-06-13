@@ -57,7 +57,7 @@ import { NftUploadComponent } from './decentral/front-end-authentication/nft-upl
     LotteryInputComponent,
     PurchaseSpinsComponent,
     LotteryInfoComponent,
-    NftUploadComponent
+    NftUploadComponent,
   ],
   imports: [
     HttpClientModule,
