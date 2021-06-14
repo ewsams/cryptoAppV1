@@ -26,17 +26,19 @@ export class NftMarketComponent implements OnInit {
   deleteBoolean: any;
   nftDeletMessage: string;
   nft: any;
+  nftUpdateBoolean: boolean;
 
-  constructor( 
-    private userService:UserService,
+  constructor(
+    private userService: UserService,
     private modal: NgbModal,
-    private web3Service:Web3Service,
-    private router:Router) { }
+    private web3Service: Web3Service,
+    private router: Router) { }
 
   ngOnInit() {
     this.userService.getUserNfts();
     this.loading = true;
     this.deleteBoolean = false;
+    this.nftUpdateBoolean = false;
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
     });
@@ -47,7 +49,7 @@ export class NftMarketComponent implements OnInit {
       }
     )
     this.userSub = this.userService.currentUser$.subscribe(
-      user => {this.user = user});
+      user => { this.user = user });
   }
 
   createNft = () => {
@@ -56,19 +58,19 @@ export class NftMarketComponent implements OnInit {
     });
   }
 
-  addNftToMarket = async (nft:any) => {
+  addNftToMarket = async (nft: any) => {
     this.web3Service.nftAddedToMarketConfirmed.next(null);
     this.web3Service.payToAddToMarket();
     this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
-      if(confirmed === true){
-        this.userService.addNftToMarket(nft,this.user);
+      if (confirmed === true) {
+        this.userService.addNftToMarket(nft, this.user);
       }
     });
   }
 
-  ngOnDestroy(){
-    if(this.userNftsSub && this.userSub 
-      && this.marketSub && this.colorSubscription){
+  ngOnDestroy() {
+    if (this.userNftsSub && this.userSub
+      && this.marketSub && this.colorSubscription) {
       this.userNftsSub.unsubscribe();
       this.userSub.unsubscribe();
       this.marketSub.unsubscribe();
@@ -81,14 +83,23 @@ export class NftMarketComponent implements OnInit {
   }
 
   deletNft = () => {
-     this.userService.deleteNonMarketUserNft(this.nft,this.user)
-     this.deleteBoolean = !this.deleteBoolean;
-    }
+    this.userService.deleteNonMarketUserNft(this.nft, this.user)
+    this.deleteBoolean = !this.deleteBoolean;
+  }
 
-  deleteNonMarketNftAlert = (nft:any) => {
+  deleteNonMarketNftAlert = (nft: any) => {
     this.nft = nft;
     this.nftDeletMessage = `Are You sure you want to delete ${nft.nftData.name}`
     this.deleteBoolean = !this.deleteBoolean
+  }
+
+  nftUpdate = (nft:any) => {
+      nft.nftData.isUpdating = true;
+      this.nftUpdateBoolean = !this.nftUpdateBoolean;
+  }
+
+  nftCancelUpdate = ($event,nft) => {
+    nft.nftData.isUpdating = $event;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   AngularFireStorage,
@@ -12,14 +12,14 @@ import { FirestoreService } from '../services/firestore.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-nft-upload',
-  templateUrl: './nft-upload.component.html',
-  styleUrls: ['./nft-upload.component.scss']
+  selector: 'app-update-nft',
+  templateUrl: './update-nft.component.html',
+  styleUrls: ['./update-nft.component.scss']
 })
-export class NftUploadComponent implements OnInit {
-
+export class UpdateNftComponent implements OnInit {
+  @Input() userUpdateNft;
+  @Output() cancelUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadProgress: Observable<number>;
@@ -40,6 +40,7 @@ export class NftUploadComponent implements OnInit {
   validDescription: string;
   colorSubscription: Subscription;
   color: boolean;
+  nftUpdateWarning: string;
 
 
   constructor(
@@ -48,9 +49,12 @@ export class NftUploadComponent implements OnInit {
     private fb: FormBuilder,
     private db: FirestoreService,
     public activeModal: NgbModal,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
+    this.nftUpdateWarning =
+      `${this.userUpdateNft.nftData.name} is currently stored.
+    Any Changes after submitting will update your Nft.`;
     this.nftUniqueCheck = false;
     this.dbUploadComplete = false;
     this.nftNameSubmitted = false;
@@ -60,14 +64,14 @@ export class NftUploadComponent implements OnInit {
     });
 
     this.nftNameInput = this.fb.group({
-      nftName: ['', [
+      nftName: [this.userUpdateNft.nftData.name, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20)]],
-        nftDescription: ['',[
-          Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(100)]]
+      nftDescription: [this.userUpdateNft.nftData.description, [
+        Validators.required,
+        Validators.minLength(30),
+        Validators.maxLength(100)]]
     });
 
     this.userService.currentUser$.subscribe(user => this.user = user);
@@ -111,22 +115,21 @@ export class NftUploadComponent implements OnInit {
     const id = this.user.id;
     const nftName = this.validNftName;
     const nftDescription = this.validDescription;
-    if(this.path){
-    this.urlSub = this.storage.ref(
-      `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
-        this.nftUploadUri = uri;
-        const nftData: any = {
-          uri: this.nftUploadUri,
-          name: nftName,
-          description:nftDescription,
-          addedToMarket:false,
-          isUpdating:false
-        };
-        this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
-        nftData 
+    if (this.path) {
+      this.urlSub = this.storage.ref(
+        `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
+          this.nftUploadUri = uri;
+          const nftData: any = {
+            uri: this.nftUploadUri,
+            name: nftName,
+            description: nftDescription,
+            addedToMarket: false
+          };
+          this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
+            nftData
+          });
+          this.dbUploadComplete = true;
         });
-        this.dbUploadComplete = true;
-      });
     }
   }
 
@@ -157,7 +160,7 @@ export class NftUploadComponent implements OnInit {
               `${notUniqueNft.nftData.name} is currently stored.
             Please Submit a Unique name.
             `;
-          }else if(!notUniqueNft){
+          } else if (!notUniqueNft) {
             this.nftUniqueCheck = false;
             this.updateNftMessage = '';
           }
@@ -168,6 +171,10 @@ export class NftUploadComponent implements OnInit {
 
   closeModal() {
     this.activeModal.dismissAll();
+  }
+
+  cancelUpdateEvent = () => {
+    this.cancelUpdate.emit(false);
   }
 }
 

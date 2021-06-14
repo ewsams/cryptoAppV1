@@ -23,6 +23,7 @@ import { CountDownComponent } from './crypto-pricing/countdown/countdown.compone
 import { LoterryComponent } from './decentral/front-end-authentication/loterry/loterry.component';
 import { NftMarketComponent } from './decentral/front-end-authentication/nft-market/nft-market.component';
 import { NftMarketplaceComponent } from './decentral/front-end-authentication/nft-marketplace/nft-marketplace.component';
+import { UpdateNftComponent } from './decentral/front-end-authentication/update-nft/update-nft.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -60,5 +61,6 @@ export const routingComponents = [
   CountDownComponent,
   LoterryComponent,
   NftMarketComponent,
-  NftMarketplaceComponent
+  NftMarketplaceComponent,
+  UpdateNftComponent
 ];
