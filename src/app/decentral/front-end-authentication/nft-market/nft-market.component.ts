@@ -36,13 +36,14 @@ export class NftMarketComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.deleteBoolean = false;
+    this.userService.getUserNfts();
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
     });
     this.userNftsSub = this.userService.userNfts$.subscribe(
       nfts => {
         this.userNfts = nfts;
-        this.totalPageElements = this.userNfts.length;
+        this.totalPageElements = nfts.length;
         this.loading = false;
       }
     )
@@ -57,7 +58,7 @@ export class NftMarketComponent implements OnInit {
   }
 
   addNftToMarket = async (nft:any) => {
-    this.web3Service.nftAddedToMarketConfirmed.next(false);
+    this.web3Service.nftAddedToMarketConfirmed.next(null);
     this.web3Service.payToAddToMarket();
     this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
       if(confirmed === true){
@@ -82,7 +83,7 @@ export class NftMarketComponent implements OnInit {
 
   deletNft = () => {
      this.userService.deleteNonMarketUserNft(this.nft,this.user)
-     this.deleteBoolean = !this.deleteBoolean
+     this.deleteBoolean = !this.deleteBoolean;
     }
 
   deleteNonMarketNftAlert = (nft:any) => {

@@ -1,14 +1,8 @@
 <div class="container" style="border:solid white 3px; position:absolute;top:0;"
-[ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
-<div class="close-icon" (click)="closeModal()">X</div>
-<img
-  src="../assets/img/appollo-logo.png"
-  style="width: 6rem; height: 6rem;"
-/>
-<img
-  src="../assets/img/appollo-text-logo.png"
-  style="width: 8rem; height: 8rem;"
-/>
+    [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}">
+    <div class="close-icon" (click)="closeModal()">X</div>
+    <img src="../assets/img/appollo-logo.png" style="width: 6rem; height: 6rem;" />
+    <img src="../assets/img/appollo-text-logo.png" style="width: 8rem; height: 8rem;" />
     <div>
         <div class="text-white h3 
         d-flex justify-content-center" style="font-family: Impact;">
@@ -17,33 +11,30 @@
         <div class="modal-body">
             <div class="row d-flex justify-content-center">
                 <div class="col-4 text-center">
-                    <p *ngIf="nftUniqueCheck && nftName.value.length != 0"   class="text-success">{{ updateNftMessage}}</p>
+                    <p *ngIf="nftUniqueCheck && nftName.value.length != 0" class="text-success">{{ updateNftMessage}}
+                    </p>
                     <form [formGroup]="nftNameInput">
                         <div class="form-group centered focused">
-                            <label class="form-control-label text-white" for="input-nftName"
-                            >Nft Name</label
-                          >
+                            <label class="form-control-label text-white" for="input-nftName">Nft Name</label>
                             <small *ngIf="nftName.invalid && nftName.touched" id="nftNameHelpBlock"
                                 class="form-text text-warning font-weight-bold">
-                                Nft Name must be 6 charecters long.
+                                Nft Name must be 6 charecters.
                             </small>
                             <input formControlName="nftName" type="text" id="input-nftName"
                                 class="form-control form-control-alternative white-placeholder"
                                 placeholder="Between 6 and 20 characters" />
-                            
 
-                                <label class="form-control-label mt-2 text-white" for="input-nftDescription"
-                                >Nft Description</label
-                              >
-                                <small *ngIf="nftDescription.invalid && nftDescription.touched" id="nftDescriptionHelpBlock"
-                                    class="form-text text-warning font-weight-bold">
-                                    Nft Description must be 30 charecters long.
-                                </small>
-                                <textarea  formControlName="nftDescription" id="input-nftDescription"
-                                    class="form-control form-control-alternative white-placeholder"
-                                    placeholder="Between 30 and 100 characters"
-                                    cols="90" rows="20" >
-                                </textarea> 
+
+                            <label class="form-control-label mt-2 text-white" for="input-nftDescription">Nft
+                                Description</label>
+                            <small *ngIf="nftDescription.invalid && nftDescription.touched" id="nftDescriptionHelpBlock"
+                                class="form-text text-warning font-weight-bold">
+                                Nft Description must be 30 charecters.
+                            </small>
+                            <textarea formControlName="nftDescription" id="input-nftDescription"
+                                class="form-control form-control-alternative white-placeholder"
+                                placeholder="Between 30 and 100 characters" cols="90" rows="20">
+                                </textarea>
 
                         </div>
                     </form>
@@ -74,8 +65,9 @@
                     [disabled]="state === 'running'">Resume</button>
             </div>
             <br><br>
-            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info"  class="d-flex justify-content-center">
-               <p class="mr-2">File Preview:</p>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info"
+                class="d-flex justify-content-center">
+                <p class="mr-2">File Preview:</p>
                 <img class="text-center mt-2" style="width: 300px;height: 300px;" src="{{downloadSrc}}" alt="nftImage">
             </div>
         </div>

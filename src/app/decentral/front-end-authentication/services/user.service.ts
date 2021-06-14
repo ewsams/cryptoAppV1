@@ -77,7 +77,10 @@ export class UserService {
       addedToMarket: true,
       description: nft.nftData.description,
       uri: nft.nftData.uri,
-      name: nft.nftData.name
+      name: nft.nftData.name,
+      createdBy:user.userName,
+      userId:user.id,
+      web3Address:user.web3Address
     }
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
       nftData

@@ -95,8 +95,10 @@ export class CountDownComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.logginSub.unsubscribe();
+    if(this.subscription && this.logginSub){
+      this.subscription.unsubscribe();
+      this.logginSub.unsubscribe();
+    }
   }
 
   formatSingleValues() {

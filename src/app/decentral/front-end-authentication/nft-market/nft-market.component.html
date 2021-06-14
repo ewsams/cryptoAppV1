@@ -33,7 +33,7 @@
                     class="btn btn-primary btn-sm d-flex justify-content-center text-center" style="color: white">Add to
                     Nft
                     Market</a>
-                <a *ngIf="nft.nftData.addedToMarket === false" (click)="onSelect(data)"
+                <a *ngIf="nft.nftData.addedToMarket === false" 
                     class="btn btn-info btn-sm d-flex justify-content-center mt-1 text-center"
                     style="color: white">Update Nft</a>
                 <a *ngIf="nft.nftData.addedToMarket === false" (click)="deleteNonMarketNftAlert(nft)"
