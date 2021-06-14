@@ -82,14 +82,38 @@ export class UserService {
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
       nftData
     });
-    this.db.set(`nftMarketCollection/${nft.nftData.name}_${user.id}`,{
+    this.db.set(`nftMarketCollection/${nft.nftData.name}_${user.id}`, {
       nftData
     });
   }
 
   getNftMarket = () => {
-   this.db.colWithIds$('nftMarketCollection').subscribe(marketNfts => {
-    this.nftMarketNfts.next(marketNfts);
-   });
+    this.db.colWithIds$('nftMarketCollection').subscribe(marketNfts => {
+
+      marketNfts.forEach(async (element) => {
+
+        const currentUser = await this.afAuth.currentUser;
+        const auctionEndDate = await element.createdAt.toDate().setDate(element.createdAt.toDate().getDate() + 7)
+        const endDate = new Date(auctionEndDate);
+        const currentTime = new Date(Date.now());
+
+        if (currentTime > endDate) {
+          const nftData = {
+            addedToMarket: false,
+            description: element.nftData.description,
+            uri: element.nftData.uri,
+            name: element.nftData.name
+          }
+          this.db.delete(`nftMarketCollection/${element.nftData.name}_${currentUser.uid}`);
+          this.db.update(`nftCollection/${currentUser.uid}/nftData/${nftData.name}`,
+            { nftData });
+        } 
+          this.nftMarketNfts.next(marketNfts);       
+      });
+    });
+  }
+
+  deleteNonMarketUserNft = (nft:any,user:any) => {
+    this.db.delete(`nftCollection/${user.id}/nftData/${nft.nftData.name}`);
   }
 }
