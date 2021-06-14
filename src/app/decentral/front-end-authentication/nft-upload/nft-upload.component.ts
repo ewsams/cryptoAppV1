@@ -109,6 +109,7 @@ export class NftUploadComponent implements OnInit {
     const id = this.user.id;
     const nftName = this.validNftName;
     const nftDescription = this.validDescription;
+    if(this.path){
     this.urlSub = this.storage.ref(
       `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
         this.nftUploadUri = uri;
@@ -123,6 +124,7 @@ export class NftUploadComponent implements OnInit {
         });
         this.dbUploadComplete = true;
       });
+    }
   }
 
 
