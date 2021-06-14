@@ -31,15 +31,14 @@ export class NftMarketplaceComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit() {
-    this.loading = true;
     this.userService.getNftMarket();
+    this.loading = true;
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
     });
     this.marketNftsSub = this.userService.marketNfts$.subscribe(
       nfts => {
         this.marketNfts = nfts;
-        this.totalPageElements = nfts.length;
         this.loading = false;
       }
     )

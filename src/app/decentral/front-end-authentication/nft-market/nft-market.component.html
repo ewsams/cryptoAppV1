@@ -43,7 +43,7 @@
         </div>
     </div>
     <nav *ngIf="!loading" aria-label="Page navigation example">
-        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalPageElements" [(page)]="page">
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="userNfts?.length" [(page)]="page">
             <ng-template ngbPaginationPrevious>Previous</ng-template>
             <ng-template ngbPaginationNext>Next</ng-template>
         </ngb-pagination>
