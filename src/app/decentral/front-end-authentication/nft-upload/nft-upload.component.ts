@@ -10,6 +10,7 @@ import { finalize, map } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { FirestoreService } from '../services/firestore.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class NftUploadComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private db: FirestoreService,
-    public activeModal: NgbModal) { }
+    public activeModal: NgbModal,
+    private router:Router) { }
 
   ngOnInit() {
     this.nftUniqueCheck = false;
