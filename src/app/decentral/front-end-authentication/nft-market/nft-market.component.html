@@ -23,9 +23,9 @@
               let nft of userNfts
                 | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
             ">
-            <div *ngIf="nft.nftData.isUpdating === true">
+            <ng-template [ngIf]="nft.nftData.isUpdating === true">
                 <app-update-nft [userUpdateNft]="nft" (cancelUpdate)="nftCancelUpdate($event,nft)"></app-update-nft>
-            </div>
+            </ng-template>
             <div *ngIf="nft.nftData.isUpdating === false || nft.nftData.addedToMarket">
                 <img class="card-img-top" data-src="{{ nft.nftData.uri}}" alt="Card image cap" />
                 <div *ngIf="!loading" class="card-body">

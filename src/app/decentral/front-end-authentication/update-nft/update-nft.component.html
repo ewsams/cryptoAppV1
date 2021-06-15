@@ -9,7 +9,8 @@
                 <div class="col-md-12 col-sm-12 text-center">
                     <p *ngIf="nftName.value.length != 0" class="text-success">{{ nftUpdateWarning}}
                     </p>
-                    <p *ngIf="nftUniqueCheck && nftName.value.length != 0" class="text-warning font-weight-bold mt-1">{{ updateNftMessage}}
+                    <p *ngIf="nftUniqueCheck && nftName.value.length != 0" class="text-warning font-weight-bold mt-1">{{
+                        updateNftMessage}}
                     </p>
                     <form [formGroup]="nftNameInput">
                         <div class="form-group centered focused">
@@ -41,14 +42,14 @@
                     <h5 class="text-white">Select a file for your NFT use .png or .jpg format:
                         <br>Images should be 300px by 300px
                     </h5>
-                    <button class="btn btn-primary" (click)="inputNft.click()"
-                    >Upload</button>
+                    <button class="btn btn-primary" (click)="inputNft.click()">Upload</button>
                     <input style="display: none;" type="file" (change)="upload($event)" accept=".png,.jpg" #inputNft />
                     <br><br>
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary btn-sm ml-2" (click)="onSubmit()">Submit</button>
-                    <button type="button" class="btn btn-primary btn-sm ml-2" (click)="cancelUpdateEvent()">Cancel Update</button>
+                    <button type="button" class="btn btn-primary btn-sm ml-2" (click)="cancelUpdateEvent()">Cancel
+                        Update</button>
                 </div>
             </div>
             <div class="progress mt-4">
@@ -68,7 +69,6 @@
             <br><br>
             <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info"
                 class="d-flex justify-content-center">
-                <p class="mr-2">File Preview:</p>
                 <img class="text-center mt-2" style="width: 300px;height: 300px;" src="{{downloadSrc}}" alt="nftImage">
             </div>
         </div>

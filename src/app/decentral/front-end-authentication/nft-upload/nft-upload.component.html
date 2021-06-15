@@ -67,7 +67,6 @@
             <br><br>
             <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info"
                 class="d-flex justify-content-center">
-                <p class="mr-2">File Preview:</p>
                 <img class="text-center mt-2" style="width: 300px;height: 300px;" src="{{downloadSrc}}" alt="nftImage">
             </div>
         </div>
