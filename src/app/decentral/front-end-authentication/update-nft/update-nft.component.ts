@@ -101,6 +101,7 @@ export class UpdateNftComponent implements OnInit {
       this.validNftName = this.nftName.value;
       this.validDescription = this.nftDescription.value;
       this.checkUnique();
+      this.nftDbUpload();
     }
   }
   get nftName() {
@@ -118,16 +119,27 @@ export class UpdateNftComponent implements OnInit {
     if (this.path) {
       this.urlSub = this.storage.ref(
         `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
-          this.nftUploadUri = uri;
+          this.nftUploadUri = uri ? uri: this.userUpdateNft.nftData.uri;
           const nftData: any = {
             uri: this.nftUploadUri,
             name: nftName,
             description: nftDescription,
-            addedToMarket: false
+            addedToMarket: false,
+            isUpdating: false
           };
-          this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
-            nftData
-          });
+          if (this.userUpdateNft.nftData.name != this.validNftName 
+            && this.nftUniqueCheck === false) {
+              this.db.upsert(`nftCollection/${id}/nftData/${this.validNftName}`, {
+                nftData
+              });
+            this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
+          }    
+
+          if (this.userUpdateNft.nftData.name === this.validNftName && this.nftUniqueCheck === false) {
+            this.db.update(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`, {
+              nftData
+            });
+          }
           this.dbUploadComplete = true;
         });
     }
@@ -136,7 +148,6 @@ export class UpdateNftComponent implements OnInit {
 
 
   ngOnDestroy() {
-    this.nftDbUpload();
     if (this.dbUploadComplete) {
       this.nftUploadSub.unsubscribe();
       this.urlSub.unsubscribe();
@@ -152,8 +163,12 @@ export class UpdateNftComponent implements OnInit {
         nfts => {
           const nftList = nfts;
           const notUniqueNft: any =
-            nftList.find((nft: any) => nft.nftData.name === this.nftName.value);
-          if (notUniqueNft) {
+            nftList.find((nft: any) =>
+              nft.nftData.name === this.nftName.value
+            );
+          if (notUniqueNft &&
+            this.userUpdateNft.nftData.name 
+            != this.validNftName) {
             this.nftUniqueCheck = true;
             this.nftNameSubmitted = false;
             this.updateNftMessage =
