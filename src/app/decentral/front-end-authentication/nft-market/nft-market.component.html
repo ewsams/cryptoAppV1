@@ -23,27 +23,27 @@
               let nft of userNfts
                 | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
             ">
-            <ng-template [ngIf]="nft.nftData.isUpdating === true">
+            <ng-template [ngIf]="nft?.nftData.isUpdating === true">
                 <app-update-nft [userUpdateNft]="nft" (cancelUpdate)="nftCancelUpdate($event,nft)"></app-update-nft>
             </ng-template>
-            <div *ngIf="nft.nftData.isUpdating === false || nft.nftData.addedToMarket">
-                <img class="card-img-top" data-src="{{ nft.nftData.uri}}" alt="Card image cap" />
+            <div *ngIf="nft?.nftData.isUpdating === false || nft?.nftData.addedToMarket">
+                <img class="card-img-top" data-src="{{ nft?.nftData.uri}}" alt="Card image cap" />
                 <div *ngIf="!loading" class="card-body">
-                    <p class="card-text text-center h4">{{ nft.nftData.name }}</p>
-                    <p class="card-text text-center">{{ nft.nftData.description }}</p>
-                    <p *ngIf="nft.nftData.addedToMarket === true" class="text-success text-center h4">Currently in the
+                    <p class="card-text text-center h4">{{ nft?.nftData.name }}</p>
+                    <p class="card-text text-center">{{ nft?.nftData.description }}</p>
+                    <p *ngIf="nft?.nftData.addedToMarket === true" class="text-success text-center h4">Currently in the
                         Nft
                         Market</p>
-                    <a *ngIf="nft.nftData.addedToMarket === false && nft.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
                         (click)="addNftToMarket(nft)"
                         class="btn btn-primary btn-sm d-flex justify-content-center text-center"
                         style="color: white">Add to
                         Nft
                         Market</a>
-                    <a *ngIf="nft.nftData.addedToMarket === false && nft.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
                         class="btn btn-info btn-sm d-flex justify-content-center mt-1 text-center" style="color: white"
                         (click)="nftUpdate(nft)">Update Nft</a>
-                    <a *ngIf="nft.nftData.addedToMarket === false && nft.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
                         (click)="deleteNonMarketNftAlert(nft)"
                         class="btn btn-danger btn-sm d-flex justify-content-center mt-1 text-center"
                         style="color: white">Delete Nft</a>

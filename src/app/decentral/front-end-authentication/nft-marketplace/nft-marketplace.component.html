@@ -15,14 +15,14 @@
               let nft of marketNfts
                 | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
             ">
-            <img class="card-img-top" data-src="{{ nft.nftData.uri}}" alt="Card image cap" />
+            <img class="card-img-top" data-src="{{ nft?.nftData.uri}}" alt="Card image cap" />
             <div *ngIf="!loading" class="card-body">
-                <p class="card-text text-center h4">{{ nft.nftData.name }}</p>
-                <p class="card-text text-center">{{ nft.nftData.description }}</p>
-                <p class="card-text text-center h4">created on: {{ nft.createdAt.toDate() | date: 'dd/MM/yyyy' }}
-                    <p class="card-text text-center h4">created by: {{ nft.nftData.createdBy }}
+                <p class="card-text text-center h4">{{ nft?.nftData.name }}</p>
+                <p class="card-text text-center">{{ nft?.nftData.description }}</p>
+                <p class="card-text text-center h4">created on: {{ nft?.createdAt.toDate() | date: 'dd/MM/yyyy' }}
+                    <p class="card-text text-center h4">created by: {{ nft?.nftData.createdBy }}
                 </p>
-                <app-countdown [auctionStart]="nft.createdAt.toDate()"></app-countdown>
+                <app-countdown [auctionStart]="nft?.createdAt.toDate()"></app-countdown>
 
             </div>
         </div>
