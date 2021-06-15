@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="d-flex col-md-12 mt-3 text-center">
+            <button class="btn btn-sm btn-primary text-center ml-2" (click)="addNftLikes(user)">
+                <span *ngIf="nft?.nftData.likes != 0" class="d-inline mr-2">{{ nft?.nftData.likes }}</span>
+                <i class="far fa-thumbs-up fa-2x mt-1"></i>
+            </button>
+            <button class="btn btn-sm btn-success text-center ml-2">
+                <img src="../../../../assets/img/resizedBtnCoin.png" />
+                <span class="d-inline mr-2"><strong class="ml-1">Bid On</strong></span>
+            </button>
+        </div>
+    </div>
+</div>

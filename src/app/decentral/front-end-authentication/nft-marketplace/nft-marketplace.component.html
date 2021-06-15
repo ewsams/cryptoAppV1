@@ -23,10 +23,7 @@
                 <p class="card-text text-center h4">created by: {{ nft?.nftData.createdBy }}
                 </p>
                 <app-countdown [auctionStart]="nft?.createdAt.toDate()"></app-countdown>
-                <div class="d-flex justify-content-center mt-2">
-                    <p *ngIf="nft?.nftData.likes != 0" class="card-text text-center h4">likes: {{ nft?.nftData.likes }} </p>
-                    <p class="btn btn-sm btn-primary text-center ml-2" (click)="addNftLikes(nft)">add like</p>
-                </div>
+                <app-nft-market-card-nav [nft]="nft"></app-nft-market-card-nav>
             </div>
         </div>
     </div>

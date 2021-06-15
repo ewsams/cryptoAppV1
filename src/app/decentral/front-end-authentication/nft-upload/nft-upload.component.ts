@@ -120,7 +120,8 @@ export class NftUploadComponent implements OnInit {
           name: nftName,
           description:nftDescription,
           addedToMarket:false,
-          isUpdating:false
+          isUpdating:false,
+          likes:0
         };
         this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
         nftData 

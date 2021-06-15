@@ -24,6 +24,7 @@ import { LoterryComponent } from './decentral/front-end-authentication/loterry/l
 import { NftMarketComponent } from './decentral/front-end-authentication/nft-market/nft-market.component';
 import { NftMarketplaceComponent } from './decentral/front-end-authentication/nft-marketplace/nft-marketplace.component';
 import { UpdateNftComponent } from './decentral/front-end-authentication/update-nft/update-nft.component';
+import { NftMarketCardNavComponent } from './decentral/front-end-authentication/nft-market-card-nav/nft-market-card-nav.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -62,5 +63,6 @@ export const routingComponents = [
   LoterryComponent,
   NftMarketComponent,
   NftMarketplaceComponent,
-  UpdateNftComponent
+  UpdateNftComponent,
+  NftMarketCardNavComponent
 ];

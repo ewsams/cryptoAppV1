@@ -91,11 +91,11 @@ export class UserService {
     });
   }
 
-  addLike = (nft:any,user:any) => {
-    this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
+  addLike = (nft:any) => {
+    this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
       "nftData.likes": 1 + nft.nftData.likes 
     });
-    this.db.update(`nftMarketCollection/${nft.nftData.name}_${user.id}`, {
+    this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
       "nftData.likes": 1 + nft.nftData.likes
     });
   }
