@@ -47,6 +47,8 @@
                         (click)="deleteNonMarketNftAlert(nft)"
                         class="btn btn-danger btn-sm d-flex justify-content-center mt-1 text-center"
                         style="color: white">Delete Nft</a>
+                    <p *ngIf="nft?.nftData.likes != 0" class="card-text text-center h4">likes: {{ nft?.nftData.likes }}
+                    </p>
                 </div>
             </div>
         </div>

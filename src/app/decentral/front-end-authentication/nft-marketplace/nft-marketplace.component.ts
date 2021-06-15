@@ -67,4 +67,8 @@ export class NftMarketplaceComponent implements OnInit {
     this.router.navigate(['your-nfts']);
   }
 
+  addNftLikes = (nft:any) => {
+    this.userService.addLike(nft,this.user);
+  }
+
 }

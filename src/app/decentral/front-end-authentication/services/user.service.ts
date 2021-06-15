@@ -80,13 +80,23 @@ export class UserService {
       name: nft.nftData.name,
       createdBy:user.userName,
       userId:user.id,
-      web3Address:user.web3Address
+      web3Address:user.web3Address,
+      likes:0
     }
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
-      nftData
+      nftData,
     });
     this.db.set(`nftMarketCollection/${nft.nftData.name}_${user.id}`, {
-      nftData
+      nftData,
+    });
+  }
+
+  addLike = (nft:any,user:any) => {
+    this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
+      "nftData.likes": 1 + nft.nftData.likes 
+    });
+    this.db.update(`nftMarketCollection/${nft.nftData.name}_${user.id}`, {
+      "nftData.likes": 1 + nft.nftData.likes
     });
   }
 
