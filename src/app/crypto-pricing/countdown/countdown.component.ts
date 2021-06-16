@@ -86,7 +86,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
       .subscribe(x => {
         this.getTimeDifference();
         this.formatSingleValues();
-        if (this.daysToDday === 1){
+        if (this.daysToDday === 2){
           this.dangerColorDisplay = true;
         }
         this.dateLoaded = true;

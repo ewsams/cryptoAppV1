@@ -23,6 +23,7 @@ export class NftMarketplaceComponent implements OnInit {
   marketSub: Subscription;
   colorSubscription: Subscription;
   color: boolean;
+  dispayCountdown: boolean;
 
   constructor( 
     private userService:UserService,

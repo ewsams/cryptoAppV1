@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,17 +9,21 @@ import { UserService } from '../services/user.service';
 export class NftMarketCardNavComponent implements OnInit {
   @Input() nft:any;
   user: any;
+  userIsPresent: boolean;
 
   constructor(private userService:UserService) { }
 
   ngOnInit() {
     this.userService.currentUser$.subscribe(user => {
       this.user = user;
-    })
+      this.userIsPresent = true;
+    });
   }
 
   addNftLikes = () => {
-    this.userService.addLike(this.nft);
+    if(this.userIsPresent){
+      this.userService.addLike(this.nft,this.user);
+    }
   }
 
 }
