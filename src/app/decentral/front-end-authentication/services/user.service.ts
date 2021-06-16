@@ -94,10 +94,8 @@ export class UserService {
   }
 
   addLike = (nft: any, user: any) => {
-
-   this.checkForPriorLike(nft,user);
-    
-   if (!this.userPreviouslyLiked) {
+    this.checkForPriorLike(nft, user);
+    if (!this.userPreviouslyLiked) {
 
       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
         likedBy: user.id
@@ -120,6 +118,7 @@ export class UserService {
         "nftData.likes": nft.nftData.likes - 1
       });
     }
+    this.userPreviouslyLiked = null;
   }
 
   getNftMarket = () => {
@@ -155,11 +154,13 @@ export class UserService {
     this.db.delete(`nftCollection/${user.id}/nftData/${nft.nftData.name}`);
   }
 
-  checkForPriorLike = (nft:any,user:any) => {
+  checkForPriorLike = (nft: any, user: any) => {
     this.db.colWithIds$(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`).subscribe(
-      async userLiked => {
-        this.userPreviouslyLiked = await userLiked.find(userLiked => userLiked.likedBy === user.id);
-      }
+      userLiked => {
+        const userLikedList = userLiked;
+        this.userPreviouslyLiked = userLikedList.find(userLiked => userLiked.likedBy === user.id);
+        console.log(userLikedList,`userAlreadyLike: ${this.userPreviouslyLiked}`)
+      },
     );
   }
 }
