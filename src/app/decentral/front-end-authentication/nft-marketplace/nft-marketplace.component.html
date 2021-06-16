@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-4 col-sm-3 text-center">
+    <div class="col-md-6 col-sm-3 text-center">
         <button type="button" class="btn btn-primary text-center" (click)="toYourNfts()">Your Nfts</button>
         <button type="button" class="btn btn-success ml-2 text-center">Nft Market</button>
         <button type="button" class="btn btn-info ml-2 text-center" (click)="createNft()">Nft Creation</button>
@@ -10,7 +10,7 @@
 <div class="container" style="margin-top: 1.5rem">
     <div class="row d-flex justify-content-center">
         <div class="card card-animation-on-hover col-md-4 col-sm-2"
-            [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}"
+            [ngClass]="color ? 'gradient-background-dark' : 'gradient-background-light'"
             style="width: 20rem; margin: 1rem; border: solid rgb(166, 79, 245) 1px" *ngFor="
               let nft of marketNfts
                 | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize

@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-6 col-sm-3 text-center">
+    <div class="col-md-5 col-sm-3 text-center">
         <button type="button" class="btn btn-primary text-center">Your Nfts</button>
         <button type="button" class="btn btn-success ml-2 text-center" (click)="toNftMarket()">Nft Market</button>
         <button type="button" class="btn btn-info ml-2 text-center" (click)="createNft()">Nft Creation</button>
@@ -17,7 +17,7 @@
 <p class="d-flex justify-content-center text-success mt-2 h3">Your Nfts</p>
 <div class="container" style="margin-top: 1.5rem">
     <div class="row d-flex justify-content-center">
-        <div class="card card-animation-on-hover col-md-4 col-sm-2"
+        <div class="card card-animation-on-hover col-md-3 col-sm-2"
             [ngStyle]="{'background-color': color ? 'rgb(121,141,179)' :'rgb(35,40,50)'}"
             style="width: 20rem; margin: 1rem; border: solid rgb(166, 79, 245) 1px" *ngFor="
               let nft of userNfts
@@ -47,9 +47,9 @@
                         (click)="deleteNonMarketNftAlert(nft)"
                         class="btn btn-danger btn-sm d-flex justify-content-center mt-1 text-center"
                         style="color: white">Delete Nft</a>
-                    <div *ngIf="nft?.nftData.likes != 0">
+                    <div *ngIf="!loading && nft?.nftData.likes != 0">
                         <p class="btn btn-sm btn-primary text-center ml-2">
-                            <span class="d-inline text-center mr-2">{{ nft?.nftData.likes }} likes</span>
+                            <span class="d-inline text-center mr-2" *ngIf="!loading && nft?.nftData.likes != 0">{{ nft?.nftData.likes }} likes</span>
                         </p>
                     </div>
                 </div>

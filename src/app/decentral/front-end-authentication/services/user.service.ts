@@ -32,6 +32,7 @@ export class UserService {
 
   private nftMarketNfts = new BehaviorSubject<any>(null);
   marketNfts$ = this.nftMarketNfts.asObservable();
+  auctionEndDate: string | number | Date;
 
 
   constructor(private afAuth: AngularFireAuth,
@@ -106,8 +107,11 @@ export class UserService {
       marketNfts.forEach(async (element) => {
 
         const currentUser = await this.afAuth.currentUser;
-        const auctionEndDate = await element.createdAt.toDate().setDate(element.createdAt.toDate().getDate() + 7)
-        const endDate = new Date(auctionEndDate);
+        if(element.createdAt){
+          this.auctionEndDate = await element.createdAt.toDate().setDate(
+            element.createdAt.toDate().getDate() + 7);
+        }
+        const endDate = new Date(this.auctionEndDate);
         const currentTime = new Date(Date.now());
 
         if (currentTime > endDate) {

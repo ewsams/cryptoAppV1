@@ -5,3 +5,41 @@
     }
   }
   
+  .gradient-background-light {
+    background: linear-gradient(62deg, #4b0799, #3f0f75, #074b64, #04436d);
+      animation: gradient 15s ease infinite; 
+       background-size: 400% 400%;
+   
+ }
+
+ .gradient-background-dark {
+    background: linear-gradient(62deg, #EE7752, #bc3ce7, #23A6D5, #23D5AB);
+      animation: gradient 15s ease infinite; 
+       background-size: 400% 400%;
+   
+ }
+
+
+
+ @-webkit-keyframes gradient{
+   0% {
+     background-position: 0 50%;
+   }
+   50% {
+     background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+ }
+ @keyframes gradient{
+   0% {
+     background-position: 0 50%;
+   }
+   50% {
+     background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+ }
