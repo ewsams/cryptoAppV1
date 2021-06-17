@@ -93,28 +93,28 @@ export class UserService {
     });
   }
 
-  addLike = (nft: any, user: any) => {
+  addLike = async (nft: any, user: any) => {
     this.checkForPriorLike(nft, user);
     if (!this.userPreviouslyLiked) {
 
-      this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
+       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
         likedBy: user.id
       });
 
-      this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
+       this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
         "nftData.likes": nft.nftData.likes + 1
       });
-      this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
+       this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
         "nftData.likes": nft.nftData.likes + 1
       });
     }
     else if (this.userPreviouslyLiked.likedBy === user.id) {
-      this.db.delete(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`)
+       this.db.delete(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`)
 
-      this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
+       this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
         "nftData.likes": nft.nftData.likes - 1
       });
-      this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
+       this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
         "nftData.likes": nft.nftData.likes - 1
       });
     }
@@ -159,7 +159,6 @@ export class UserService {
       userLiked => {
         const userLikedList = userLiked;
         this.userPreviouslyLiked = userLikedList.find(userLiked => userLiked.likedBy === user.id);
-        console.log(userLikedList,`userAlreadyLike: ${this.userPreviouslyLiked}`)
       },
     );
   }
