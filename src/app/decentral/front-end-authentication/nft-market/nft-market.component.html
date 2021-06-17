@@ -34,22 +34,24 @@
                     <p *ngIf="nft?.nftData.addedToMarket === true" class="text-success text-center h4">Currently in the
                         Nft
                         Market</p>
-                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false && nft?.nftData.loadingAnimation === false"
                         (click)="addNftToMarket(nft)"
                         class="btn btn-primary btn-sm d-flex justify-content-center text-center"
                         style="color: white">Add to
                         Nft
                         Market</a>
-                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false && nft?.nftData.loadingAnimation === false"
                         class="btn btn-info btn-sm d-flex justify-content-center mt-1 text-center" style="color: white"
                         (click)="nftUpdate(nft)">Update Nft</a>
-                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false"
+                    <a *ngIf="nft?.nftData.addedToMarket === false && nft?.nftData.isUpdating === false && nft?.nftData.loadingAnimation === false"
                         (click)="deleteNonMarketNftAlert(nft)"
                         class="btn btn-danger btn-sm d-flex justify-content-center mt-1 text-center"
                         style="color: white">Delete Nft</a>
+                        <div *ngIf="nft?.nftData.loadingAnimation === true"><app-upload-promise-graphic></app-upload-promise-graphic></div>
                     <div *ngIf="!loading && nft?.nftData.likes != 0">
                         <p class="btn btn-sm btn-primary text-center ml-2">
-                            <span class="d-inline text-center mr-2" *ngIf="!loading && nft?.nftData.likes != 0">{{ nft?.nftData.likes }} likes</span>
+                            <span class="d-inline text-center mr-2" *ngIf="!loading && nft?.nftData.likes != 0">{{
+                                nft?.nftData.likes }} likes</span>
                         </p>
                     </div>
                 </div>

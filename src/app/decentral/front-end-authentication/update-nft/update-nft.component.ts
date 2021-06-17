@@ -126,11 +126,12 @@ export class UpdateNftComponent implements OnInit {
             description: nftDescription,
             addedToMarket: false,
             isUpdating: false,
-            likes: 0
+            likes: 0,
+            loadingAnimation:false
           };
           if (this.userUpdateNft.nftData.name != this.validNftName
             && this.nftUniqueCheck === false) {
-              this.db.upsert(`nftCollection/${id}/nftData/${this.validNftName}`, {
+              this.db.update(`nftCollection/${id}/nftData/${this.validNftName}`, {
                 nftData
               });
               this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);

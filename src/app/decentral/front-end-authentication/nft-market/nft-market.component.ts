@@ -27,6 +27,7 @@ export class NftMarketComponent implements OnInit {
   nftDeletMessage: string;
   nft: any;
   nftUpdateBoolean: boolean;
+  addingNftToMarketAnimation: boolean;
 
   constructor(
     private userService: UserService,
@@ -38,6 +39,7 @@ export class NftMarketComponent implements OnInit {
     this.userService.getUserNfts();
     this.loading = true;
     this.deleteBoolean = false;
+    this.addingNftToMarketAnimation = false;
     this.nftUpdateBoolean = false;
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
       this.color = color;
@@ -62,7 +64,11 @@ export class NftMarketComponent implements OnInit {
     this.web3Service.nftAddedToMarketConfirmed.next(null);
     this.web3Service.payToAddToMarket();
     this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
-      if (confirmed === true) {
+      if (confirmed != true) {
+        nft.nftData.loadingAnimation = true;
+      }
+      else if (confirmed === true) {
+        nft.nftData.loadingAnimation = false;
         this.userService.addNftToMarket(nft, this.user);
       }
     });

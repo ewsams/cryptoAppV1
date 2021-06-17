@@ -25,6 +25,7 @@ import { NftMarketComponent } from './decentral/front-end-authentication/nft-mar
 import { NftMarketplaceComponent } from './decentral/front-end-authentication/nft-marketplace/nft-marketplace.component';
 import { UpdateNftComponent } from './decentral/front-end-authentication/update-nft/update-nft.component';
 import { NftMarketCardNavComponent } from './decentral/front-end-authentication/nft-market-card-nav/nft-market-card-nav.component';
+import { UploadPromiseGraphicComponent } from './decentral/front-end-authentication/upload-promise-graphic/upload-promise-graphic.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -64,5 +65,6 @@ export const routingComponents = [
   NftMarketComponent,
   NftMarketplaceComponent,
   UpdateNftComponent,
-  NftMarketCardNavComponent
+  NftMarketCardNavComponent,
+  UploadPromiseGraphicComponent
 ];
