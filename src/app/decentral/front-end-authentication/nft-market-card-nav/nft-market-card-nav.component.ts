@@ -7,11 +7,11 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./nft-market-card-nav.component.scss']
 })
 export class NftMarketCardNavComponent implements OnInit {
-  @Input() nft:any;
+  @Input() nft: any;
   user: any;
   userIsPresent: boolean;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.currentUser$.subscribe(user => {
@@ -21,8 +21,8 @@ export class NftMarketCardNavComponent implements OnInit {
   }
 
   addNftLikes = () => {
-    if(this.userIsPresent){
-      this.userService.addLike(this.nft,this.user);
+    if (this.userIsPresent) {
+      this.userService.addLike(this.nft, this.user);
     }
   }
 

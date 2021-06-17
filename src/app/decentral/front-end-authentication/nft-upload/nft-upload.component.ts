@@ -48,7 +48,7 @@ export class NftUploadComponent implements OnInit {
     private fb: FormBuilder,
     private db: FirestoreService,
     public activeModal: NgbModal,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.nftUniqueCheck = false;
@@ -64,7 +64,7 @@ export class NftUploadComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20)]],
-        nftDescription: ['',[
+        nftDescription: ['', [
           Validators.required,
           Validators.minLength(30),
           Validators.maxLength(100)]]
@@ -111,20 +111,20 @@ export class NftUploadComponent implements OnInit {
     const id = this.user.id;
     const nftName = this.validNftName;
     const nftDescription = this.validDescription;
-    if(this.path){
+    if (this.path) {
     this.urlSub = this.storage.ref(
       `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
         this.nftUploadUri = uri;
         const nftData: any = {
           uri: this.nftUploadUri,
           name: nftName,
-          description:nftDescription,
-          addedToMarket:false,
-          isUpdating:false,
-          likes:0
+          description: nftDescription,
+          addedToMarket: false,
+          isUpdating: false,
+          likes: 0
         };
         this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
-        nftData 
+        nftData
         });
         this.dbUploadComplete = true;
       });
@@ -158,12 +158,12 @@ export class NftUploadComponent implements OnInit {
               `${notUniqueNft.nftData.name} is currently stored.
             Please Submit a Unique name.
             `;
-          }else if(!notUniqueNft){
+          } else if (!notUniqueNft) {
             this.nftUniqueCheck = false;
             this.updateNftMessage = '';
           }
         }
-      )
+      );
     }
   }
 

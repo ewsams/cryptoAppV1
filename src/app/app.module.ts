@@ -80,12 +80,12 @@ import { NftUploadComponent } from './decentral/front-end-authentication/nft-upl
     HttpClientModule,
     MetaModule,
     AngularFireStorageModule
-    
+
   ],
   entryComponents: [NgbdModalContentComponent,
     MobileModalComponent, AboutUsModalComponent,
     SetUpComponent, WorkingComponent, OptionsNotifyComponent,
-    NftNotificationComponent, LotteryInputComponent,PurchaseSpinsComponent, LotteryInfoComponent,NftUploadComponent],
+    NftNotificationComponent, LotteryInputComponent, PurchaseSpinsComponent, LotteryInfoComponent, NftUploadComponent],
   providers: [UserService, CommentsService,
     FirestoreService, AuthService, Web3Service, LotteryService],
   bootstrap: [AppComponent],

@@ -60,14 +60,13 @@ export class LoterryComponent implements OnInit {
       this.isPlaying = false;
       this.alertMessage = true;
       this.alertMessageString = 'Please Purchase Spins to Play...';
-    }
-    else if (this.playerNumbers === null) {
+    } else if (this.playerNumbers === null) {
       this.isPlaying = false;
       this.alertMessage = true;
       this.alertMessageString = 'Please Select Numbers to Play...';
     } else {
       this.isPlaying = true;
-      this.db.update(`profiles/${this.user.id}`,{...this.user,spins: this.user.spins - 1});
+      this.db.update(`profiles/${this.user.id}`, {...this.user, spins: this.user.spins - 1});
       this.getLottoNumbers();
       setTimeout(() => this.finishedPlaying(), 6500);
     }
@@ -110,10 +109,10 @@ export class LoterryComponent implements OnInit {
     for (let i = 0; i < this.nums.length; i++) {
       if (this.nums[i] !== this.playerNumbers[i]) {
         return this.winnerString = `Please Play Again...`;
-      } else if(this.nums[i] === this.playerNumbers[i]){
+      } else if (this.nums[i] === this.playerNumbers[i]) {
         this.web3Service.payLotteryWinner();
         this.db.update(`profiles/${this.user.id}`, {
-          winner:true, amount:this.currentLotteryBalance
+          winner: true, amount: this.currentLotteryBalance
         });
         return this.winnerString = `Congratulations You Win!`;
       }

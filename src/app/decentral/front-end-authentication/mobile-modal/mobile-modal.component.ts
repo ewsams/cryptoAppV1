@@ -33,7 +33,7 @@ export class MobileModalComponent implements OnInit {
     private modal: NgbModal, private userService: UserService,
     private web3Service: Web3Service
   ) {}
-  
+
   onSubmit() {
     if (this.myForm.status === 'VALID') {
       this.profileRequestFormObject = {
@@ -55,7 +55,7 @@ export class MobileModalComponent implements OnInit {
 
     this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
       this.whiteListed = isListed;
-    })
+    });
     this.whiteListedAccountSubscription = this.web3Service.whiteListedAccountAddress$.subscribe(account => {
       this.whiteListedAccount = account;
     });
@@ -106,26 +106,26 @@ export class MobileModalComponent implements OnInit {
 
   async addUser(userObject: SubmitFormModel) {
     try {
-      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email,userObject.password);
+      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email, userObject.password);
       const id = (await this.afAuth.currentUser).uid;
       const addUser = await this.db.set(`users/${id}`,
-      {id:id,...userObject});
+      {id, ...userObject});
       const addUserProfile = await this.db.set(`profiles/${id}`,
       {
-      id:id,
-      userName:userObject.userName,
+      id,
+      userName: userObject.userName,
       web3Address: userObject.web3Address,
-      spins:0
+      spins: 0
     }
-    )    
+    );
       const getWeb3 = await this.web3Service.handleKycSubmit(userObject.web3Address);
       const sendEmail = await this.sendWelcomeEmail(userObject.email, userObject.userName);
     } catch (error) {
       if (error.message ===
         'The email address is already in use by another account.') {
-        this.invalidEmailAddress = "That email is not available please try another...";
-        this.myForm.controls['email'].setErrors({ 'invalid': true });
-        setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
+        this.invalidEmailAddress = 'That email is not available please try another...';
+        this.myForm.controls.email.setErrors({ invalid: true });
+        setTimeout(() => this.myForm.controls.email.setErrors(null), 5000);
       }
     }
   }
@@ -136,20 +136,20 @@ export class MobileModalComponent implements OnInit {
       to: [email],
       message: {
         subject: `Welcome ${userName} from the Appollo Team.`,
-        text: "The world of crypto currency is just at your fingertips...",
+        text: 'The world of crypto currency is just at your fingertips...',
         html: `
         <div style="magin-left:auto;margin-right:auto">
         <h1> ${userName} thanks for joining. <br>
         We have alot of great things coming very soon...</h1>
         <img
         src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/BrandLargePhoto.png?alt=media&token=92847b49-66b4-4c8a-8675-3cb97545c7df">
-        </div>    
+        </div>
         `
       }
-    }
+    };
     this.db.set(`welcomeEmails/${id}`, welcomeEmail);
   }
-  
+
   closeModal() {
     this.modal.dismissAll();
   }

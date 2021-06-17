@@ -33,7 +33,7 @@ export class Web3Service {
 
   nftAddedToMarketConfirmed = new BehaviorSubject<boolean>(null);
   nftAddedToMarketConfirmed$ = this.nftAddedToMarketConfirmed.asObservable();
-  
+
   // Contract related variables
   appolloTokenInstance;
   appolloTokenCrowdsaleInstance;
@@ -42,7 +42,7 @@ export class Web3Service {
 
   provider; // set provider
   web3js; // create web3 instance
-  accounts;// gather accounts
+  accounts; // gather accounts
   gasEstimate: any;
 
   constructor() {
@@ -97,10 +97,10 @@ export class Web3Service {
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
         AppolloToken.networks[1].address);
-    let userTokens = await
+    const userTokens = await
       this.appolloTokenInstance.methods.balanceOf(this.accounts[0]).call();
     // Tokens in Ethereum
-    let tokensInEth = userTokens / 1000000000000000000;
+    const tokensInEth = userTokens / 1000000000000000000;
     this.userTokens.next(tokensInEth);
   }
 
@@ -114,7 +114,7 @@ export class Web3Service {
     this.lotteryInstance = new this.web3js.eth.Contract(
       Lottery.abi, Lottery.networks[1].address);
 
-    //Appollo Token Instance
+    // Appollo Token Instance
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
         AppolloToken.networks[1].address);
@@ -138,7 +138,7 @@ export class Web3Service {
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
         AppolloToken.networks[1].address);
-    let lottoBalance = await
+    const lottoBalance = await
       this.appolloTokenInstance.methods.balanceOf(Lottery.networks[1].address).call();
     const lottoBalanceInEth = lottoBalance / 1000000000000000000;
     this.lottoBalanceSubject.next(lottoBalanceInEth);
@@ -152,7 +152,7 @@ export class Web3Service {
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
         AppolloToken.networks[1].address);
-    let lottoBalance = await
+    const lottoBalance = await
       this.appolloTokenInstance.methods.balanceOf(Lottery.networks[1].address).call();
 
     await this.appolloTokenInstance.transferFrom(Lottery.networks[1].address, this.accounts[0], lottoBalance);
@@ -163,7 +163,7 @@ export class Web3Service {
     this.web3js = new Web3(this.provider); // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
 
-    //Appollo Token Instance
+    // Appollo Token Instance
     this.appolloTokenInstance =
       new this.web3js.eth.Contract(AppolloToken.abi,
         AppolloToken.networks[1].address);

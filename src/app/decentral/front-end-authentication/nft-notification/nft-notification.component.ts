@@ -13,7 +13,7 @@ export class NftNotificationComponent implements OnInit {
   color: any;
 
   constructor(private userService: UserService,
-    public activeModal: NgbModal,) { }
+              public activeModal: NgbModal, ) { }
 
   ngOnInit() {
     this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {

@@ -13,9 +13,9 @@ import { LotteryService } from 'src/app/util/lottery.service';
 })
 export class LotteryInputComponent implements OnInit {
   myForm: FormGroup;
-  lotterInputObject:LotteryInput;
+  lotterInputObject: LotteryInput;
   color: boolean;
-  input1:number;
+  input1: number;
   input2;
   input3;
   input4;
@@ -24,12 +24,12 @@ export class LotteryInputComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private lotteryService:LotteryService,
+    private lotteryService: LotteryService,
     private db: FirestoreService,
     private userService: UserService,
     private modal: NgbModal,
   ) {}
-  
+
   onSubmit() {
     if (this.myForm.status === 'VALID') {
       this.lotterInputObject = {
@@ -57,7 +57,7 @@ export class LotteryInputComponent implements OnInit {
       input3: [null, [Validators.required, Validators.pattern(/^[0-9]$|^[1-9][0-9]$|^(100)$/)]],
       input4: [null, [Validators.required, Validators.pattern(/^[0-9]$|^[1-9][0-9]$|^(100)$/)]],
       input5: [null, [Validators.required, Validators.pattern(/^[0-9]$|^[1-9][0-9]$|^(100)$/)]],
-      input6: [null, [Validators.required, Validators.pattern(/^[0-9]$|^[1-9][0-9]$|^(100)$/)]],  
+      input6: [null, [Validators.required, Validators.pattern(/^[0-9]$|^[1-9][0-9]$|^(100)$/)]],
     });
   }
   // Getters for working with our form
@@ -79,13 +79,13 @@ export class LotteryInputComponent implements OnInit {
   get inputSix() {
     return this.myForm.get('input6');
   }
-  
+
 
   closeModal() {
     this.modal.dismissAll();
   }
 
   ngOnDestroy() {
-    
+
   }
 }

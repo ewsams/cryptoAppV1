@@ -34,7 +34,7 @@ export class AuthService {
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
-          // Logged out        
+          // Logged out
           return of(null);
         }
       })
@@ -72,8 +72,7 @@ export class AuthService {
       await this.afAuth.signOut();
       this.userLoggedInSubject.next(false);
       this.router.navigate(['home']);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }

@@ -28,10 +28,10 @@ import { NftMarketCardNavComponent } from './decentral/front-end-authentication/
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'home-logged-in', component: HomeLoggedInComponent,canActivate:[AuthGuard] },
-  { path: 'lottery', component: LoterryComponent,canActivate:[AuthGuard]},
-  {path:'your-nfts',component:NftMarketComponent,canActivate:[AuthGuard]},
-  {path:'nft-market',component:NftMarketplaceComponent,canActivate:[AuthGuard]},
+  { path: 'home-logged-in', component: HomeLoggedInComponent, canActivate: [AuthGuard] },
+  { path: 'lottery', component: LoterryComponent, canActivate: [AuthGuard]},
+  {path: 'your-nfts', component: NftMarketComponent, canActivate: [AuthGuard]},
+  {path: 'nft-market', component: NftMarketplaceComponent, canActivate: [AuthGuard]},
   { path: '**', component: HomeComponent }
 ];
 

@@ -37,7 +37,7 @@ export class UserService {
 
 
   constructor(private afAuth: AngularFireAuth,
-    public db: FirestoreService) { }
+              public db: FirestoreService) { }
 
   getUserLandSelection(data) {
     this.userLandSelection.next(data);
@@ -72,7 +72,7 @@ export class UserService {
       nfts => {
         this.userNfts.next(nfts);
       }
-    )
+    );
   }
   addNftToMarket = (nft: any, user: any) => {
     const nftData = {
@@ -84,7 +84,7 @@ export class UserService {
       userId: user.id,
       web3Address: user.web3Address,
       likes: 0
-    }
+    };
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
       nftData,
     });
@@ -102,20 +102,19 @@ export class UserService {
       });
 
        this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
-        "nftData.likes": nft.nftData.likes + 1
+        'nftData.likes': nft.nftData.likes + 1
       });
        this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
-        "nftData.likes": nft.nftData.likes + 1
+        'nftData.likes': nft.nftData.likes + 1
       });
-    }
-    else if (this.userPreviouslyLiked.likedBy === user.id) {
-       this.db.delete(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`)
+    } else if (this.userPreviouslyLiked.likedBy === user.id) {
+       this.db.delete(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`);
 
        this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
-        "nftData.likes": nft.nftData.likes - 1
+        'nftData.likes': nft.nftData.likes - 1
       });
        this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
-        "nftData.likes": nft.nftData.likes - 1
+        'nftData.likes': nft.nftData.likes - 1
       });
     }
     this.userPreviouslyLiked = null;
@@ -140,7 +139,7 @@ export class UserService {
             description: element.nftData.description,
             uri: element.nftData.uri,
             name: element.nftData.name
-          }
+          };
           this.db.delete(`nftMarketCollection/${element.nftData.name}_${currentUser.uid}`);
           this.db.update(`nftCollection/${currentUser.uid}/nftData/${nftData.name}`,
             { nftData });

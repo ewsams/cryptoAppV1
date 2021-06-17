@@ -47,9 +47,9 @@ export class NftMarketComponent implements OnInit {
         this.userNfts = nfts;
         this.loading = false;
       }
-    )
+    );
     this.userSub = this.userService.currentUser$.subscribe(
-      user => { this.user = user });
+      user => { this.user = user; });
   }
 
   createNft = () => {
@@ -83,22 +83,22 @@ export class NftMarketComponent implements OnInit {
   }
 
   deletNft = () => {
-    this.userService.deleteNonMarketUserNft(this.nft, this.user)
+    this.userService.deleteNonMarketUserNft(this.nft, this.user);
     this.deleteBoolean = !this.deleteBoolean;
   }
 
   deleteNonMarketNftAlert = (nft: any) => {
     this.nft = nft;
-    this.nftDeletMessage = `Are You sure you want to delete ${nft.nftData.name}`
-    this.deleteBoolean = !this.deleteBoolean
+    this.nftDeletMessage = `Are You sure you want to delete ${nft.nftData.name}`;
+    this.deleteBoolean = !this.deleteBoolean;
   }
 
-  nftUpdate = (nft:any) => {
+  nftUpdate = (nft: any) => {
       nft.nftData.isUpdating = true;
       this.nftUpdateBoolean = !this.nftUpdateBoolean;
   }
 
-  nftCancelUpdate = ($event,nft) => {
+  nftCancelUpdate = ($event, nft) => {
     nft.nftData.isUpdating = $event;
   }
 

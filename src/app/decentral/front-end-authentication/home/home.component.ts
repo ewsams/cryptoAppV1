@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
   password: string;
   dark: boolean;
   backgroundColor: Subscription;
-  crowdSaleAddress:string;
-  appolloTokenAddress:string;
+  crowdSaleAddress: string;
+  appolloTokenAddress: string;
 
   constructor(private router: Router, private authService: AuthService,
               private logginService: LogginService, private render: Renderer2,

@@ -86,7 +86,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
       .subscribe(x => {
         this.getTimeDifference();
         this.formatSingleValues();
-        if (this.daysToDday === 2){
+        if (this.daysToDday === 2) {
           this.dangerColorDisplay = true;
         }
         this.dateLoaded = true;
@@ -95,7 +95,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription && this.logginSub){
+    if (this.subscription && this.logginSub) {
       this.subscription.unsubscribe();
       this.logginSub.unsubscribe();
     }
@@ -122,7 +122,7 @@ export class CountDownComponent implements OnInit, OnDestroy {
   }
 
   getCountdown = () => {
-    const auctionCountDownDate = this.auctionStart.setDate(this.auctionStart.getDate() + 7)
+    const auctionCountDownDate = this.auctionStart.setDate(this.auctionStart.getDate() + 7);
     this.dDay = new Date(auctionCountDownDate);
   }
 }

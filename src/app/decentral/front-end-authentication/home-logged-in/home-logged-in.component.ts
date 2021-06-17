@@ -13,8 +13,8 @@ import { UserService } from '../services/user.service';
 export class HomeLoggedInComponent implements OnInit {
   users$: any[];
   userSub: Subscription;
-  userTokenBalanceSub:Subscription;
-  appolloAmount$:any;
+  userTokenBalanceSub: Subscription;
+  appolloAmount$: any;
   loading = true;
   page = 1;
   pageSize = 12;
@@ -24,9 +24,9 @@ export class HomeLoggedInComponent implements OnInit {
   user: any;
   userRetrieved: boolean;
 
-  constructor(public db: FirestoreService, 
-    private web3Service: Web3Service,
-    private userService: UserService) {}
+  constructor(public db: FirestoreService,
+              private web3Service: Web3Service,
+              private userService: UserService) {}
 
   ngOnInit() {
   const users = this.userService.getCurrentUsers();
@@ -36,7 +36,7 @@ export class HomeLoggedInComponent implements OnInit {
       this.totalPageElements = this.users$.length;
       this.loading = false;
     });
-    this.gatherUserTokens();
+  this.gatherUserTokens();
     }
 
  gatherUserTokens = () => {
@@ -46,7 +46,7 @@ export class HomeLoggedInComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.userSub.unsubscribe();
     this.userTokenBalanceSub.unsubscribe();
   }

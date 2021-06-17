@@ -119,22 +119,22 @@ export class UpdateNftComponent implements OnInit {
     if (this.path) {
       this.urlSub = this.storage.ref(
         `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
-          this.nftUploadUri = uri ? uri: this.userUpdateNft.nftData.uri;
+          this.nftUploadUri = uri ? uri : this.userUpdateNft.nftData.uri;
           const nftData: any = {
             uri: this.nftUploadUri,
             name: nftName,
             description: nftDescription,
             addedToMarket: false,
             isUpdating: false,
-            likes:0
+            likes: 0
           };
-          if (this.userUpdateNft.nftData.name != this.validNftName 
+          if (this.userUpdateNft.nftData.name != this.validNftName
             && this.nftUniqueCheck === false) {
               this.db.upsert(`nftCollection/${id}/nftData/${this.validNftName}`, {
                 nftData
               });
-            this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
-          }    
+              this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
+          }
 
           if (this.userUpdateNft.nftData.name === this.validNftName && this.nftUniqueCheck === false) {
             this.db.update(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`, {
@@ -168,7 +168,7 @@ export class UpdateNftComponent implements OnInit {
               nft.nftData.name === this.nftName.value
             );
           if (notUniqueNft &&
-            this.userUpdateNft.nftData.name 
+            this.userUpdateNft.nftData.name
             != this.validNftName) {
             this.nftUniqueCheck = true;
             this.nftNameSubmitted = false;
@@ -181,7 +181,7 @@ export class UpdateNftComponent implements OnInit {
             this.updateNftMessage = '';
           }
         }
-      )
+      );
     }
   }
 

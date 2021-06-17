@@ -19,7 +19,7 @@ export class LotteryService {
   playerNumbers = new BehaviorSubject<Number[]>(null);
   playerNumbers$ = this.playerNumbers.asObservable();
 
-  getNumbers():Observable<any> {
+  getNumbers(): Observable<any> {
   return this.http.get(this.numbersUrl, {responseType: 'text'});
   }
 }

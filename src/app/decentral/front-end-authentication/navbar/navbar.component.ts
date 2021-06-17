@@ -34,9 +34,8 @@ export class NavbarComponent implements OnInit {
       if (this.isLoggedIn) {
         this.render.addClass(this.document.body,
           'background-logged-in');
-      }   
-      else {
-        this.render.removeClass(this.document.body, 
+      } else {
+        this.render.removeClass(this.document.body,
           'background-logged-in');
       }
     });
@@ -68,22 +67,22 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  optionsNotify(){
-    const modalRef = this.modalService.open(OptionsNotifyComponent,{
-      size:'md ',
+  optionsNotify() {
+    const modalRef = this.modalService.open(OptionsNotifyComponent, {
+      size: 'md ',
     });
   }
 
-  nftNotification(){
+  nftNotification() {
    this.router.navigate(['nft-market']);
   }
 
-  lotteryNavigate(){
+  lotteryNavigate() {
     this.router.navigate(['lottery']);
   }
 
-  
-  homeNavigate(){
+
+  homeNavigate() {
     this.router.navigate(['home-logged-in']);
   }
 

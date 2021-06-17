@@ -17,11 +17,11 @@ import { UserService } from '../services/user.service';
         <span *ngIf="!whiteListed" class="w-100" style="border-bottom:solid white 1px;">
             Welcome Let's Get Started</span
           >
-          <div *ngIf="whiteListed" class="text-success whitelisted-notification">Congrats Account: {{whiteListedAccount}} 
+          <div *ngIf="whiteListed" class="text-success whitelisted-notification">Congrats Account: {{whiteListedAccount}}
           <br> is now Whitelisted. Please Log In...</div>
           <div class="mt-4" style="padding:2rem">
             <strong
-              >"You can earn crypto by creating your own artistic 
+              >"You can earn crypto by creating your own artistic
               content with your friends..."</strong
             >
           </div>
@@ -54,7 +54,7 @@ export class NgbdModalContentComponent implements OnInit {
   color: boolean;
   colorSubscription: Subscription;
   whiteListed: boolean;
-  whiteListedSubscription:Subscription;
+  whiteListedSubscription: Subscription;
   whiteListedAccountSubscription: Subscription;
   whiteListedAccount: string;
   constructor(
@@ -66,11 +66,11 @@ export class NgbdModalContentComponent implements OnInit {
   ngOnInit() {
     this.whiteListedSubscription = this.web3Service.isWhiteListed$.subscribe(isListed => {
       this.whiteListed = isListed;
-    })
+    });
     this.whiteListedAccountSubscription = this.web3Service.whiteListedAccountAddress$.subscribe(account => {
       this.whiteListedAccount = account;
     });
-   this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
+    this.colorSubscription = this.userService.userBackgroundSelectionObservable$.subscribe(color => {
      this.color = color;
    });
   }

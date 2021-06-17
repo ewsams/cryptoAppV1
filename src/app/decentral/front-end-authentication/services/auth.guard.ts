@@ -13,14 +13,14 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService, 
-    private router: Router, 
-    private afAuth: AngularFireAuth,) { }
+    private authService: AuthService,
+    private router: Router,
+    private afAuth: AngularFireAuth, ) { }
 
   async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):  Promise<boolean> {
+  ): Promise<boolean> {
     const user = await this.afAuth.currentUser;
     const isLoggedIn = !!user;
     this.authService.userLoggedInSubject.next(isLoggedIn);

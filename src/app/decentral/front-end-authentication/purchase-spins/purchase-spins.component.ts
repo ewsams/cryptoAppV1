@@ -31,9 +31,9 @@ export class PurchaseSpinsComponent implements OnInit {
 
 
   constructor(public activeModal: NgbModal,
-    private userService: UserService,
-    private web3Service: Web3Service,
-    private db: FirestoreService) { }
+              private userService: UserService,
+              private web3Service: Web3Service,
+              private db: FirestoreService) { }
 
   ngOnInit() {
     this.gatherUserTokens();
@@ -83,19 +83,19 @@ export class PurchaseSpinsComponent implements OnInit {
       if (this.appolloTransfered === 250) {
         this.spinsPurchased =
           `Congrats you just purchased 100 spins using ${this.appolloTransfered} APP`;
-         this.updateUserSpins(100);
+        this.updateUserSpins(100);
         }
       if (this.appolloTransfered === 500) {
         this.spinsPurchased =
           `Congrats you just purchased 200 spins using ${this.appolloTransfered} APP`;
-          this.updateUserSpins(200);
+        this.updateUserSpins(200);
       }
     });
   }
 
   ngOnDestroy() {
     this.colorSubscription.unsubscribe();
-    if (this.transactionSubscription && 
+    if (this.transactionSubscription &&
       this.userSub && this.userTokenBalanceSub) {
       this.transactionSubscription.unsubscribe();
       this.userSub.unsubscribe();
@@ -114,11 +114,11 @@ export class PurchaseSpinsComponent implements OnInit {
       });
   }
 
-  updateUserSpins = (userSpinsNumber:number) => {
-    if(!this.user.spins){
-      this.db.update(`profiles/${this.user.id}`,{spins: userSpinsNumber});
+  updateUserSpins = (userSpinsNumber: number) => {
+    if (!this.user.spins) {
+      this.db.update(`profiles/${this.user.id}`, {spins: userSpinsNumber});
     } else {
-      this.db.update(`profiles/${this.user.id}`,{spins: userSpinsNumber + this.user.spins});
+      this.db.update(`profiles/${this.user.id}`, {spins: userSpinsNumber + this.user.spins});
     }
   }
 
@@ -126,14 +126,14 @@ export class PurchaseSpinsComponent implements OnInit {
     const tokens = this.web3Service.userCurrentTokens();
     this.userTokenBalanceSub = this.web3Service.userAvailiableTokens$.subscribe(tokens => {
       this.appolloAmount$ = tokens;
-      if(this.appolloAmount$ < 100){
-        this.insufficientAppolloAvailable = true; 
+      if (this.appolloAmount$ < 100) {
+        this.insufficientAppolloAvailable = true;
         const appRequiredToPurchase = 100 - this.appolloAmount$;
         const appolloSaleAddress = AppolloTokenCrowdsale.networks[1].address;
-        this.insufficientAPPMessage = 
+        this.insufficientAPPMessage =
         `Currently you have ${this.appolloAmount$} APP
-          You need ${appRequiredToPurchase} more APP to purchase Spins... 
-          Use this address: ${appolloSaleAddress} to purchase APP... 
+          You need ${appRequiredToPurchase} more APP to purchase Spins...
+          Use this address: ${appolloSaleAddress} to purchase APP...
         `;
       }
     });

@@ -25,11 +25,11 @@ export class NftMarketplaceComponent implements OnInit {
   color: boolean;
   dispayCountdown: boolean;
 
-  constructor( 
-    private userService:UserService,
+  constructor(
+    private userService: UserService,
     private modal: NgbModal,
-    private web3Service:Web3Service,
-    private router:Router) { }
+    private web3Service: Web3Service,
+    private router: Router) { }
 
   ngOnInit() {
     this.userService.getNftMarket();
@@ -42,9 +42,9 @@ export class NftMarketplaceComponent implements OnInit {
         this.marketNfts = nfts;
         this.loading = false;
       }
-    )
+    );
     this.userSub = this.userService.currentUser$.subscribe(
-      user => {this.user = user});
+      user => {this.user = user; });
   }
 
   createNft = () => {
@@ -53,10 +53,10 @@ export class NftMarketplaceComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
-    if(this.marketNftsSub && this.userSub 
+  ngOnDestroy() {
+    if (this.marketNftsSub && this.userSub
       && this.marketSub && this.colorSubscription
-    ){
+    ) {
       this.marketNftsSub.unsubscribe();
       this.userSub.unsubscribe();
       this.marketSub.unsubscribe();

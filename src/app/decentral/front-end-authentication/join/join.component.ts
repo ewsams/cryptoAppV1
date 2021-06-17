@@ -69,7 +69,7 @@ export class JoinComponent implements OnInit {
       ],
       web3Address: ['', [Validators.required, Validators.pattern(
         /^0x[a-fA-F0-9]{40}$/
-      ),]]
+      ), ]]
     });
   }
   // Getters for working with our form
@@ -91,26 +91,26 @@ export class JoinComponent implements OnInit {
 
   async addUser(userObject: SubmitFormModel) {
     try {
-      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email,userObject.password);
+      const createUser = await this.afAuth.createUserWithEmailAndPassword(userObject.email, userObject.password);
       const id = (await this.afAuth.currentUser).uid;
       const addUser = await this.db.set(`users/${id}`,
-      {id:id,...userObject});
+      {id, ...userObject});
       const addUserProfile = await this.db.set(`profiles/${id}`,
       {
-      id:id,
-      userName:userObject.userName,
+      id,
+      userName: userObject.userName,
       web3Address: userObject.web3Address,
-      spins:0
+      spins: 0
     }
-    )    
+    );
       const getWeb3 = await this.web3Service.handleKycSubmit(userObject.web3Address);
       const sendEmail = await this.sendWelcomeEmail(userObject.email, userObject.userName);
     } catch (error) {
       if (error.message ===
         'The email address is already in use by another account.') {
-        this.invalidEmailAddress = "That email is not available please try another...";
-        this.myForm.controls['email'].setErrors({ 'invalid': true });
-        setTimeout(() => this.myForm.controls['email'].setErrors(null), 5000);
+        this.invalidEmailAddress = 'That email is not available please try another...';
+        this.myForm.controls.email.setErrors({ invalid: true });
+        setTimeout(() => this.myForm.controls.email.setErrors(null), 5000);
       }
     }
   }
@@ -121,7 +121,7 @@ export class JoinComponent implements OnInit {
       to: [email],
       message: {
         subject: `Welcome ${userName} from the Appollo Team.`,
-        text: "The world of crypto currency is just at your fingertips...",
+        text: 'The world of crypto currency is just at your fingertips...',
         html: `
         <div style="display:flex;justify-content:center">
         <h2 style="text-align: center;"> ${userName} thanks for joining... <br>
@@ -129,10 +129,10 @@ export class JoinComponent implements OnInit {
         <img
         style="height:45%;width:45%;"
         src="https://firebasestorage.googleapis.com/v0/b/ewsdeploy.appspot.com/o/emailLogo.png?alt=media&token=3959acc4-f69d-4662-a541-de0288e88c0e">
-        </div>   
+        </div>
         `
       }
-    }
+    };
     this.db.set(`welcomeEmails/${id}`, welcomeEmail);
   }
 }
