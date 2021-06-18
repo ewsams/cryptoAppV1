@@ -127,7 +127,7 @@ export class UpdateNftComponent implements OnInit {
             addedToMarket: false,
             isUpdating: false,
             likes: 0,
-            loadingAnimation:false
+            loadingAnimation: false
           };
           if (this.userUpdateNft.nftData.name != this.validNftName
             && this.nftUniqueCheck === false) {

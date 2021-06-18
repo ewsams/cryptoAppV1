@@ -66,8 +66,7 @@ export class NftMarketComponent implements OnInit {
     this.marketSub = this.web3Service.nftAddedToMarketConfirmed$.subscribe(confirmed => {
       if (confirmed != true) {
         nft.nftData.loadingAnimation = true;
-      }
-      else if (confirmed === true) {
+      } else if (confirmed === true) {
         nft.nftData.loadingAnimation = false;
         this.userService.addNftToMarket(nft, this.user);
       }
