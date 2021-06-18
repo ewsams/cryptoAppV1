@@ -29,6 +29,7 @@ import { UploadPromiseGraphicComponent } from './decentral/front-end-authenticat
 import { MarketIconComponent } from './decentral/front-end-authentication/market-icon/market-icon.component';
 import { WingsIconComponent } from './decentral/front-end-authentication/wings-icon/wings-icon.component';
 import { ArtistIconComponent } from './decentral/front-end-authentication/artist-icon/artist-icon.component';
+import { InfoIconComponent } from './decentral/front-end-authentication/info-icon/info-icon.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -72,5 +73,6 @@ export const routingComponents = [
   UploadPromiseGraphicComponent,
   MarketIconComponent,
   WingsIconComponent,
-  ArtistIconComponent
+  ArtistIconComponent,
+  InfoIconComponent
 ];
