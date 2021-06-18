@@ -43,6 +43,7 @@ import { PurchaseSpinsComponent } from './decentral/front-end-authentication/pur
 import { LotteryInfoComponent } from './decentral/front-end-authentication/lottery-info/lottery-info.component';
 import { NftUploadComponent } from './decentral/front-end-authentication/nft-upload/nft-upload.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
