@@ -24,12 +24,13 @@ export class NftMarketCardNavComponent implements OnInit {
 
   addNftLikes = () => {
     if (this.userIsPresent) {
-      this.userService.addLike(this.nft, this.user);
+      const likeCount = this.nft.nftData.likes;
+      this.userService.addLike(this.nft, this.user, likeCount);
     }
   }
 
-  ngOnDestroy(){
-    if(this.userSub){
+  ngOnDestroy() {
+    if (this.userSub) {
       this.userSub.unsubscribe();
     }
   }

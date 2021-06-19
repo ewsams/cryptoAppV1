@@ -34,10 +34,11 @@ export class UserService {
   marketNfts$ = this.nftMarketNfts.asObservable();
   auctionEndDate: string | number | Date;
   userPreviouslyLiked: any;
+  currentLikesCount: number;
 
 
   constructor(private afAuth: AngularFireAuth,
-    private db: FirestoreService) { }
+              private db: FirestoreService) { }
 
   getUserLandSelection(data) {
     this.userLandSelection.next(data);
@@ -93,7 +94,7 @@ export class UserService {
     });
   }
 
-  addLike = async (nft: any, user: any) => {
+  addLike = async (nft: any, user: any, likeCount: number) => {
     this.checkForPriorLike(nft, user);
     if (typeof this.userPreviouslyLiked === 'undefined') {
 
@@ -102,10 +103,10 @@ export class UserService {
       });
 
       this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
-        'nftData.likes': nft.nftData.likes + 1
+        'nftData.likes': likeCount + 1
       });
       this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
-        'nftData.likes': nft.nftData.likes + 1
+        'nftData.likes': likeCount + 1
       });
     }
   }

@@ -41,6 +41,7 @@ export class UpdateNftComponent implements OnInit {
   colorSubscription: Subscription;
   color: boolean;
   nftUpdateWarning: string;
+  notUniqueNft: any;
 
 
   constructor(
@@ -131,13 +132,14 @@ export class UpdateNftComponent implements OnInit {
           };
           if (this.userUpdateNft.nftData.name != this.validNftName
             && this.nftUniqueCheck === false) {
-              this.db.update(`nftCollection/${id}/nftData/${this.validNftName}`, {
-                nftData
-              });
-              this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
+            this.db.update(`nftCollection/${id}/nftData/${this.validNftName}`, {
+              nftData
+            });
+            this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
           }
 
-          if (this.userUpdateNft.nftData.name === this.validNftName && this.nftUniqueCheck === false) {
+          if (this.userUpdateNft.nftData.name === this.validNftName
+            && this.nftUniqueCheck === false) {
             this.db.update(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`, {
               nftData
             });
@@ -161,28 +163,26 @@ export class UpdateNftComponent implements OnInit {
 
   checkUnique = () => {
     if (this.nftNameSubmitted) {
-      this.nftSub = this.db.col$(`nftCollection/${this.user.id}/nftData`).subscribe(
-        nfts => {
-          const nftList = nfts;
-          const notUniqueNft: any =
-            nftList.find((nft: any) =>
-              nft.nftData.name === this.nftName.value
-            );
-          if (notUniqueNft &&
-            this.userUpdateNft.nftData.name
-            != this.validNftName) {
-            this.nftUniqueCheck = true;
-            this.nftNameSubmitted = false;
-            this.updateNftMessage =
-              `${notUniqueNft.nftData.name} is currently stored.
+
+      this.nftSub = this.db.col(`nftCollection/${this.user.id}/nftData`,
+        ref => ref.where('nftData.name', '==', this.nftName.value)).valueChanges().subscribe(
+          async nftNameTaken => {
+            this.notUniqueNft = await nftNameTaken[0];
+            console.log(this.notUniqueNft);
+
+            if (this.notUniqueNft.nftData.name &&
+              this.userUpdateNft.nftData.name !== this.notUniqueNft.nftData.name) {
+              this.nftUniqueCheck = true;
+              this.nftNameSubmitted = false;
+              this.updateNftMessage =
+                `${this.notUniqueNft.nftData.name} is currently stored.
             Please Submit a Unique name.
             `;
-          } else if (!notUniqueNft) {
-            this.nftUniqueCheck = false;
-            this.updateNftMessage = '';
-          }
-        }
-      );
+            } else if (typeof this.notUniqueNft === 'undefined') {
+              this.nftUniqueCheck = false;
+              this.updateNftMessage = '';
+            }
+          });
     }
   }
 

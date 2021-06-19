@@ -40,6 +40,7 @@ export class NftUploadComponent implements OnInit {
   validDescription: string;
   colorSubscription: Subscription;
   color: boolean;
+  notUniqueNft: any;
 
 
   constructor(
@@ -64,10 +65,10 @@ export class NftUploadComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20)]],
-        nftDescription: ['', [
-          Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(100)]]
+      nftDescription: ['', [
+        Validators.required,
+        Validators.minLength(30),
+        Validators.maxLength(100)]]
     });
 
     this.userService.currentUser$.subscribe(user => this.user = user);
@@ -112,23 +113,23 @@ export class NftUploadComponent implements OnInit {
     const nftName = this.validNftName;
     const nftDescription = this.validDescription;
     if (this.path) {
-    this.urlSub = this.storage.ref(
-      `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
-        this.nftUploadUri = uri;
-        const nftData: any = {
-          uri: this.nftUploadUri,
-          name: nftName,
-          description: nftDescription,
-          addedToMarket: false,
-          isUpdating: false,
-          likes: 0,
-          loadingAnimation: false
-        };
-        this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
-        nftData
+      this.urlSub = this.storage.ref(
+        `${this.path}_300x300`).getDownloadURL().subscribe(uri => {
+          this.nftUploadUri = uri;
+          const nftData: any = {
+            uri: this.nftUploadUri,
+            name: nftName,
+            description: nftDescription,
+            addedToMarket: false,
+            isUpdating: false,
+            likes: 0,
+            loadingAnimation: false
+          };
+          this.db.upsert(`nftCollection/${id}/nftData/${nftName}`, {
+            nftData
+          });
+          this.dbUploadComplete = true;
         });
-        this.dbUploadComplete = true;
-      });
     }
   }
 
@@ -147,24 +148,25 @@ export class NftUploadComponent implements OnInit {
 
   checkUnique = () => {
     if (this.nftNameSubmitted) {
-      this.nftSub = this.db.col$(`nftCollection/${this.user.id}/nftData`).subscribe(
-        nfts => {
-          const nftList = nfts;
-          const notUniqueNft: any =
-            nftList.find((nft: any) => nft.nftData.name === this.nftName.value);
-          if (notUniqueNft) {
-            this.nftUniqueCheck = true;
-            this.nftNameSubmitted = false;
-            this.updateNftMessage =
-              `${notUniqueNft.nftData.name} is currently stored.
+
+      this.nftSub = this.db.col(`nftCollection/${this.user.id}/nftData`,
+        ref => ref.where('nftData.name', '==', this.nftName.value)).valueChanges().subscribe(
+          async nftNameTaken => {
+            this.notUniqueNft = await nftNameTaken[0];
+            console.log(this.notUniqueNft);
+
+            if (this.notUniqueNft.nftData.name) {
+              this.nftUniqueCheck = true;
+              this.nftNameSubmitted = false;
+              this.updateNftMessage =
+                `${this.notUniqueNft.nftData.name} is currently stored.
             Please Submit a Unique name.
             `;
-          } else if (!notUniqueNft) {
-            this.nftUniqueCheck = false;
-            this.updateNftMessage = '';
-          }
-        }
-      );
+            } else if (typeof this.notUniqueNft === 'undefined') {
+              this.nftUniqueCheck = false;
+              this.updateNftMessage = '';
+            }
+          });
     }
   }
 
