@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,11 +11,12 @@ export class NftMarketCardNavComponent implements OnInit {
   @Input() nft: any;
   user: any;
   userIsPresent: boolean;
+  userSub: Subscription;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.currentUser$.subscribe(user => {
+    this.userSub = this.userService.currentUser$.subscribe(user => {
       this.user = user;
       this.userIsPresent = true;
     });
@@ -23,6 +25,12 @@ export class NftMarketCardNavComponent implements OnInit {
   addNftLikes = () => {
     if (this.userIsPresent) {
       this.userService.addLike(this.nft, this.user);
+    }
+  }
+
+  ngOnDestroy(){
+    if(this.userSub){
+      this.userSub.unsubscribe();
     }
   }
 

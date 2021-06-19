@@ -37,7 +37,7 @@ export class UserService {
 
 
   constructor(private afAuth: AngularFireAuth,
-              public db: FirestoreService) { }
+    private db: FirestoreService) { }
 
   getUserLandSelection(data) {
     this.userLandSelection.next(data);
@@ -95,29 +95,19 @@ export class UserService {
 
   addLike = async (nft: any, user: any) => {
     this.checkForPriorLike(nft, user);
-    if (!this.userPreviouslyLiked) {
+    if (typeof this.userPreviouslyLiked === 'undefined') {
 
-       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
+      this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
         likedBy: user.id
       });
 
-       this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
+      this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
         'nftData.likes': nft.nftData.likes + 1
       });
-       this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
+      this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
         'nftData.likes': nft.nftData.likes + 1
-      });
-    } else if (this.userPreviouslyLiked.likedBy === user.id) {
-       this.db.delete(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`);
-
-       this.db.update(`nftCollection/${nft.nftData.userId}/nftData/${nft.nftData.name}`, {
-        'nftData.likes': nft.nftData.likes - 1
-      });
-       this.db.update(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}`, {
-        'nftData.likes': nft.nftData.likes - 1
       });
     }
-    this.userPreviouslyLiked = null;
   }
 
   getNftMarket = () => {
@@ -155,11 +145,10 @@ export class UserService {
   }
 
   checkForPriorLike = (nft: any, user: any) => {
-    this.db.colWithIds$(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`).subscribe(
-      userLiked => {
-        const userLikedList = userLiked;
-        this.userPreviouslyLiked = userLikedList.find(userLiked => userLiked.likedBy === user.id);
-      },
-    );
+    this.db.col(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`,
+      ref => ref.where('likedBy', '==', user.id)).valueChanges().subscribe(
+        async userLiked => {
+          this.userPreviouslyLiked = await userLiked[0];
+        });
   }
 }

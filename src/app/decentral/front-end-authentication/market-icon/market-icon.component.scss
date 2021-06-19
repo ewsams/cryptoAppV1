@@ -1,5 +1,5 @@
 @keyframes fadeIn {
-  from { 
+  from {
     opacity: 0;
   }
 
@@ -8,30 +8,37 @@
   }
 }
 
-svg g path {
-opacity: 0;
-animation: fadeIn 1s ease-in-out 300ms forwards;
+@keyframes clear {
+ to{
+   opacity: 0;
+ }
+  
+}
 
-  &#bar1{
-    animation-delay: 500ms;  
-  }
-  &#bar2{
-    animation-delay: 1s;
-  }
-  &#bar3{
-    animation-delay: 2s; 
-  }
-  &#bar4{
-    animation-delay: 3s; 
-  }
-  &#bar5{
-    animation-delay: 4s;
-  }
-  &#bar6{
-    animation-delay: 5s; 
-  }
-  &#bar7{
-      animation-delay: 6s;  
+  svg g path {
+    opacity: 0;
+  
+    animation: fadeIn 1200ms ease-in-out 3s forwards, clear 4.5s forwards infinite;
+  
+    &#bar1 {
+      animation-delay: 700ms;
+    }
+    &#bar2 {
+      animation-delay: 950ms;
+    }
+    &#bar3 {
+      animation-delay: 1.25s;
+    }
+    &#bar4 {
+      animation-delay: 1.75s;
+    }
+    &#bar5 {
+      animation-delay: 2.25s;
+    }
+    &#bar6 {
+      animation-delay: 2.75s;
+    }
+    &#bar7 {
+      animation-delay: 3.25s;
     }
   }
-
