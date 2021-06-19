@@ -1,44 +1,39 @@
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes clear {
- to{
-   opacity: 0;
+  0% {
+      opacity: 0;
  }
-  
+50%{
+ opacity:1
+}
+  100% {
+      opacity:0;
+ }
 }
 
-  svg g path {
-    opacity: 0;
-  
-    animation: fadeIn 1200ms ease-in-out 3s forwards, clear 4.5s forwards infinite;
-  
-    &#bar1 {
-      animation-delay: 700ms;
-    }
-    &#bar2 {
-      animation-delay: 950ms;
-    }
-    &#bar3 {
-      animation-delay: 1.25s;
-    }
-    &#bar4 {
-      animation-delay: 1.75s;
-    }
-    &#bar5 {
-      animation-delay: 2.25s;
-    }
-    &#bar6 {
-      animation-delay: 2.75s;
-    }
-    &#bar7 {
-      animation-delay: 3.25s;
-    }
-  }
+path[class^="bar"] {
+opacity: 0;
+animation: fadeIn 5s ease;
+animation-iteration-count: infinite;
+}
+
+path.bar1 {
+  animation-delay: 500ms;
+}
+path.bar2 {
+  animation-delay: 1s;
+}
+path.bar3 {
+  animation-delay: 1.5s;
+}
+path.bar4 {
+  animation-delay: 2s;
+}
+path.bar5 {
+  animation-delay: 2.5s;
+}
+path.bar6 {
+  animation-delay: 3s;
+}
+path.bar7 {
+  animation-delay: 3.5s;
+}
