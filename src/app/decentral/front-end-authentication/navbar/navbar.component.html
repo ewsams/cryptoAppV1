@@ -20,6 +20,21 @@
   </div>
 </nav>
 
+<nav *ngIf="!isLoggedIn" class="mobile-nav d-inline" style="margin-top: 10rem;">
+  <div class="link-container">
+    <strong (click)="openJoinModalSmall()">
+      Join Us
+    </strong>
+    <strong (click)="openAboutModal()">
+      About Us
+    </strong>
+    <strong (click)="setUpModal()">
+      Wallet Set Up
+    </strong>
+  </div>
+</nav>
+
+
 <nav *ngIf="isLoggedIn" class="navbar navbar-expand-sm bg-none">
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">

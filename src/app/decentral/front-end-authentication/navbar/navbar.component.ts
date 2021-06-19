@@ -10,6 +10,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { OptionsNotifyComponent } from '../options-notify/options-notify.component';
 import { NftNotificationComponent } from '../nft-notification/nft-notification.component';
+import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -50,6 +51,14 @@ export class NavbarComponent implements OnInit {
       size: 'lg',
     });
   }
+
+  openJoinModalSmall() {
+    const modalRef = this.modalService.open(MobileModalComponent, {
+      size: 'md',
+    });
+  }
+  
+  
   openAboutModal() {
     const modalRef = this.modalService.open(AboutUsModalComponent, {
       size: 'md',
