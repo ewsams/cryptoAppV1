@@ -95,7 +95,6 @@ export class UserService {
   }
 
   addLike = async (nft: any, user: any, likeCount: number) => {
-    this.checkForPriorLike(nft, user);
     if (typeof this.userPreviouslyLiked === 'undefined') {
 
       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {

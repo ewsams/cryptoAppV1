@@ -178,6 +178,7 @@ export class UpdateNftComponent implements OnInit {
                 `${this.notUniqueNft.nftData.name} is currently stored.
             Please Submit a Unique name.
             `;
+              setTimeout(() => {this.nftUniqueCheck = false; }, 4000);
             } else if (typeof this.notUniqueNft === 'undefined') {
               this.nftUniqueCheck = false;
               this.updateNftMessage = '';
