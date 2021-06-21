@@ -94,7 +94,16 @@ export class UserService {
     });
   }
 
-  addLike = async (nft: any, user: any, likeCount: number) => {
+  addLike = (nft: any, user: any, likeCount: number) => {
+    
+    // Check for Likes
+    this.db.col(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`,
+    ref => ref.where('likedBy', '==', user.id)).valueChanges().subscribe(
+      userLiked => {
+        this.userPreviouslyLiked = userLiked[0];
+      });
+    
+    
     if (typeof this.userPreviouslyLiked === 'undefined') {
 
       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
@@ -132,7 +141,7 @@ export class UserService {
             loadingAnimation: false
           };
           this.db.delete(`nftMarketCollection/${element.nftData.name}_${currentUser.uid}`);
-          this.db.update(`nftCollection/${currentUser.uid}/nftData/${nftData.name}`,
+          this.db.set(`nftCollection/${currentUser.uid}/nftData/${nftData.name}`,
             { nftData });
         }
         this.nftMarketNfts.next(marketNfts);
@@ -142,13 +151,5 @@ export class UserService {
 
   deleteNonMarketUserNft = (nft: any, user: any) => {
     this.db.delete(`nftCollection/${user.id}/nftData/${nft.nftData.name}`);
-  }
-
-  checkForPriorLike = (nft: any, user: any) => {
-    this.db.col(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`,
-      ref => ref.where('likedBy', '==', user.id)).valueChanges().subscribe(
-        async userLiked => {
-          this.userPreviouslyLiked = await userLiked[0];
-        });
   }
 }
