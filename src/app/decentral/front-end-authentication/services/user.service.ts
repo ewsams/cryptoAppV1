@@ -138,7 +138,9 @@ export class UserService {
             description: element.nftData.description,
             uri: element.nftData.uri,
             name: element.nftData.name,
-            loadingAnimation: false
+            loadingAnimation: false,
+            userId:this.user.id,
+            web3Address:this.user.web3Address
           };
           this.db.delete(`nftMarketCollection/${element.nftData.name}_${currentUser.uid}`);
           this.db.set(`nftCollection/${currentUser.uid}/nftData/${nftData.name}`,
