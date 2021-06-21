@@ -132,7 +132,7 @@ export class UserService {
         const endDate = new Date(this.auctionEndDate);
         const currentTime = new Date(Date.now());
 
-        if (currentTime.valueOf > endDate.valueOf) {
+        if (currentTime > endDate) {
           const nftData = {
             addedToMarket: false,
             description: element.nftData.description,
@@ -145,6 +145,7 @@ export class UserService {
             web3Address:element.nftData.web3Address
           };
           this.db.delete(`nftMarketCollection/${nftData.name}_${nftData.userId}`);
+          this.db.deleteCollection(`nftMarketCollection/${nftData.name}_${nftData.userId}/userLiked`,200);
           this.db.set(`nftCollection/${nftData.userId}/nftData/${nftData.name}`,
             { nftData });
         }
