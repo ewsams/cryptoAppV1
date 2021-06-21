@@ -139,6 +139,7 @@ export class UserService {
             uri: element.nftData.uri,
             name: element.nftData.name,
             loadingAnimation: false,
+            likes:0,
             userId:this.user.id,
             web3Address:this.user.web3Address
           };
