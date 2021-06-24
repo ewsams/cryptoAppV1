@@ -27,18 +27,19 @@ export class UserService {
 
   private currentUsersPrivate: Observable<any>;
 
-  private userNfts = new BehaviorSubject<any>(null);
+  private userNfts = new BehaviorSubject<any[]>([]);
   userNfts$ = this.userNfts.asObservable();
 
-  private nftMarketNfts = new BehaviorSubject<any>(null);
+  private nftMarketNfts = new BehaviorSubject<any[]>([]);
   marketNfts$ = this.nftMarketNfts.asObservable();
+
   auctionEndDate: string | number | Date;
   userPreviouslyLiked: any;
   currentLikesCount: number;
 
 
   constructor(private afAuth: AngularFireAuth,
-              private db: FirestoreService) { }
+    private db: FirestoreService) { }
 
   getUserLandSelection(data) {
     this.userLandSelection.next(data);
@@ -84,26 +85,27 @@ export class UserService {
       createdBy: user.userName,
       userId: user.id,
       web3Address: user.web3Address,
-      likes: 0
+      likes: 0,
     };
     this.db.update(`nftCollection/${user.id}/nftData/${nft.nftData.name}`, {
       nftData,
     });
     this.db.set(`nftMarketCollection/${nft.nftData.name}_${user.id}`, {
       nftData,
+      auctionOpen: true
     });
   }
 
   addLike = (nft: any, user: any, likeCount: number) => {
-    
+
     // Check for Likes
     this.db.col(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked`,
-    ref => ref.where('likedBy', '==', user.id)).valueChanges().subscribe(
-      userLiked => {
-        this.userPreviouslyLiked = userLiked[0];
-      });
-    
-    
+      ref => ref.where('likedBy', '==', user.id)).valueChanges().subscribe(
+        userLiked => {
+          this.userPreviouslyLiked = userLiked[0];
+        });
+
+
     if (typeof this.userPreviouslyLiked === 'undefined') {
 
       this.db.set(`nftMarketCollection/${nft.nftData.name}_${nft.nftData.userId}/userLiked/${user.id}`, {
@@ -139,13 +141,13 @@ export class UserService {
             uri: element.nftData.uri,
             name: element.nftData.name,
             loadingAnimation: false,
-            likes:0,
+            likes: 0,
             isUpdating: false,
-            userId:element.nftData.userId,
-            web3Address:element.nftData.web3Address
+            userId: element.nftData.userId,
+            web3Address: element.nftData.web3Address
           };
           this.db.delete(`nftMarketCollection/${nftData.name}_${nftData.userId}`);
-          this.db.deleteCollection(`nftMarketCollection/${nftData.name}_${nftData.userId}/userLiked`,200);
+          this.db.deleteCollection(`nftMarketCollection/${nftData.name}_${nftData.userId}/userLiked`, 200);
           this.db.set(`nftCollection/${nftData.userId}/nftData/${nftData.name}`,
             { nftData });
         }

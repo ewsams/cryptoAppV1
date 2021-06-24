@@ -130,9 +130,9 @@ export class UpdateNftComponent implements OnInit {
             likes: 0,
             loadingAnimation: false
           };
-          if (this.userUpdateNft.nftData.name != this.validNftName
+          if (this.userUpdateNft.nftData.name !== this.validNftName
             && this.nftUniqueCheck === false) {
-            this.db.update(`nftCollection/${id}/nftData/${this.validNftName}`, {
+            this.db.set(`nftCollection/${id}/nftData/${this.validNftName}`, {
               nftData
             });
             this.db.delete(`nftCollection/${id}/nftData/${this.userUpdateNft.nftData.name}`);
@@ -168,7 +168,6 @@ export class UpdateNftComponent implements OnInit {
         ref => ref.where('nftData.name', '==', this.nftName.value)).valueChanges().subscribe(
           async nftNameTaken => {
             this.notUniqueNft = await nftNameTaken[0];
-            console.log(this.notUniqueNft);
 
             if (this.notUniqueNft.nftData.name &&
               this.userUpdateNft.nftData.name !== this.notUniqueNft.nftData.name) {

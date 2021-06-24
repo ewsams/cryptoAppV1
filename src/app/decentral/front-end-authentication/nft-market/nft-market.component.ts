@@ -45,8 +45,8 @@ export class NftMarketComponent implements OnInit {
       this.color = color;
     });
     this.userNftsSub = this.userService.userNfts$.subscribe(
-      nfts => {
-        this.userNfts = nfts;
+      async nfts => {
+        this.userNfts = await nfts.sort((a, b) => b.updatedAt.toDate() - a.updatedAt.toDate());
         this.loading = false;
       }
     );
@@ -99,8 +99,8 @@ export class NftMarketComponent implements OnInit {
   }
 
   nftUpdate = (nft: any) => {
-      nft.nftData.isUpdating = true;
-      this.nftUpdateBoolean = !this.nftUpdateBoolean;
+    nft.nftData.isUpdating = true;
+    this.nftUpdateBoolean = !this.nftUpdateBoolean;
   }
 
   nftCancelUpdate = ($event, nft) => {
